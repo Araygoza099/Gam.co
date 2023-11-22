@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8">
     <title>Inicio | Gam.co</title>
-    <link rel="stylesheet" type="text/css" href="style_index.css"> 
+    <link rel="stylesheet" type="text/css" href="css/style_index.css"> 
     
   </head>
   <body >
-    <?php include('header.php'); ?>
+    <?php include('paginas/header.php'); ?>
 
     
     <p>Aqui surge la magia</p>
 
       
-    <?php include('footer.php'); ?>
+    <?php include('paginas/footer.php'); ?>
 
   </body>
 </html>
