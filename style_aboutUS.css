@@ -1,0 +1,140 @@
+#principal {
+    width: 100%;
+    overflow: hidden; /* Evita que la imagen sobresalga */
+  }
+  
+  #principal img {
+    width: 100%;
+    height: auto; /* Mantiene la proporción de la imagen */
+    display: block; /* Evita espacio adicional debajo de la imagen */
+  }
+  
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #171a21;
+    color: #fff;
+    /* overflow: hidden;  */
+  }
+  
+
+  /* Colores de los sidebars */
+  .sidebar-left, .sidebar-right {
+    width: 200px;
+    background-color: #1b2838; /* Color de sidebar similar a Steam */
+    padding: 20px;
+  }
+  
+  /* Estilos del contenido principal */
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .vision, .mision, .objetivo {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #2d384d; /* Color del borde similar a Steam */
+    margin: 10px;
+    background-color: #1b2838; /* Color de fondo similar a Steam */
+  }
+  
+  /* Estilos del texto */
+  h1, h2 {
+    color: #fff; /* Texto en blanco */
+  }
+
+  .vision {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .vision-text {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #2d384d;
+    margin: 10px;
+    background-color: #1b2838;
+  }
+  
+  .vision-description {
+    font-size: 18px; /* Tamaño de letra más grande */
+    line-height: 1.6; /* Interlineado */
+    text-align: justify; /* Alineación justificada del texto */
+  }
+  
+  .vision-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinea la imagen con la parte superior del texto */
+  }
+  
+  .vision-image img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+
+.container {
+    display: flex;
+    margin-bottom: 30px; /* Espaciado entre el container y el footer */
+  }
+  
+  footer {
+    width: 100%;
+    padding: 20px;
+    background-color: #1b2838;
+    margin-top: 30px; /* Espaciado entre el footer y el contenido */
+    text-align: center;
+  }
+  
+/* Estilos generales y estilos para otras secciones se mantienen igual */
+
+.mision,
+.objetivo {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mision .mision-text h1,
+.objetivo .objetivo-text h1 {
+  text-align: center;
+  font-size: xx-large;
+}
+
+.mision .mision-text h3,
+.objetivo .objetivo-text ul {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #2d384d;
+  margin: 10px;
+  background-color: #1b2838;
+  text-align: center;
+  font-size: 18px; /* Tamaño para los párrafos (antes h3) */
+}
+
+.mision .mision-image,
+.objetivo .objetivo-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.mision .mision-image img,
+.objetivo .objetivo-image img,
+.vision .vision-image img {
+  width: 200px; /* Tamaño mediano */
+  height: 200px; /* Tamaño mediano */
+  object-fit: cover; /* Asegura que la imagen se ajuste al tamaño */
+  border-radius: 10px; /* Hace las imágenes cuadradas con bordes redondeados */
+}
+
+
+.objetivo .objetivo-text ul li {
+  font-size: 18px; /* Tamaño para las listas (antes li) */
+}
