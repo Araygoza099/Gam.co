@@ -12,9 +12,8 @@
                     </svg> Inicio
                 </a>
             </li>
-            <li><a href="servicios.php">Servicios</a></li>
             <li><a href="acerdaDe.php">Acerca De</a></li>
-            <li><a href="#">Contáctanos</a></li>
+            <li><a href="Contacto.php">Contáctanos</a></li>
         </ul>
     </nav>
     <div class="login-register">
@@ -34,14 +33,12 @@
                     </svg>  Inicio
                 </a>
             </li>
-            <li><a href="servicios.php">Servicios</a></li>
             <li><a href="acerdaDe.php">Acerca De</a></li>
-            <li><a href="#">Contáctanos</a></li>
-            <li><a href="vacantes.php">Vacantes</a></li>
+            <li><a href="Contacto.php">Contáctanos</a></li>
         </ul>
     </nav>
     <div class="user-actions">
-        <span style = "color: white;"> Diego Emma </span>
+        <span style = "color: white;"> User 1 </span>
         <a href="#">Cerrar sesión</a>
     </div>
 </header>
