@@ -1,0 +1,124 @@
+header {
+    background-color: #171c24;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul, nav li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: inline;
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #72b1e6;
+}
+
+.login-register a {
+    text-decoration: none;
+    color: #72b1e6;
+    margin-right: 10px;
+}
+
+/* Estilo del encabezado cuando no ha iniciado sesión */
+.not-logged-in {
+    display: flex;
+}
+
+/* Estilo del encabezado cuando ha iniciado sesión */
+.logged-in {
+    display: none;
+}
+
+.examen {
+    display: flex;
+}
+
+footer {
+    background-color: #171c24;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+
+#contacto {
+    margin-right: 20px;
+}
+
+#contacto a, #legal p, #legal a {
+    text-decoration: none;
+    color: #72b1e6;
+}
+
+#contacto a, #legal a {
+    font-weight: 600;
+}
+
+#legal p, #legal a {
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #72b1e6;
+}
+
+.login-register {
+    margin-left: auto; 
+}
+
+.login-register a {
+    text-decoration: none;
+    color: #72b1e6;
+    margin-left: 20px; 
+}
+
+
+.user-info:hover .user-menu {
+    display: flex;
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+/* Estilo general */
+body {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    overflow-x: hidden; 
+}

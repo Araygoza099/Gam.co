@@ -6,11 +6,7 @@
   <link rel="stylesheet" href="style_aboutUS.css">
 </head>
 <body>
-
-  <header>
-    <!-- PHP Include -->
-    Pondre algo de mientras
-  </header>
+  <?php include('header.php'); ?>
 
   <div id="principal">
     <img src="img/principal.jpg" alt="Imagen principal">
@@ -64,13 +60,8 @@
       <!-- Contenido del sidebar derecho -->
     </aside>
   </div>
-
-  <div> </div>
-
-  <footer>
-    <!-- PHP include -->
-    Hola amigos de yutu
-  </footer>
+  
+  <?php include('footer.php'); ?>
 
 </body>
 </html>
