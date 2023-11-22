@@ -1,2 +1,2 @@
 # Gam.co
- Para el prouecto Final
+ Para el proyecto Final
