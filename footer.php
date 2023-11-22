@@ -9,10 +9,10 @@
 <footer>
     <div id="contacto" style="font-size: small; margin-left: 3px;">
         <p>Tepezala 507, 20010, Aguascalientes, Ags, Rinconada a Loreto
-        <br> 449 237 7977 <br>Cod3Crafterz@gmail.com </p>
+        <br> 449 237 7977 <br>gam.co2023@gmail.com </p>
     </div>
     <div id="legal">
-        <p style="color: white;">&copy; 2023 Code Crafters. Todos los derechos reservados.</p>
+        <p style="color: white;">&copy; 2023 Gam.co. Todos los derechos reservados.</p>
         <a href="#">Política de privacidad</a>
         <a href="#">Términos de servicio</a>
     </div>
@@ -21,7 +21,7 @@
 <!-- Cambiar si inicio sesion -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const isLoggedIn = true; // Ajusta según el estado de inicio de sesión real.
+        const isLoggedIn = false; // Ajusta según el estado de inicio de sesión real.
         if (isLoggedIn) {
             document.querySelector('.not-logged-in').style.display = 'none';
             document.querySelector('.logged-in').style.display = 'flex';

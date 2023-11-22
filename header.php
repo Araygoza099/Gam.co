@@ -12,8 +12,10 @@
                     </svg> Inicio
                 </a>
             </li>
+            <li><a href="#">Tienda</a></li>
             <li><a href="acerdaDe.php">Acerca De</a></li>
             <li><a href="Contacto.php">Contáctanos</a></li>
+            <li><a href="#">Ayuda</a></li>
         </ul>
     </nav>
     <div class="login-register">
@@ -33,8 +35,10 @@
                     </svg>  Inicio
                 </a>
             </li>
+            <li><a href="#">Tienda</a></li>
             <li><a href="acerdaDe.php">Acerca De</a></li>
             <li><a href="Contacto.php">Contáctanos</a></li>
+            <li><a href="#">Ayuda</a></li>
         </ul>
     </nav>
     <div class="user-actions">
