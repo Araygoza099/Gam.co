@@ -13,8 +13,8 @@
                 </a>
             </li>
             <li><a href="#">Tienda</a></li>
-            <li><a href="paginas/acerdaDe.php">Acerca De</a></li>
-            <li><a href="paginas/Contacto.php">Contáctanos</a></li>
+            <li><a href="acerdaDe.php">Acerca De</a></li>
+            <li><a href="Contacto.php">Contáctanos</a></li>
             <li><a href="#">Ayuda</a></li>
         </ul>
     </nav>
@@ -36,8 +36,8 @@
                 </a>
             </li>
             <li><a href="#">Tienda</a></li>
-            <li><a href="paginas/acerdaDe.php">Acerca De</a></li>
-            <li><a href="paginas/Contacto.php">Contáctanos</a></li>
+            <li><a href="acerdaDe.php">Acerca De</a></li>
+            <li><a href="Contacto.php">Contáctanos</a></li>
             <li><a href="#">Ayuda</a></li>
         </ul>
     </nav>

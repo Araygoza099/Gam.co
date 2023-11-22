@@ -6,7 +6,10 @@
   <link rel="stylesheet" href="css/style_aboutUS.css">
 </head>
 <body>
-  <?php include('paginas/header.php'); ?>
+
+ 
+    <?php include('header.php'); ?>
+
 
   <div id="principal">
     <img src="img/principal.jpg" alt="Imagen principal">
@@ -61,7 +64,8 @@
     </aside>
   </div>
   
-  <?php include('paginas/footer.php'); ?>
+  <?php include('footer.php'); ?>
+  
 
 </body>
 </html>
