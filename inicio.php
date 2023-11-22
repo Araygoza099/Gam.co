@@ -7,13 +7,13 @@
     
   </head>
   <body >
-    <?php include('php\header.php'); ?>
+    <?php include('header.php'); ?>
 
     
     <p>Aqui surge la magia</p>
 
       
-    <?php include('php\footer.php'); ?>
+    <?php include('footer.php'); ?>
 
   </body>
 </html>
