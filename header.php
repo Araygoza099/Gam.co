@@ -13,7 +13,7 @@
                 </a>
             </li>
             <li><a href="servicios.php">Servicios</a></li>
-            <li><a href="portafolio.php">Portafolio</a></li>
+            <li><a href="acerdaDe.php">Acerca De</a></li>
             <li><a href="#">Contáctanos</a></li>
         </ul>
     </nav>
