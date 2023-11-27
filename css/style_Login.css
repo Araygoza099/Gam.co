@@ -1,0 +1,96 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #00011e;
+    color: #00011e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .container {
+    width: 300px;
+    text-align: center;
+  }
+  
+  .logo {
+    margin-bottom: 20px;
+  }
+  
+  .logo img {
+    max-width: 100px;
+  }
+  
+  .login-form {
+    background-color: #ffc600;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .login-form h2 {
+    margin-top: 0;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-group input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+  }
+  
+  .options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .options input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  
+  .options label {
+    color: #00011e;
+  }
+  
+  .options a {
+    text-decoration: dotted;
+    color: #00011e;
+    font-size: 12px;
+    text-shadow: #00011e 50px;
+  }
+  
+  .options a.yellow-link {
+    color: #ffc600;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  
+  .login-btn {
+    background-color: #00011e;
+    color: #fff;
+  }
+  
+  button:hover {
+    background-color: #fff;
+    color: #00011e;
+    box-shadow: #00011e 5px;
+  }
+
+  
