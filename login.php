@@ -27,7 +27,7 @@
             </div>
             <div class="options">
                 <a href="register.php" class="small-text">Registrarse</a>
-                <a href="#" class="small-text">¿Olvidaste la contraseña?</a>
+                <a href="recovery.php" class="small-text">¿Olvidaste la contraseña?</a>
             </div>
             <button type="submit" class="login-btn">Ingresar</button>
             <div class="remember-me" >
