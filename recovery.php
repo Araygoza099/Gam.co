@@ -9,6 +9,9 @@
 <body>
     <?php include('header.php'); ?>
     <div class="container">
+        <div class="corner-image">
+            <img src="img\recovery_esquina.png" alt="Esquina">
+        </div>
         <div class="logo">
             <img src="img\gamco_logo.jpg" alt="Logo">
         </div>

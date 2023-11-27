@@ -14,6 +14,9 @@
 <body>
     <?php include('header.php'); ?>
     <div class="container">
+         <div class="corner-image">
+            <img src="img\login_esquina.png" alt="Esquina">
+        </div>
         <div class="logo">
             <img src="img\gamco_logo.jpg" alt="Logo">
         </div>
@@ -31,8 +34,8 @@
             </div>
             <button type="submit" class="login-btn">Ingresar</button>
             <div class="remember-me" >
-                <input type="checkbox" id="remember-me">
                 <label for="remember-me">Recuérdame</label>
+                <input type="checkbox" id="remember-me">
             </div>
         </form>
     </div>
