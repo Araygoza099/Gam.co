@@ -93,4 +93,29 @@ body {
     box-shadow: #00011e 5px;
   }
 
+  .remember-me {
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  
+  .remember-me input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  
+  .remember-me label {
+    color: #00011e;
+    font-size: smaller;
+  }
+
+  .remember-me .form-control {
+    font-family: system-ui, sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1.1;
+    display: grid;
+    grid-template-columns: 1em auto;
+    gap: 0.5em;
+  }
+
   

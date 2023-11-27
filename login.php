@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login | Gam.co</title>
   <link rel="stylesheet" href="css/style_Login.css">
+    <style>
+    body {
+      background-color: #00011e;
+    }
+  </style>
 </head>
 <body>
     <?php include('header.php'); ?>
@@ -25,6 +30,10 @@
                 <a href="#" class="small-text">¿Olvidaste la contraseña?</a>
             </div>
             <button type="submit" class="login-btn">Ingresar</button>
+            <div class="remember-me" >
+                <input type="checkbox" id="remember-me">
+                <label for="remember-me">Recuérdame</label>
+            </div>
         </form>
     </div>
     <?php include('footer.php'); ?>
