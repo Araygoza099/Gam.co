@@ -37,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 $query = "UPDATE users SET intentos = $intentos WHERE username='$nombre'";
                 
-                // Olvidaste ejecutar la consulta después de actualizar los intentos
                 $conexion->query($query);
             }
         }

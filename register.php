@@ -37,7 +37,7 @@
                     <input type="password" placeholder="Repetir contraseña" id="password2" oninput="verificarContraseñas()" required>
                 </div> 
                 <div class="input-group">
-                    <select required>
+                    <select name="security-question" required>
                     <option value="" disabled selected>Selecciona una pregunta de seguridad</option>
                     <option value="color">¿Cuál es tu color favorito?</option>
                     <option value="mascota">¿Cuál es el nombre de tu primera mascota?</option>
@@ -48,7 +48,7 @@
                     </select>
                 </div>
                 <div class="input-group">
-                    <input type="text" placeholder="Respuesta" required>
+                    <input type="text" placeholder="Respuesta" name="respuesta" required>
                 </div>
                 </div>
                 <div class="col-md-6 yellow-column">
