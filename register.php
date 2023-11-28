@@ -67,7 +67,7 @@
             <div class="input-group">
                 <input type="tel" placeholder="Número de teléfono" required>
             </div>
-            <button type="submit" class="login-btn">Registrarse</button>
+            <button type="submit" class="login-btn" id="btnsub">Registrarse</button>
             </form>
         </div>
     </div>
@@ -80,25 +80,26 @@
         function verificarContraseñas() {
             var password1 = $("#password1").val();
             var password2 = $("#password2").val();
+            // var btn = document.getElementById("btnsub");
 
             // Verificar si ambos campos de contraseña están vacíos
-            if (password1 === "" || password2 === "") {
-                $("#mensaje").html("");
-                $("#mensaje").addClass("mismatch");
-                $("#mensaje").css("color", "black");
+            if (password1 == "" || password2 == "") {
+                $("#btnsub").css("display", "none");
                 return;
             }
 
             // Verificar si las contraseñas coinciden
             var mensaje = $("#mensaje");
-            if (password1 === password2) {
+            if (password1 == password2) {
                 mensaje.html("Las contraseñas coinciden.");
                 mensaje.removeClass("mismatch");
-                $("#mensaje").css("color", "green");
+                $("#mensaje").css("color", "green");                
+                $("#btnsub").css("display","block");
             } else {
                 mensaje.html("Las contraseñas no coinciden.");
                 mensaje.addClass("mismatch");
                 $("#mensaje").css("color", "red");
+                $("#btnsub").css("display","none");
             }
         }
 

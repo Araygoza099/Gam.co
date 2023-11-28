@@ -1,40 +1,52 @@
-<php
+<?php
     
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $conexion = new mysqli("localhost:8080", "root", "", "proyecto");
-        $nombre = $_POST['Usuario'];
-        $contraseña = $_POST['Contraseña'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "proyecto";
 
-        if ($conexion->connect_error) {
-            die("Error de conexión: " . $conexion->connect_error);
-        }
+    $conexion = new mysqli($servername, $username, $password, $dbname);
 
-        if ($result->num_rows > 0) {
+    // Verificar la conexión
+    if ($conexion->connect_error) {
+        die("Error de conexión a la base de datos: " . $conexion->connect_error);
+    }
+
+    $nombre = $_POST["usuario"];
+    $contraseña = $_POST["contraseña"];
+
+    $query = "SELECT password, intentos FROM users WHERE username = '$nombre'";
+    $result = $conexion->query($query);
+
+    if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $storedPassword = $row["password"];
         $intentos = $row["intentos"];
 
-            // Verificar la contraseña
-            if($intentos>=3){
-                header('location: recovery.php');    
-            }else{
-
-                if (password_verify($contraseña, $storedPassword)) {
-                    echo "Inicio de sesión exitoso.";
-                } else {
-                    echo "Usuario o contraseña incorrectos. Inténtelo nuevamente.";
-                    $intentos++;
-
-                    $query = "UPDATE users SET intentos = $intentos WHERE username='$nombre'";
-            }
-            }
-            
-
+        if ($intentos >= 3) {
+            header('Refresh: 1.5; URL=recovery.php');
+            exit; 
         } else {
-            echo "Usuario no encontrado. Regístrese primero.";
-        }
 
-        
-        
+            if (password_verify($contraseña, $storedPassword)) {
+                echo "Inicio de sesión exitoso.";
+            } else {
+                echo "Usuario o contraseña incorrectos. Inténtelo nuevamente.";
+                $intentos++;
+
+                $query = "UPDATE users SET intentos = $intentos WHERE username='$nombre'";
+                
+                // Olvidaste ejecutar la consulta después de actualizar los intentos
+                $conexion->query($query);
+            }
+        }
+    } else {
+        echo "Usuario no encontrado. Regístrese primero.";
     }
+
+    $conexion->close();
+    header('Refresh: 1.5; location: login.php');
+    exit; 
+}
 ?>

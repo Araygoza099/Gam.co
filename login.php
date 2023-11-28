@@ -23,10 +23,10 @@
         <form class="login-form" action="verify-login.php" method="post">
             <h2>Iniciar sesión</h2>
             <div class="input-group">
-                <input type="text" placeholder="Usuario" required>
+                <input type="text" placeholder="Usuario" name="usuario" required>
             </div>
             <div class="input-group">
-                <input type="password" placeholder="Contraseña" required>
+                <input type="password" placeholder="Contraseña" name="contraseña" required>
             </div>
             <div class="options">
                 <a href="register.php" class="small-text">Registrarse</a>
