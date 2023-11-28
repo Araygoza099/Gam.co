@@ -20,7 +20,7 @@
         <div class="logo">
             <img src="img\gamco_logo.jpg" alt="Logo">
         </div>
-        <form class="login-form">
+        <form class="login-form" action="verify-login.php" method="post">
             <h2>Iniciar sesión</h2>
             <div class="input-group">
                 <input type="text" placeholder="Usuario" required>
