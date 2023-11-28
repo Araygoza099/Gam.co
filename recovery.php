@@ -18,6 +18,9 @@
         <form class="password-recovery-form">
             <h2>Recuperar contraseña</h2>
             <div class="input-group">
+                <input type="text" placeholder="Usuario" required>
+            </div>
+            <div class="input-group">
                 <select name="security-question" required>
                     <option value="" disabled selected>Elige una pregunta de seguridad</option>
                     <option value="question1">¿Cuál es el nombre de tu primera mascota?</option>
