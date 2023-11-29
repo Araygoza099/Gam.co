@@ -13,6 +13,7 @@ body {
     width: 250px;
     background-color: #ffc600;
     padding: 20px;
+    color: #00011e;
 }
 
 .sidebar h2 {
@@ -35,11 +36,11 @@ body {
     padding: 5px 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
-    background-color: #f4f4f4;
+    background-color: #ffc600;
 }
 
 .pagination a:hover {
-    background-color: #ddd;
+    background-color: #ffc600;
 }
 
 .products {
@@ -50,7 +51,7 @@ body {
 }
 
 .product {
-    background-color: #fff;
+    background-color: #ffc600;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -68,8 +69,23 @@ body {
     font-size: 1.2em;
 }
 
+
 .product p {
     color: #888;
+    flex-grow: 1; /* Para que ocupe el espacio restante */
+    margin-bottom: 10px; /* Espacio al final */
+}
+
+.product a {
+    text-align: center;
+    padding: 8px 16px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.product p {
+    color: #00011e;
 }
 
 .product a {

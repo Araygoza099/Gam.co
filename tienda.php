@@ -2,85 +2,108 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Eneba - Productos</title>
+    <title>Tienda - Gam.co</title>
     <link rel="stylesheet" href="css/style_Tienda.css">
     <style>
-    body {
-      overflow-x: hidden; 
-      background-color: #00011e;
-    }
-  </style>
+        body {
+            overflow-x: hidden; 
+            background-color: #00011e;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <?php include('header.php'); ?>
+    </header>
 
-<!-- Contenedor principal -->
-<div class="container">
-    <!-- Sidebar con filtros -->
-    <aside class="sidebar">
-        <h2>Filtros</h2>
-        <!-- Aquí puedes agregar opciones de filtrado -->
-        <label for="filtro1">Filtro 1:</label>
-        <select id="filtro1">
-            <option value="opcion1">Opción 1</option>
-            <option value="opcion2">Opción 2</option>
-            <!-- Agrega más opciones según sea necesario -->
-        </select>
+    <!-- Contenedor principal -->
+    <div class="container">
+        <!-- Sidebar con filtros -->
+        <aside class="sidebar">
+            <h2>Filtros</h2>
+            <!-- Aquí puedes agregar opciones de filtrado -->
+            <label for="filtro1">Filtro 1:</label>
+            <select id="filtro1">
+                <option value="opcion1">Opción 1</option>
+                <option value="opcion2">Opción 2</option>
+                <!-- Agrega más opciones según sea necesario -->
+            </select>
 
-        <!-- Agrega más filtros si lo necesitas -->
-    </aside>
+            <!-- Agrega más filtros si lo necesitas -->
+        </aside>
 
-    <!-- Contenido principal -->
-    <main class="main-content">
-        <!-- Encabezado -->
-        <header>
-            <h1>Eneba - Productos</h1>
-        </header>
+        <!-- Contenido principal -->
+        <main class="main-content">
+            <!-- Encabezado -->
+            <header>
+                <h1>Gam.co - Productos</h1>
+            </header>
 
-        <!-- Contenido de los productos -->
-        <section class="products">
-            <?php
-            // Simulación de productos desde una base de datos
-            $products = [
-                ["id" => 1, "name" => "Producto 1", "price" => "$20", "image" => "product1.jpg"],
-                ["id" => 2, "name" => "Producto 2", "price" => "$30", "image" => "product2.jpg"],
-                // ... Más productos ...
-            ];
+            <!-- Contenido de los productos -->
+            <section class="products">
+                <?php
+                // Simulación de productos desde una base de datos
+                $products = [
+                    ["id" => 1, "name" => "Resident Evil 4 Remake", "price" => "$1499", "discount" => "30%", "image" => "img1.1.jpg"],
+                    ["id" => 2, "name" => "Red Dead Redemption 2", "price" => "$1299", "discount" => "10%", "image" => "img1.2.jpeg"],
+                    ["id" => 3, "name" => "Minecraft", "price" => "$999", "discount" => "0%", "image" => "img1.3.png"],
+                    ["id" => 4, "name" => "Cuphead", "price" => "$1599", "discount" => "0%", "image" => "img1.4.jpg"],
+                    ["id" => 5, "name" => "Control Blanco Xbox", "price" => "$599", "discount" => "5%", "image" => "img2.1.webp"],
+                    ["id" => 6, "name" => "Control Rojo Xbox", "price" => "$799", "discount" => "0%", "image" => "img2.2.webp"],
+                    ["id" => 7, "name" => "Control Azul Xbox", "price" => "$899", "discount" => "0%", "image" => "img2.3.jpg"],
+                    ["id" => 8, "name" => "Control Negro Xbox", "price" => "$999", "discount" => "0%", "image" => "img2.4.webp"],
+                ];
+                
 
-            // Muestra máximo 12 productos por página
-            $productsPerPage = 12;
-            $page = isset($_GET['page']) ? $_GET['page'] : 1;
-            $start = ($page - 1) * $productsPerPage;
-            $end = $start + $productsPerPage;
+                // Muestra máximo 12 productos por página
+                $productsPerPage = 12;
+                $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                $start = ($page - 1) * $productsPerPage;
+                $end = $start + $productsPerPage;
 
-            for ($i = $start; $i < $end && $i < count($products); $i++) {
-                $product = $products[$i];
-                echo '<div class="product">';
-                echo '<img src="images/' . $product["image"] . '" alt="' . $product["name"] . '">';
-                echo '<h2>' . $product["name"] . '</h2>';
-                echo '<p>Precio: ' . $product["price"] . '</p>';
-                echo '<a href="#">Comprar</a>';
-                echo '</div>';
-            }
-            ?>
-        </section>
+                for ($i = $start; $i < $end && $i < count($products); $i++) {
+                    $product = $products[$i];
+                    echo '<div class="product">';
+                    echo '<img src="img/base/' . $product["image"] . '" alt="' . $product["name"] . '">';
+                    echo '<h2>' . $product["name"] . '</h2>';
 
-        <!-- Paginación -->
-        <div class="pagination">
-            <!-- Enlace para cargar más productos -->
-            <?php
-            $totalPages = ceil(count($products) / $productsPerPage);
-            for ($i = 1; $i <= $totalPages; $i++) {
-                echo '<a href="?page=' . $i . '">' . $i . '</a>';
-            }
-            ?>
-        </div>
-    </main>
-</div>
+                    // Calcula el precio con descuento si el descuento es mayor a 0
+                    $discountedPrice = $product["price"];
+                    if ($product["discount"] > "0%") {
+                        $priceValue = intval(str_replace("$", "", $product["price"]));
+                        $discountValue = intval(str_replace("%", "", $product["discount"]));
+                        $discountedPrice = '$' . ($priceValue - ($priceValue * $discountValue / 100));
+                        
+                        // Muestra el precio original con descuento tachado y en gris
+                        echo '<p><span style="color: #999; text-decoration: line-through;">' . $product["price"] . '</span>';
+                        echo ' Precio: ' . $discountedPrice . '</p>';
+                    } else {
+                        // Muestra el precio normal si no hay descuento
+                        echo '<p>Precio: ' . $product["price"] . '</p>';
+                    }
 
-<!-- Pie de página -->
-<footer >
-    <p>Derechos reservados &copy; 2023 Eneba</p>
-</footer>
+                    echo '<a href="#">Agregar al Carrito</a>';
+                    echo '</div>';
+                }
+                ?>
+            </section>
+
+            <div class="pagination">
+                <?php
+                // Cálculo de la paginación
+                $totalPages = ceil(count($products) / $productsPerPage);
+                for ($i = 1; $i <= $totalPages; $i++) {
+                    echo '<a href="?page=' . $i . '">' . $i . '</a>';
+                }
+                ?>
+            </div>
+        </main>
+    </div>
+
+    <!-- Pie de página -->
+    <footer>
+        <?php include('footer.php'); ?>
+    </footer>
 
 </body>
 </html>
