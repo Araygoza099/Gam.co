@@ -64,6 +64,12 @@ body {
     border-radius: 5px;
 }
 
+.product img:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+
 .product h2 {
     margin-top: 10px;
     font-size: 1.2em;
