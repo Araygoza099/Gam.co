@@ -1,5 +1,21 @@
 <?php
+
+session_start();
+
+    if(isset($_POST["captcha_code"])){
+        
+        if($_POST["captcha_code"] == $_SESSION["captcha_code"]){
+             $message ='Message Submitted Successfully';
+        }
+        else{
+            $message = 'Captcha incorrecto intentalo de nuevo';
+        }
+    }
     
+    if(isset($message)){
+        echo $message;
+    }session_unset();
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $servername = "localhost";
     $username = "root";
