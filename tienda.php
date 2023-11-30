@@ -85,9 +85,12 @@
                     }
 
                     echo '<a href="#">Agregar al Carrito</a>';?>
-                    <div style = "color: #00011e; text-align: justify;">
-                        <?php echo " <p>" . $product['descripcion'] . "</p>"; ?> 
-                    </div> <?php
+                    <br><div style="color: #ffc600; text-align: justify; background-color: #00011e; border-radius: 10px; box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); padding: 20px; font-family: 'Roboto', sans-serif; font-size: 18px; line-height: 1.5;">
+    <?php echo "<p style='color: #ffc600; font-size: 20px; font-family: Arial, sans-serif;'>" . $product['descripcion'] . "</p>"; ?>
+</div>
+
+
+ <?php
  
                     echo '</div>';
                 }
