@@ -108,3 +108,26 @@ body {
 .product a:hover {
     background-color: #555;
 }
+
+.product .desc{
+    color: #ffc600;
+    text-align: justify;
+    background-color: #00011e;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+
+.product #btn-desc:hover {
+    background-color: #555;
+}
+
+.product #description{
+    color: #ffc600;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+}
