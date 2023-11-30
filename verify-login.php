@@ -21,7 +21,7 @@
     if(isset($_POST["captcha_code"])){
         
         if($cadena == $_SESSION["captcha_code"]){
-             $message ='Message Submitted Successfully';
+            header('Location: alertas/success.html');
         }
         else{
             $message = 'Captcha incorrecto intentalo de nuevo';
@@ -81,3 +81,5 @@
         exit; 
     }
 ?>
+
+
