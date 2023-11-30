@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Tienda - Gam.co</title>
     <link rel="stylesheet" href="css/style_Tienda.css">
+    
     <style>
         body {
             overflow-x: hidden; 
@@ -44,15 +45,16 @@
                 <?php
                 // Simulación de productos desde una base de datos
                 $products = [
-                    ["id" => 1, "name" => "Resident Evil 4 Remake", "price" => "$1499", "discount" => "30%", "image" => "img1.1.jpg"],
-                    ["id" => 2, "name" => "Red Dead Redemption 2", "price" => "$1299", "discount" => "10%", "image" => "img1.2.jpeg"],
-                    ["id" => 3, "name" => "Minecraft", "price" => "$999", "discount" => "0%", "image" => "img1.3.png"],
-                    ["id" => 4, "name" => "Cuphead", "price" => "$1599", "discount" => "0%", "image" => "img1.4.jpg"],
-                    ["id" => 5, "name" => "Control Blanco Xbox", "price" => "$599", "discount" => "5%", "image" => "img2.1.webp"],
-                    ["id" => 6, "name" => "Control Rojo Xbox", "price" => "$799", "discount" => "0%", "image" => "img2.2.webp"],
-                    ["id" => 7, "name" => "Control Azul Xbox", "price" => "$899", "discount" => "0%", "image" => "img2.3.jpg"],
-                    ["id" => 8, "name" => "Control Negro Xbox", "price" => "$999", "discount" => "0%", "image" => "img2.4.webp"],
+                    ["id" => 1, "name" => "Resident Evil 4 Remake", "price" => "$1499", "discount" => "30%", "image" => "img1.1.jpg", "descripcion" => "Revive la clásica historia de Leon S. Kennedy en una versión remasterizada con gráficos mejorados y una experiencia renovada de terror y supervivencia."],
+                    ["id" => 2, "name" => "Red Dead Redemption 2", "price" => "$1299", "discount" => "10%", "image" => "img1.2.jpeg", "descripcion" => "Sumérgete en el salvaje oeste como Arthur Morgan, un forajido en una emocionante aventura llena de acción, decisiones morales y un vasto mundo abierto."],
+                    ["id" => 3, "name" => "Minecraft", "price" => "$999", "discount" => "0%", "image" => "img1.3.png", "descripcion" => "Un juego de construcción y aventura en un mundo generado proceduralmente, donde puedes explorar, crear y sobrevivir en un entorno pixelado."],
+                    ["id" => 4, "name" => "Cuphead", "price" => "$1599", "discount" => "0%", "image" => "img1.4.jpg", "descripcion" => "Un desafiante juego de plataformas con un estilo artístico inspirado en las caricaturas de los años 30, lleno de jefes épicos y mecánicas de juego desafiantes."],
+                    ["id" => 5, "name" => "Control Blanco Xbox", "price" => "$599", "discount" => "5%", "image" => "img2.1.webp", "descripcion" => "Un control inalámbrico para Xbox con un diseño blanco elegante y ergonómico que ofrece una experiencia de juego cómoda y precisa."],
+                    ["id" => 6, "name" => "Control Rojo Xbox", "price" => "$799", "discount" => "0%", "image" => "img2.2.webp", "descripcion" => "Un control inalámbrico para Xbox en un vibrante color rojo, diseñado para brindar una conexión estable y una jugabilidad fluida."],
+                    ["id" => 7, "name" => "Control Azul Xbox", "price" => "$899", "discount" => "0%", "image" => "img2.3.jpg", "descripcion" => "Un control inalámbrico para Xbox con un llamativo acabado azul, ofrece una respuesta táctil precisa y una experiencia de juego envolvente."],
+                    ["id" => 8, "name" => "Control Negro Xbox", "price" => "$999", "discount" => "0%", "image" => "img2.4.webp", "descripcion" => "Un control inalámbrico para Xbox en un clásico color negro, con tecnología avanzada para una conectividad sin retrasos y una jugabilidad suave."],
                 ];
+                
                 
 
                 // Muestra máximo 12 productos por página
@@ -82,7 +84,11 @@
                         echo '<p>Precio: ' . $product["price"] . '</p>';
                     }
 
-                    echo '<a href="#">Agregar al Carrito</a>';
+                    echo '<a href="#">Agregar al Carrito</a>';?>
+                    <div style = "color: #00011e; text-align: justify;">
+                        <?php echo " <p>" . $product['descripcion'] . "</p>"; ?> 
+                    </div> <?php
+ 
                     echo '</div>';
                 }
                 ?>
