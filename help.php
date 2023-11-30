@@ -38,9 +38,9 @@
 
                 <div class="sticky inset-x-0 top-0 left-0 py-12">
                     
-                        <div class="text-3xl text-green-400 mb-8" style="color: #ffc600;">Frequently asked questions.</div>
-                        <div class="mb-2" style="color: #ffc600;">Lorem Ipsum ?</div>
-                        <div class="text-xs text-gray-600" style="color: #fff;">See our FAQ for more details</div>
+                        <div class="text-3xl text-green-400 mb-8" style="color: #ffc600;">Preguntas Frecuentes</div>
+                        <div class="mb-2" style="color: #ffc600;">Gam.co</div>
+                        <div class="text-xs text-gray-600" style="color: #fff;">Hasta Kratos pregunto, sientete seguro</div>
 
                         <div class="relative text-gray-600 mt-8 lg:mr-16">
                             <input 
@@ -62,7 +62,7 @@
 
                 <div class="item px-6 py-6" x-data="{isOpen : false}">
                     <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
-                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">Lorem Ipsum ?</h4>
+                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">¿Venden mandos de control y consolas en Gam.co?</h4>
                         <svg 
                         :class="{'transform rotate-180' : isOpen == true}"
                         class="w-5 h-5 text-gray-500"
@@ -73,13 +73,13 @@
                         </svg>
                     </a>
                     <div x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-gray-600' : isOpen == true}">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p>Sí, además de juegos, ofrecemos una amplia gama de mandos de control y consolas para diversas plataformas de juego.</p>
                     </div>
                 </div>
                 
                 <div class="item px-6 py-6" x-data="{isOpen : false}">
                     <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
-                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">Lorem Ipsum ?</h4>
+                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">¿Los mandos y consolas que venden son nuevos o usados?</h4>
                         <svg 
                         :class="{'transform rotate-180' : isOpen == true}"
                         class="w-5 h-5 text-gray-500"
@@ -90,13 +90,13 @@
                         </svg>
                     </a>
                     <div x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-gray-600' : isOpen == true}">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p>RTodos nuestros mandos y consolas son nuevos, a menos que se especifique lo contrario en la descripción del producto.</p>
                     </div>
                 </div>
 
                 <div class="item px-6 py-6" x-data="{isOpen : false}">
                     <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
-                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">Lorem Ipsum ?</h4>
+                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">¿Cuáles son las marcas disponibles para mandos y consolas en Gam.co?</h4>
                         <svg 
                         :class="{'transform rotate-180' : isOpen == true}"
                         class="w-5 h-5 text-gray-500"
@@ -107,13 +107,13 @@
                         </svg>
                     </a>
                     <div x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-gray-600' : isOpen == true}">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p>Trabajamos con una variedad de marcas reconocidas en la industria de los videojuegos, como PlayStation, Xbox, Nintendo, entre otras.</p>
                     </div>
                 </div>
 
                 <div class="item px-6 py-6" x-data="{isOpen : false}">
                     <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
-                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">Lorem Ipsum ?</h4>
+                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">¿Ofrecen envíos de mandos y consolas?</h4>
                         <svg 
                         :class="{'transform rotate-180' : isOpen == true}"
                         class="w-5 h-5 text-gray-500"
@@ -124,13 +124,13 @@
                         </svg>
                     </a>
                     <div x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-gray-600' : isOpen == true}">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p>Sí, realizamos envíos de mandos de control y consolas a diferentes ubicaciones, según las políticas de envío vigentes.</p>
                     </div>
                 </div>
 
                 <div class="item px-6 py-6" x-data="{isOpen : false}">
                     <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
-                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">Lorem Ipsum ?</h4>
+                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">¿Cuánto tiempo tarda en llegar un mando o consola después de realizar la compra?</h4>
                         <svg 
                         :class="{'transform rotate-180' : isOpen == true}"
                         class="w-5 h-5 text-gray-500"
@@ -141,13 +141,13 @@
                         </svg>
                     </a>
                     <div x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-gray-600' : isOpen == true}">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p>El tiempo de entrega puede variar según la ubicación y el método de envío seleccionado. Normalmente, se proporcionará esta información al momento de la compra.</p>
                     </div>
                 </div>
 
                 <div class="item px-6 py-6" x-data="{isOpen : false}">
                     <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
-                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">Lorem Ipsum ?</h4>
+                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">¿Ofrecen seguimiento de envíos para mandos y consolas?</h4>
                         <svg 
                         :class="{'transform rotate-180' : isOpen == true}"
                         class="w-5 h-5 text-gray-500"
@@ -158,13 +158,13 @@
                         </svg>
                     </a>
                     <div x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-gray-600' : isOpen == true}">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p>Sí, proporcionamos información de seguimiento para que puedas rastrear tu paquete una vez que sea despachado.</p>
                     </div>
                 </div>
 
                 <div class="item px-6 py-6" x-data="{isOpen : false}">
                     <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
-                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">Lorem Ipsum ?</h4>
+                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">¿Cuáles son las opciones de pago disponibles para comprar mandos, consolas y juegos en Gam.co?</h4>
                         <svg 
                         :class="{'transform rotate-180' : isOpen == true}"
                         class="w-5 h-5 text-gray-500"
@@ -175,13 +175,13 @@
                         </svg>
                     </a>
                     <div x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-gray-600' : isOpen == true}">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p>Aceptamos PayPal y transferencias bancarias como métodos de pago seguros para facilitar tus compras.</p>
                     </div>
                 </div>
 
                 <div class="item px-6 py-6" x-data="{isOpen : false}">
                     <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
-                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">Lorem Ipsum ?</h4>
+                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">¿Cómo funciona el pago con PayPal en Gam.co?</h4>
                         <svg 
                         :class="{'transform rotate-180' : isOpen == true}"
                         class="w-5 h-5 text-gray-500"
@@ -192,13 +192,13 @@
                         </svg>
                     </a>
                     <div x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-gray-600' : isOpen == true}">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p>Durante el proceso de pago, podrás seleccionar PayPal como método de pago. Serás redirigido a la plataforma de PayPal para completar la transacción de forma segura.</p>
                     </div>
                 </div>
 
                 <div class="item px-6 py-6" x-data="{isOpen : false}">
                     <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
-                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">Lorem Ipsum ?</h4>
+                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">¿Puedo pagar con transferencia bancaria?</h4>
                         <svg 
                         :class="{'transform rotate-180' : isOpen == true}"
                         class="w-5 h-5 text-gray-500"
@@ -209,149 +209,13 @@
                         </svg>
                     </a>
                     <div x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-gray-600' : isOpen == true}">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
-                </div>
-                
-                <div class="item px-6 py-6" x-data="{isOpen : false}">
-                    <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
-                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">Lorem Ipsum ?</h4>
-                        <svg 
-                        :class="{'transform rotate-180' : isOpen == true}"
-                        class="w-5 h-5 text-gray-500"
-                            fill="none" stroke-linecap="round" 
-                            stroke-linejoin="round" stroke-width="2" 
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </a>
-                    <div x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-gray-600' : isOpen == true}">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
-                </div>
-                
-                <div class="item px-6 py-6" x-data="{isOpen : false}">
-                    <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
-                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">Lorem Ipsum ?</h4>
-                        <svg 
-                        :class="{'transform rotate-180' : isOpen == true}"
-                        class="w-5 h-5 text-gray-500"
-                            fill="none" stroke-linecap="round" 
-                            stroke-linejoin="round" stroke-width="2" 
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </a>
-                    <div x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-gray-600' : isOpen == true}">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
-                </div>
-                
-                <div class="item px-6 py-6" x-data="{isOpen : false}">
-                    <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
-                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">Lorem Ipsum ?</h4>
-                        <svg 
-                        :class="{'transform rotate-180' : isOpen == true}"
-                        class="w-5 h-5 text-gray-500"
-                            fill="none" stroke-linecap="round" 
-                            stroke-linejoin="round" stroke-width="2" 
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </a>
-                    <div x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-gray-600' : isOpen == true}">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
-                </div>
-                
-                <div class="item px-6 py-6" x-data="{isOpen : false}">
-                    <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
-                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">Lorem Ipsum ?</h4>
-                        <svg 
-                        :class="{'transform rotate-180' : isOpen == true}"
-                        class="w-5 h-5 text-gray-500"
-                            fill="none" stroke-linecap="round" 
-                            stroke-linejoin="round" stroke-width="2" 
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </a>
-                    <div x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-gray-600' : isOpen == true}">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
-                </div>
-                
-                <div class="item px-6 py-6" x-data="{isOpen : false}">
-                    <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
-                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">Lorem Ipsum ?</h4>
-                        <svg 
-                        :class="{'transform rotate-180' : isOpen == true}"
-                        class="w-5 h-5 text-gray-500"
-                            fill="none" stroke-linecap="round" 
-                            stroke-linejoin="round" stroke-width="2" 
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </a>
-                    <div x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-gray-600' : isOpen == true}">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
-                </div>
-                
-                <div class="item px-6 py-6" x-data="{isOpen : false}">
-                    <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
-                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">Lorem Ipsum ?</h4>
-                        <svg 
-                        :class="{'transform rotate-180' : isOpen == true}"
-                        class="w-5 h-5 text-gray-500"
-                            fill="none" stroke-linecap="round" 
-                            stroke-linejoin="round" stroke-width="2" 
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </a>
-                    <div x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-gray-600' : isOpen == true}">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
-                </div>
-                
-                <div class="item px-6 py-6" x-data="{isOpen : false}">
-                    <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
-                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">Lorem Ipsum ?</h4>
-                        <svg 
-                        :class="{'transform rotate-180' : isOpen == true}"
-                        class="w-5 h-5 text-gray-500"
-                            fill="none" stroke-linecap="round" 
-                            stroke-linejoin="round" stroke-width="2" 
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </a>
-                    <div x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-gray-600' : isOpen == true}">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
-                </div>
-                
-                <div class="item px-6 py-6" x-data="{isOpen : false}">
-                    <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
-                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">Lorem Ipsum ?</h4>
-                        <svg 
-                        :class="{'transform rotate-180' : isOpen == true}"
-                        class="w-5 h-5 text-gray-500"
-                            fill="none" stroke-linecap="round" 
-                            stroke-linejoin="round" stroke-width="2" 
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </a>
-                    <div x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-gray-600' : isOpen == true}">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p>Sí, aceptamos transferencias bancarias como método de pago. Al seleccionar esta opción, te proporcionaremos los detalles bancarios necesarios para completar la transacción.</p>
                     </div>
                 </div>
 
                 <div class="item px-6 py-6" x-data="{isOpen : false}">
                     <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
-                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">Lorem Ipsum ?</h4>
+                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}" style="color: #ffc600;">¿Hay algún cargo adicional al utilizar PayPal o transferencia bancaria como método de pago?</h4>
                         <svg 
                         :class="{'transform rotate-180' : isOpen == true}"
                         class="w-5 h-5 text-gray-500"
@@ -362,9 +226,11 @@
                         </svg>
                     </a>
                     <div x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-gray-600' : isOpen == true}">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p>No aplicamos cargos adicionales por utilizar PayPal o transferencia bancaria como métodos de pago en Gam.co.</p>
                     </div>
                 </div>
+
+                
             </div>
 
                     </div>
