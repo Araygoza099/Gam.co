@@ -25,8 +25,8 @@
             <!-- Aquí puedes agregar opciones de filtrado -->
             <label for="filtro1">Filtro 1:</label>
             <select id="filtro1">
-                <option value="opcion1">Opción 1</option>
-                <option value="opcion2">Opción 2</option>
+                <option value="opcion1">Categoria 1</option>
+                <option value="opcion2">Categoria 2</option>
                 <!-- Agrega más opciones según sea necesario -->
             </select>
 
@@ -85,8 +85,8 @@
                     }
 
                     echo '<a href="#">Agregar al Carrito</a>';?>
-                    <br><div style="color: #ffc600; text-align: justify; background-color: #00011e; border-radius: 10px; box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); padding: 20px; font-family: 'Roboto', sans-serif; font-size: 18px; line-height: 1.5;">
-    <?php echo "<p style='color: #ffc600; font-size: 20px; font-family: Arial, sans-serif;'>" . $product['descripcion'] . "</p>"; ?>
+                    <br><div class="desc">
+                    <?php echo "<p id='description'>" . $product['descripcion'] . "</p>"; ?>
 </div>
 
 
@@ -113,6 +113,5 @@
     <footer>
         <?php include('footer.php'); ?>
     </footer>
-
 </body>
 </html>
