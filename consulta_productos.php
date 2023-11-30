@@ -25,12 +25,13 @@ function consultarProductos() {
 
     $productos = array();
 
-    $consulta->bind_result($id, $nombre, $descuento, $precio, $urlImagen, $tipo);
+    $consulta->bind_result($id, $nombre, $descrip, $descuento, $precio, $urlImagen, $tipo);
 
     while ($consulta->fetch()) {
         $producto = array(
             'id' => $id,
             'nombre' => $nombre,
+            'descrip' => $descrip,
             'descuento' => $descuento,
             'precio' => $precio,
             'urlImagen' => $urlImagen,
@@ -117,6 +118,7 @@ $productosRegistrados = consultarProductos();
                 echo '<img src="' . $producto['urlImagen'] . '" alt="' . $producto['nombre'] . '">';
                 echo '<h3>' . $producto['nombre'] . '</h3>';
                 echo '<p>ID: ' . $producto['id'] . '</p>';
+                echo '<p>Descripción: ' . $producto['descrip'] . '</p>';
                 echo '<p>Precio: $' . $producto['precio'] . '</p>';
                 echo '<p>Descuento: ' . $producto['descuento'] . '%</p>';
                 echo '<p>URL de la Imagen: ' . $producto['urlImagen'] . '</p>';

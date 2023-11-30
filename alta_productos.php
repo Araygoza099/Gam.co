@@ -1,6 +1,5 @@
 <?php
-
-function registrarProducto($id, $nombre, $descuento, $precio, $urlImagen, $tipo) {
+function registrarProducto($id, $nombre, $descripcion, $descuento, $precio, $urlImagen, $tipo) {
     $host = "127.0.0.1";
     $username = "root";
     $password = "";
@@ -12,13 +11,27 @@ function registrarProducto($id, $nombre, $descuento, $precio, $urlImagen, $tipo)
         die("Error de conexión a la base de datos: " . $con->connect_error);
     }
 
-    $consulta = $con->prepare("INSERT INTO productos (proc_id, proc_name, proc_desc, proc_price, proc_urlimg, type) VALUES (?, ?, ?, ?, ?, ?)");
+    //verifica si el ID ya existe
+    $verificarConsulta = $con->prepare("SELECT COUNT(*) FROM productos WHERE proc_id = ?");
+    $verificarConsulta->bind_param("i", $id);
+    $verificarConsulta->execute();
+    $verificarConsulta->bind_result($count);
+    $verificarConsulta->fetch();
+    $verificarConsulta->close();
+
+    if ($count > 0) {
+        $con->close();
+        return "El ID del producto ya existe. Por favor, elige otro ID.";
+    }
+
+    //inserta el nuevo producto
+    $consulta = $con->prepare("INSERT INTO productos (proc_id, proc_name, proc_descrip, proc_desc, proc_price, proc_urlimg, type) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
     if ($consulta === false) {
         die("Error al preparar la consulta: " . $con->error);
     }
 
-    $consulta->bind_param("isiiss", $id, $nombre, $descuento, $precio, $urlImagen, $tipo);
+    $consulta->bind_param("issiiss", $id, $nombre, $descripcion, $descuento, $precio, $urlImagen, $tipo);
 
     $resultado = $consulta->execute();
 
@@ -29,26 +42,31 @@ function registrarProducto($id, $nombre, $descuento, $precio, $urlImagen, $tipo)
     $consulta->close();
     $con->close();
 
-    return $resultado;
+    return "Producto registrado correctamente.";
 }
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"]) && isset($_POST["nombre"])) {
     $idProducto = $_POST["id"];
     $nombreProducto = $_POST["nombre"];
+    $descripcionProducto = $_POST["descripcion"];
     $descuentoProducto = $_POST["descuento"];
     $precioProducto = $_POST["precio"];
     $urlImagenProducto = $_POST["urlImagen"];
     $tipoProducto = $_POST["tipo"];
 
-    $resultadoInsercion = registrarProducto($idProducto, $nombreProducto, $descuentoProducto, $precioProducto, $urlImagenProducto, $tipoProducto);
+    $resultadoInsercion = registrarProducto($idProducto, $nombreProducto, $descripcionProducto, $descuentoProducto, $precioProducto, $urlImagenProducto, $tipoProducto);
 
-    if ($resultadoInsercion) {
-        echo "<script>alert('Producto registrado correctamente.');</script>";
+    if ($resultadoInsercion === "Producto registrado correctamente.") {
+        $mensaje = "Producto registrado correctamente.";
+        echo "<script>showSuccessAlert('$mensaje');</script>";
     } else {
-        echo "<script>alert('Error al registrar el producto.');</script>";
+        $mensaje = "Error al registrar el producto. $resultadoInsercion";
+        echo "<script>showErrorAlert('$mensaje');</script>";
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -57,6 +75,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"]) && isset($_POST[
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar Producto</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style>
         body {
             background-color: #1a1a1a;
@@ -109,6 +130,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"]) && isset($_POST[
                 </div>
 
                 <div class="form-group">
+                    <label for="descripcion">Descripción del Producto:</label>
+                    <input type="text" class="form-control" name="descripcion" required>
+                </div>
+
+                <div class="form-group">
                     <label for="descuento">Descuento (%):</label>
                     <input type="number" class="form-control" name="descuento" step="0.01" min="0" max="100" required>
                 </div>
@@ -136,8 +162,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"]) && isset($_POST[
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<div class="alert alert-success" id="success-alert" style="display: none;">
+    <strong>Éxito:</strong> <span id="success-message"></span>
+</div>
+
+<div class="alert alert-danger" id="error-alert" style="display: none;">
+    <strong>Error:</strong> <span id="error-message"></span>
+</div>
+
+<!-- Script para mostrar alertas de Bootstrap -->
+<script>
+    function showSuccessAlert(message) {
+        $("#success-message").text(message);
+        $("#success-alert").fadeTo(2000, 500).slideUp(500, function () {
+            $("#success-alert").slideUp(500);
+        });
+    }
+
+    function showErrorAlert(message) {
+        $("#error-message").text(message);
+        $("#error-alert").fadeTo(2000, 500).slideUp(500, function () {
+            $("#error-alert").slideUp(500);
+        });
+    }
+</script>
 </body>
 </html>

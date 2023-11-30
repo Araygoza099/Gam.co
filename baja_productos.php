@@ -147,14 +147,6 @@
                     <button type="submit" class="btn btn-danger btn-block">Eliminar Producto</button>
                 </div>
             </form>
-
-            <!-- Formulario para modificar producto (mismo que proporcionaste) -->
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                <h2 class="text-center mb-4">Modificar Producto</h2>
-                <!-- ... (código restante del formulario de modificación) ... -->
-            </form>
-        </div>
-    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

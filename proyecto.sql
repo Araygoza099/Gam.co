@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-11-2023 a las 06:05:51
+-- Tiempo de generación: 30-11-2023 a las 22:43:32
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -86,11 +86,25 @@ CREATE TABLE `pedidos` (
 CREATE TABLE `productos` (
   `proc_id` int(13) NOT NULL,
   `proc_name` varchar(255) NOT NULL,
+  `proc_descrip` varchar(255) NOT NULL,
   `proc_desc` int(5) NOT NULL,
   `proc_price` int(10) NOT NULL,
   `proc_urlimg` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`proc_id`, `proc_name`, `proc_descrip`, `proc_desc`, `proc_price`, `proc_urlimg`, `type`) VALUES
+(1, 'Resident Evil 4 Remake', '', 10, 1800, 'img1.1.jpg', 'Videojuego'),
+(2, 'Red Dead Redemption 2', '', 10, 1200, 'img1.2.jpeg', 'Videojuego'),
+(4, 'Cuphead', '', 10, 800, 'img1.4.jpg', 'Videojuego'),
+(5, 'Control Xbox Series X|S', '', 5, 1000, 'img2.1.webp', 'Accesorio'),
+(6, 'Control Xbox Series X|S Camuflaje Rojo', '', 5, 1000, 'img2.2.webp', 'Accesorio'),
+(7, 'Control Xbox Series X|S Azul', '', 5, 1000, 'img2.3.jpg', 'Accesorio'),
+(8, 'Control Xbox Series X|S Negro', '', 5, 1000, 'img2.4.webp', 'Accesorio');
 
 -- --------------------------------------------------------
 
@@ -178,19 +192,6 @@ ALTER TABLE `det_pedido`
 --
 ALTER TABLE `envios`
   ADD CONSTRAINT `envios_ibfk_1` FOREIGN KEY (`pedido_id`) REFERENCES `pedidos` (`pedido_id`);
-
---
--- Filtros para la tabla `pagos`
---
-ALTER TABLE `pagos`
-  ADD CONSTRAINT `pagos_ibfk_1` FOREIGN KEY (`usr_id`) REFERENCES `users` (`usr_id`);
-
---
--- Filtros para la tabla `pedidos`
---
-ALTER TABLE `pedidos`
-  ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`usr_id`) REFERENCES `users` (`usr_id`),
-  ADD CONSTRAINT `pedidos_ibfk_2` FOREIGN KEY (`pago_id`) REFERENCES `pagos` (`pago_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
