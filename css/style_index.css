@@ -523,6 +523,25 @@ height: 105%;
   }
 }
 
+.cart-icon-container {
+  position: relative;
+  display: inline-block;
+}
 
+.product-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 4px;
+  font-size: 10px;
+}
+
+.cart-icon {
+  display: inline-block;
+  /* Estilos adicionales para el ícono si los necesitas */
+}
 
 
