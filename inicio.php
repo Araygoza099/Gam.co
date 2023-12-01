@@ -24,7 +24,7 @@
 
       <header class="header-princi">
         <div class="logo">
-            <img src="img/logo.png" alt="">
+            <a href="inicio.php"><img src="img/logo.png" alt=""></a>
         </div>
         <nav class="nav-bar" >
           <ul >
