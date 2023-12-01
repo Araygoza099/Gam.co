@@ -81,10 +81,10 @@
 
         $conexion->close();
         if($band==1){
-            header('Location: alertas/success.html');
+            header('Location: alertas/loginOk.php');
         }
         else{
-            echo "algo no funciona";
+            header('Location: alertas/loginError.html');
         }
         header('Refresh: 1.5; location: login.php');
         exit; 
