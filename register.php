@@ -5,18 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro | Gam.co</title>
   <link rel="icon" type="image/x-icon" href="img/gamco_logo.png">
+    <link rel="stylesheet" type="text/css" href="css/style_foo.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style_Registro.css">
   <style>
     body {
       overflow-x: hidden; 
-      background-color: #00011e;
+      background-image: url(img/fondo2.png);
     }
   </style>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
     <?php include('header.php'); ?>
+    <div class="flex">
     <div class="container">
         <div class="col-md-6 white-column">
             <form action="uploadregister.php" method="post" id="registroForm">
@@ -79,6 +81,7 @@
     <div class="container-header">
         <img src="img\register_header.png" alt="Imagen de encabezado" class="header-image">
     </div>
+    </div>
     
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
@@ -119,6 +122,7 @@
         });
     </script>
 
-    
+    <div style="padding: 150px;"></div>
+    <?php include('footer.php'); ?>
 </body>
 </html>
