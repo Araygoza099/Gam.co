@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Contact Us | Gam.co </title>
+  <link rel="stylesheet" type="text/css" href="css/style_foo.css"> 
   <link rel="stylesheet" href="css/style_Contacto.css">
   <style>
     body {
@@ -69,9 +70,9 @@
   </div>
 
 
-  <footer>
-    <?php include('footer.php'); ?>
-  </footer>
+  
+  <div style="padding: 100px;"></div>
+  <?php include('footer.php'); ?>
 
 </body>
 </html>

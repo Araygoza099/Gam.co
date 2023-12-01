@@ -78,7 +78,7 @@
     <div class="container-header">
         <img src="img\register_header.png" alt="Imagen de encabezado" class="header-image">
     </div>
-    <?php include('footer.php'); ?>
+    
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         function verificarContraseñas() {
@@ -117,5 +117,7 @@
             verificarContraseñas();
         });
     </script>
+
+    
 </body>
 </html>

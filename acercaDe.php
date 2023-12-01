@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>About Us | Gam.co </title>
+  <link rel="stylesheet" type="text/css" href="css/style_foo.css"> 
   <link rel="stylesheet" href="css/style_aboutUS.css">
   <link rel="stylesheet" href="css/style_aboutUS1.scss">
   <style>
@@ -73,6 +74,7 @@
       </div>
   </div>
   
+  <div style="padding: 150px;"></div>
   <?php include('footer.php'); ?>
   
   <script src="js/js_aboutUs.js"></script>

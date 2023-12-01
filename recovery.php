@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recuperar contraseña | Gam.co</title>
+  <title>Recuperar contraseña | Gam.co</title> 
   <link rel="stylesheet" href="css/style_PasswordRecovery.css">
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
@@ -45,7 +45,7 @@
             <button type="submit" class="login-btn" id="btnsub">Recuperar</button>
         </form>
     </div>
-    <?php include('footer.php'); ?>
+    
 
     <script>
         function verificarContraseñas() {
@@ -88,5 +88,6 @@
             verificarContraseñas();
         });
     </script>
+
 </body>
 </html>

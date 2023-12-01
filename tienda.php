@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Tienda - Gam.co</title>
     <link rel="stylesheet" href="css/style_Tienda.css">
-    
+    <link rel="stylesheet" type="text/css" href="css/style_foo.css"> 
     <style>
         body {
             overflow-x: hidden; 
@@ -118,9 +118,8 @@
         </main>
     </div>
 
-    <!-- Pie de página -->
-    <footer>
-        <?php include('footer.php'); ?>
-    </footer>
-</body>
+    <div style="padding: 150px;"></div>
+    <?php include('footer.php'); ?>
+
+    </body>
 </html>
