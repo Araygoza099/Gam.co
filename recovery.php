@@ -15,7 +15,7 @@
             <img src="img\recovery_esquina.png" alt="Esquina">
         </div>
         <div class="logo">
-            <img src="img\gamco_logo.jpg" alt="Logo">
+            <img src="img\gamco_logo.png" alt="Logo">
         </div>
         <form class="password-recovery-form" action="verify-recovery.php" method="post">
             <h2>Recuperar contraseña</h2>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Gam.co</title>
     <link rel="stylesheet" href="css/style_Login.css">
+    <link rel="icon" type="image/x-icon" href="img/gamco_logo.png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
@@ -47,7 +48,7 @@
             <img src="img\login_esquina.png" alt="Esquina">
         </div>
         <div class="logo">
-            <img src="img\gamco_logo.jpg" alt="Logo">
+            <img src="img\logo.png" alt="Logo">
         </div>
         <form class="login-form" action="verify-login.php" method="post">
             <h2>Iniciar sesión</h2>
@@ -80,6 +81,5 @@
             </div>
         </form>
     </div>
-    <?php include('footer.php'); ?>
 </body>
 </html>
