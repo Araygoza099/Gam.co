@@ -73,17 +73,14 @@
                     echo '>' . $product["name"] . '</h2>';
                     
                         $discountedPrice = $product["price"];
-                        if ($product["desc"] > "0%") {
-                            $priceValue = intval(str_replace("$", "", $product["price"]));
-                            $discountValue = intval(str_replace("%", "", $product["desc"]));
+                        if ($product["desc"] > 0) {
+                            $priceValue = $product["price"];
+                            $discountValue = $product["desc"];
                             $discountedPrice = '$' . ($priceValue - ($priceValue * $discountValue / 100));
-                            
-                            if ($product["quantity"] == 0) {
-                                echo '<p><span style="color: #999; text-decoration: line-through;"> $' . $product["price"] . '</span>';
-                                echo ' Precio: ' . $discountedPrice . '</p>';
-                            } else {
-                                echo '<p>Precio: ' . $product["price"] . '</p>';
-                            }
+
+                            echo '<p><span style="color: #999; text-decoration: line-through;"> $'. $product["price"] . '</span>';
+                            echo ' Precio: ' . $discountedPrice . '</p>';
+
                         } else {
                             if ($product["quantity"] == 0) {
                                 echo '<p><span style="color: #999;">Precio: $' . $product["price"] . '</span></p>';
