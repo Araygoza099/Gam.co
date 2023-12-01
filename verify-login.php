@@ -81,7 +81,7 @@
 
         $conexion->close();
         if($band==1){
-            header('Location: alertas/loginOk.php');
+            header('Location: alertas/loginOk.html');
         }
         else{
             header('Location: alertas/loginError.html');
