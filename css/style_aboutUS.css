@@ -40,7 +40,7 @@ div.item {
 
 div.item:nth-of-type(1) {
   --offset: 1;
-  background-image: url(../img/Julio.png);
+  background-image: url(../img/Diego.png);
 }
 div.item:nth-of-type(2) {
   --offset: 2;
@@ -48,7 +48,7 @@ div.item:nth-of-type(2) {
 }
 div.item:nth-of-type(3) {
   --offset: 3;
-  background-image: url(../img/Ray.png);
+  background-image: url(../img/Julio.png);
 }
 div.item:nth-of-type(4) {
   --offset: 4;
@@ -56,7 +56,7 @@ div.item:nth-of-type(4) {
 }
 div.item:nth-of-type(5) {
   --offset: 5;
-  background-image: url(../img/Diego.png);
+  background-image: url(../img/Ray.png);
 }
 
 input:nth-of-type(1) {
