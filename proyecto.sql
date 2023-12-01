@@ -89,22 +89,10 @@ CREATE TABLE `productos` (
   `proc_descrip` varchar(255) NOT NULL,
   `proc_desc` int(5) NOT NULL,
   `proc_price` int(10) NOT NULL,
+  `cantidad` int(3) NOT NULL,
   `proc_urlimg` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `productos`
---
-
-INSERT INTO `productos` (`proc_id`, `proc_name`, `proc_descrip`, `proc_desc`, `proc_price`, `proc_urlimg`, `type`) VALUES
-(1, 'Resident Evil 4 Remake', '', 10, 1800, 'img1.1.jpg', 'Videojuego'),
-(2, 'Red Dead Redemption 2', '', 10, 1200, 'img1.2.jpeg', 'Videojuego'),
-(4, 'Cuphead', '', 10, 800, 'img1.4.jpg', 'Videojuego'),
-(5, 'Control Xbox Series X|S', '', 5, 1000, 'img2.1.webp', 'Accesorio'),
-(6, 'Control Xbox Series X|S Camuflaje Rojo', '', 5, 1000, 'img2.2.webp', 'Accesorio'),
-(7, 'Control Xbox Series X|S Azul', '', 5, 1000, 'img2.3.jpg', 'Accesorio'),
-(8, 'Control Xbox Series X|S Negro', '', 5, 1000, 'img2.4.webp', 'Accesorio');
 
 -- --------------------------------------------------------
 

@@ -1,5 +1,5 @@
 <?php
-function registrarProducto($id, $nombre, $descripcion, $descuento, $precio, $urlImagen, $tipo) {
+function registrarProducto($id, $nombre, $descripcion, $descuento, $precio, $urlImagen, $tipo, $cantidad) {
     $host = "127.0.0.1";
     $username = "root";
     $password = "";
@@ -25,13 +25,13 @@ function registrarProducto($id, $nombre, $descripcion, $descuento, $precio, $url
     }
 
     //inserta el nuevo producto
-    $consulta = $con->prepare("INSERT INTO productos (proc_id, proc_name, proc_descrip, proc_desc, proc_price, proc_urlimg, type) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $consulta = $con->prepare("INSERT INTO productos (proc_id, proc_name, proc_descrip, proc_desc, proc_price, cantidad, proc_urlimg, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
     if ($consulta === false) {
         die("Error al preparar la consulta: " . $con->error);
     }
 
-    $consulta->bind_param("issiiss", $id, $nombre, $descripcion, $descuento, $precio, $urlImagen, $tipo);
+    $consulta->bind_param("issiiiss", $id, $nombre, $descripcion, $descuento, $precio, $cantidad, $urlImagen, $tipo);
 
     $resultado = $consulta->execute();
 
@@ -45,7 +45,6 @@ function registrarProducto($id, $nombre, $descripcion, $descuento, $precio, $url
     return "Producto registrado correctamente.";
 }
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"]) && isset($_POST["nombre"])) {
     $idProducto = $_POST["id"];
     $nombreProducto = $_POST["nombre"];
@@ -54,8 +53,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"]) && isset($_POST[
     $precioProducto = $_POST["precio"];
     $urlImagenProducto = $_POST["urlImagen"];
     $tipoProducto = $_POST["tipo"];
+    $cantidadProducto = $_POST["cantidad"];
 
-    $resultadoInsercion = registrarProducto($idProducto, $nombreProducto, $descripcionProducto, $descuentoProducto, $precioProducto, $urlImagenProducto, $tipoProducto);
+    $resultadoInsercion = registrarProducto($idProducto, $nombreProducto, $descripcionProducto, $descuentoProducto, $precioProducto, $urlImagenProducto, $tipoProducto, $cantidadProducto);
 
     if ($resultadoInsercion === "Producto registrado correctamente.") {
         $mensaje = "Producto registrado correctamente.";
@@ -66,7 +66,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"]) && isset($_POST[
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -142,6 +141,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"]) && isset($_POST[
                 <div class="form-group">
                     <label for="precio">Precio:</label>
                     <input type="number" class="form-control" name="precio" step="0.01" min="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cantidad">Cantidad:</label>
+                    <input type="number" class="form-control" name="cantidad" required>
                 </div>
 
                 <div class="form-group">
