@@ -43,21 +43,24 @@
             </div>
             <div class="screen-body-item">
               <div class="app-form">
-                <div class="app-form-group">
-                  <input class="app-form-control" placeholder="NAME" >
+                <form action="correo.php" method="post">
+                  <div class="app-form-group">
+                  <input class="app-form-control" placeholder="USER" name="user">
                 </div>
                 <div class="app-form-group">
-                  <input class="app-form-control" placeholder="EMAIL">
+                  <input class="app-form-control" placeholder="EMAIL" name="email">
                 </div>
                 <div class="app-form-group">
-                  <input class="app-form-control" placeholder="CONTACT NO">
+                  <input class="app-form-control" placeholder="CONTACT NO" name="number">
                 </div>
                 <div class="app-form-group message">
-                  <input class="app-form-control" placeholder="MESSAGE">
+                  <input class="app-form-control" placeholder="MESSAGE" name="message">
                 </div>
                 <div class="app-form-group buttons">
-                  <button class="app-form-button">CANCEL</button>
-                  <button class="app-form-button">SEND</button>
+                  <button href="inicio.php" class="app-form-button">CANCEL</button>
+                  <button type="submit"class="app-form-button">SEND</button>
+                </form>
+                
                 </div>
               </div>
             </div>

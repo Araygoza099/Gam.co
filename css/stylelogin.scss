@@ -1,0 +1,82 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #00011e;
+}
+
+.container {
+  width: 300px;
+  padding: 20px;
+  background-color: #d5eb0a; /* Verde */
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.message {
+  margin-bottom: 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #03385c;
+}
+.button-box {
+  position: absolute;
+  background: $white;
+  width: 50%;
+  height: 15%;
+  border-radius: 20px;
+  top: 73%;
+  left: 25%;
+  outline: 0;
+  border: none;
+  box-shadow: 2px 2px 10px rgba($dark, .5);
+  transition: all .5s ease-in-out;
+  &:hover {
+    background: darken($white, 5%);
+    transform: scale(1.05);
+    transition: all .3s ease-in-out;
+  }
+}
+
+.nice-button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  background-color: #1e1e1e;
+  color: #ffffff;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+  border: none;
+}
+
+.nice-button:hover {
+  background-color: #001f35;
+  transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.nice-button-round {
+  border: none;
+  box-shadow: 2px 2px 10px rgba($dark, .5);
+  border-radius: 25px;
+}
+
