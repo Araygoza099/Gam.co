@@ -29,16 +29,18 @@
             if($pregunta==$question && $answer==$respuesta){
                     $query = "UPDATE users SET password = '$hashed_password', intentos = 0  WHERE username = '$usuario'";
                     $conexion->query($query);
-                    echo "<h2>Contraseña actualizada correctamente <br> Redirigiendo... </h2>";
-                    header('Refresh: 1.5; URL=login.php');
+                    $conexion->close();
+                    header('Refresh: 1.5; URL=alertas/recoveryOk.html');
                     exit; 
             }
         }else{
-            echo "<h2>Escriba un usuario correcto <br> Redirigiendo...</h2>";
+            $conexion->close();
+            header('Refresh: 1.5; URL=alertas/recoveryError.html');
+            exit; ;
         }
 
         $conexion->close();
-        header('Refresh: 1.5; URL=recovery.php');
-        exit; 
+        header('Refresh: 1.5; URL=alertas/recoveryError.html');
+        exit;
     }
 ?>

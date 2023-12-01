@@ -40,10 +40,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("isssiss", $userid, $username, $email, $hashed_password, $intentos, $pregunta, $respuesta);
 
     if ($stmt->execute()) {
-        echo "Registro exitoso. Ahora puedes iniciar sesión.";
-        header("Refresh: 1.5; URL=login.php");
+        $stmt->close();
+        header('Refresh: 1.5; URL=alertas/registerOk.html');
+        exit; 
     } else {
-        echo "Error en el registro: " . $stmt->error;
+        $stmt->close();
+        header('Refresh: 1.5; URL=alertas/registerError.html');
+        exit; 
     }
 
     $stmt->close();
