@@ -6,6 +6,7 @@
     <title>Login | Gam.co</title>
     <link rel="stylesheet" href="css/style_Login.css">
     <link rel="icon" type="image/x-icon" href="img/gamco_logo.png">
+    <link rel="stylesheet" type="text/css" href="css/style_foo.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
@@ -43,15 +44,13 @@
 </head>
 <body>
     <?php include('header.php'); ?>
+    <div class="flex">
     <div class="container">
          <div class="corner-image">
             <img src="img\login_esquina.png" alt="Esquina">
         </div>
-        <div class="logo">
-            <img src="img\logo.png" alt="Logo">
-        </div>
         <form class="login-form" action="verify-login.php" method="post">
-            <h2>Iniciar sesión</h2>
+            <h2 style="font-size:1.5em; font-weight: bolder; margin-bottom:20px;">Iniciar sesión</h2>
             <div class="input-group">
                 <input type="text" placeholder="Usuario" name="usuario" value="<?php if (isset($_COOKIE["usuario"])) { echo $_COOKIE["usuario"];} else {echo "";}?>" required>
             </div>
@@ -81,5 +80,8 @@
             </div>
         </form>
     </div>
+    </div>
+    <div style="padding: 150px;"></div>
+    <?php include('footer.php'); ?>
 </body>
 </html>
