@@ -6,19 +6,26 @@
   <title>Recuperar contraseña | Gam.co</title> 
   <link rel="stylesheet" href="css/style_PasswordRecovery.css">
   <link rel="icon" type="image/x-icon" href="img/gamco_logo.png">
+    <link rel="stylesheet" type="text/css" href="css/style_foo.css">
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <style>
+     body {
+      overflow-x: hidden; 
+      background-color: #00011e;
+    }
+  </style>
 </head>
 <body>
     <?php include('header.php'); ?>
+    
+    <div class="flex2">
+    <div class="flex">
     <div class="container">
         <div class="corner-image">
             <img src="img\recovery_esquina.png" alt="Esquina">
         </div>
-        <div class="logo">
-            <img src="img\gamco_logo.png" alt="Logo">
-        </div>
         <form class="password-recovery-form" action="verify-recovery.php" method="post">
-            <h2>Recuperar contraseña</h2>
+        <h2 style="font-size:1.5em; font-weight: bolder; margin-bottom:20px;">Recuperar contraseña</h2>
             <div class="input-group">
                 <input type="text" placeholder="Usuario" name="usuario" required>
             </div>
@@ -45,6 +52,8 @@
             <div id="mensaje" class="mismatch"></div>
             <button type="submit" class="login-btn" id="btnsub">Recuperar</button>
         </form>
+    </div>
+    </div>
     </div>
     
 
@@ -90,5 +99,7 @@
         });
     </script>
 
+    <div style="padding: 100px;"></div>
+    <?php include('footer.php'); ?>
 </body>
 </html>
