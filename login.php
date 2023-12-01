@@ -52,10 +52,10 @@
         <form class="login-form" action="verify-login.php" method="post">
             <h2>Iniciar sesión</h2>
             <div class="input-group">
-                <input type="text" placeholder="Usuario" name="usuario" required>
+                <input type="text" placeholder="Usuario" name="usuario" value="<?php if (isset($_COOKIE["usuario"])) { echo $_COOKIE["usuario"];} else {echo "";}?>" required>
             </div>
             <div class="input-group">
-                <input type="password" placeholder="Contraseña" name="contraseña" required>
+                <input type="password" placeholder="Contraseña" name="contraseña" value="<?php if (isset($_COOKIE["contraseña"])) { echo $_COOKIE["contraseña"];} else {echo "";}?>" required>
             </div>
             <div class="input-group">
                 <td style="width:10%;">
@@ -75,8 +75,8 @@
             </div>
             <button type="submit" class="login-btn" name='submit' value="submit" id="st">Ingresar</button>
             <div class="remember-me" >
-                <label for="remember-me">Recuérdame</label>
-                <input type="checkbox" id="remember-me">
+                <label for="remember-me" name="remember">Recuérdame</label>
+                <input type="checkbox" id="remember-me" name="remember">
             </div>
         </form>
     </div>

@@ -21,7 +21,7 @@
     if(isset($_POST["captcha_code"])){
         
         if($cadena == $_SESSION["captcha_code"]){
-            header('Location: alertas/success.html');
+            //header('Location: alertas/success.html');
         }
         else{
             $message = 'Captcha incorrecto intentalo de nuevo';
@@ -62,7 +62,19 @@
             } else {
 
                 if (password_verify($contraseña, $storedPassword)) {
+                    if(!empty($_POST["remember"])){
+                        setcookie("usuario", $_POST["usuario"], time()+86400);
+                        setcookie("contraseña", $_POST["contraseña"], time()+86400);
+                        echo "Cookies set Successfuly";
+                    }else{
+                        setcookie("usuario", "", time() - 86400);
+                        setcookie("contraseña", "", time() - 86400);
+                        echo "Cookies Not Set";
+                    }
                     echo "Inicio de sesión exitoso.";
+
+                    echo "<br>Usuario Cookie: " . $_COOKIE["usuario"];
+                    echo "<br>Contraseña Cookie: " . $_COOKIE["contraseña"];
                 } else {
                     echo "Usuario o contraseña incorrectos. Inténtelo nuevamente.";
                     $intentos++;

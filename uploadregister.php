@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 
 // Registro de usuario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $userid=2;
+    $userid=3;
     $username = $_POST["username"];
     $password = $_POST["password"];
     $email = $_POST["email"];
