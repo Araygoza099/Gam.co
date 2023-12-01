@@ -18,16 +18,6 @@
 
     session_start();
 
-    if(isset($_POST["captcha_code"])){
-        
-        if($cadena == $_SESSION["captcha_code"]){
-            //header('Location: alertas/success.html');
-        }
-        else{
-            $message = 'Captcha incorrecto intentalo de nuevo';
-        }
-    }
-    
     if(isset($message)){
         echo $message;
     }session_unset();
@@ -51,47 +41,60 @@
         $query = "SELECT password, intentos FROM users WHERE username = '$nombre'";
         $result = $conexion->query($query);
 
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $storedPassword = $row["password"];
-            $intentos = $row["intentos"];
+        if(isset($_POST["captcha_code"])){
+        
+            if($cadena == $_SESSION["captcha_code"]){
 
-            if ($intentos >= 3) {
-                header('Refresh: 1.5; URL=recovery.php');
-                exit; 
-            } else {
-
-                if (password_verify($contraseña, $storedPassword)) {
-                    if(!empty($_POST["remember"])){
-                        setcookie("usuario", $_POST["usuario"], time()+86400);
-                        setcookie("contraseña", $_POST["contraseña"], time()+86400);
-                        echo "Cookies set Successfuly";
-                    }else{
-                        setcookie("usuario", "", time() - 86400);
-                        setcookie("contraseña", "", time() - 86400);
-                        echo "Cookies Not Set";
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $storedPassword = $row["password"];
+                    $intentos = $row["intentos"];
+        
+                    if ($intentos >= 3) {
+                        header('Refresh: 1.5; URL=recovery.php');
+                        exit; 
+                    } else {
+        
+                        if (password_verify($contraseña, $storedPassword)) {
+                            if(!empty($_POST["remember"])){
+                                setcookie("usuario", $_POST["usuario"], time()+86400);
+                                setcookie("contraseña", $_POST["contraseña"], time()+86400);
+                            }else{
+                                setcookie("usuario", "", time() - 86400);
+                                setcookie("contraseña", "", time() - 86400);
+                            }
+                            header('Location: alertas/success.html');
+                        } else {
+                            header('Location: alertas/wrong.html');
+                            $intentos++;
+        
+                            $query = "UPDATE users SET intentos = $intentos WHERE username='$nombre'";
+                            
+                            $conexion->query($query);
+                        }
                     }
-                    echo "Inicio de sesión exitoso.";
-
-                    echo "<br>Usuario Cookie: " . $_COOKIE["usuario"];
-                    echo "<br>Contraseña Cookie: " . $_COOKIE["contraseña"];
-                } else {
-                    echo "Usuario o contraseña incorrectos. Inténtelo nuevamente.";
-                    $intentos++;
-
-                    $query = "UPDATE users SET intentos = $intentos WHERE username='$nombre'";
-                    
-                    $conexion->query($query);
+                }else {
+                    $conexion->close();
+                    header('Location: alertas/wrong.html');
+                    exit; 
                 }
+        
+                $conexion->close();
+                header('Location: alertas/wrong.html');
+                exit; 
+            }else{
+                $conexion->close();
+                header('Refresh: 1.5; location: alertas/wrong.php');
+                exit;
             }
-        } else {
-            echo "Usuario no encontrado. Regístrese primero.";
         }
 
         $conexion->close();
-        header('Refresh: 1.5; location: login.php');
-        exit; 
+        header('Refresh: 1.5; location: alertas/wrong.php');
+        exit;
     }
+
+        
 ?>
 
 
