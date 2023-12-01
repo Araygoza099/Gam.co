@@ -14,7 +14,17 @@ if ($conn->connect_error) {
 
 // Registro de usuario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $userid=3;
+
+    $sql = "SELECT MAX(usr_id) AS ultimo_id FROM users";
+    $resultado = $conn->query($sql);
+
+    if ($resultado->num_rows > 0) {
+        $fila = $resultado->fetch_assoc();
+        $ultimo_id = $fila['ultimo_id'];
+        $nuevo_id = $ultimo_id + 1;
+    }
+
+    $userid=$nuevo_id;
     $username = $_POST["username"];
     $password = $_POST["password"];
     $email = $_POST["email"];
