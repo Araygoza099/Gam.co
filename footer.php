@@ -18,7 +18,7 @@
     <div class="footer__parralax-premierplan"></div>
     <div class="footer__parralax-voiture"></div>
   </div>
-  <div class="container">
+  <div class="containerFoo">
     <div class="footer__columns">
       <div class="footer__col">
         <h3 class="footer__col-title">

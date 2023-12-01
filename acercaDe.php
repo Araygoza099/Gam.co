@@ -5,6 +5,7 @@
   <title>About Us | Gam.co </title>
   <link rel="stylesheet" type="text/css" href="css/style_foo.css"> 
   <link rel="stylesheet" href="css/style_aboutUS.css">
+  <link rel="icon" type="image/x-icon" href="img/gamco_logo.png">
   <link rel="stylesheet" href="css/style_aboutUS1.scss">
   <style>
     body {

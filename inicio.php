@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Inicio | Gam.co</title>
     <link rel="stylesheet" type="text/css" href="css/style_index.css"> 
+    <link rel="icon" type="image/x-icon" href="img/gamco_logo.png">
     <link
       href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,700;1,900&display=swap"
       rel="stylesheet"
@@ -27,11 +28,11 @@
         </div>
         <nav class="nav-bar" >
           <ul >
-            <li><a style="color: white;" href="">Inicio</a></li>
-            <li><a href="">Tienda</a></li>
-            <li><a href="">Acerca de</a></li>
-            <li><a href="">Contactanos</a></li>
-            <li><a href="">Ayuda</a></li>
+          <li><a style="color: white;" href="">Inicio</a></li>
+          <li><a href="tienda.php">Tienda</a></li>
+          <li><a href="acercaDe.php">Acerca de</a></li>
+          <li><a href="Contacto.php">Contactanos</a></li>
+          <li><a href="help.php">Ayuda</a></li>
           </ul>
         </nav>
       </header>

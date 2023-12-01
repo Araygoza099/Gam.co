@@ -5,6 +5,7 @@
   <title>Contact Us | Gam.co </title>
   <link rel="stylesheet" type="text/css" href="css/style_foo.css"> 
   <link rel="stylesheet" href="css/style_Contacto.css">
+  <link rel="icon" type="image/x-icon" href="img/gamco_logo.png">
   <style>
     body {
       overflow-x: hidden; 
@@ -13,10 +14,8 @@
   </style>
 </head>
 <body>
-  <header>
+
     <?php include('header.php'); ?>
-  </header>
-  
 
   <div class="form">
     <div class="background">

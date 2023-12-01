@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>Tienda - Gam.co</title>
     <link rel="stylesheet" href="css/style_Tienda.css">
+    <link rel="icon" type="image/x-icon" href="img/gamco_logo.png">
     <link rel="stylesheet" type="text/css" href="css/style_foo.css"> 
     <style>
         body {
@@ -15,9 +16,8 @@
     </style>
 </head>
 <body>
-    <header>
-        <?php include('header.php'); ?>
-    </header>
+
+    <?php include('header.php'); ?>
 
     <!-- Contenedor principal -->
     <div class="container">
@@ -27,6 +27,7 @@
             <h3>Ordenar por:</h3>
             <form method="get">
                 <label for="filtro1">Categoria</label>
+                <br>
                 <select id="filtro1" name="categoria">
                     <option value="opcion0">Todos</option>
                     <option value="Videojuegos">Videojuegos</option>

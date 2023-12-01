@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login | Gam.co</title>
   <link rel="stylesheet" href="css/style_Login.css">
+  <link rel="icon" type="image/x-icon" href="img/gamco_logo.png">
     <style>
     body {
       background-color: #00011e;
