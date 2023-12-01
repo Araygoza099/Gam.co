@@ -14,23 +14,20 @@
     }
 
     // Aquí puedes hacer lo que necesites con la cadena ajustada
-    echo "Cadena ajustada: " . $cadena;
 
     session_start();
 
     if(isset($_POST["captcha_code"])){
         
         if($cadena == $_SESSION["captcha_code"]){
-            //header('Location: alertas/success.html');
+            $band=1;
         }
         else{
-            $message = 'Captcha incorrecto intentalo de nuevo';
+            $band=0;
         }
     }
     
-    if(isset($message)){
-        echo $message;
-    }session_unset();
+    session_unset();
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $servername = "localhost";
@@ -65,30 +62,30 @@
                     if(!empty($_POST["remember"])){
                         setcookie("usuario", $_POST["usuario"], time()+86400);
                         setcookie("contraseña", $_POST["contraseña"], time()+86400);
-                        echo "Cookies set Successfuly";
                     }else{
                         setcookie("usuario", "", time() - 86400);
                         setcookie("contraseña", "", time() - 86400);
-                        echo "Cookies Not Set";
                     }
-                    echo "Inicio de sesión exitoso.";
-
-                    echo "<br>Usuario Cookie: " . $_COOKIE["usuario"];
-                    echo "<br>Contraseña Cookie: " . $_COOKIE["contraseña"];
+                    
                 } else {
-                    echo "Usuario o contraseña incorrectos. Inténtelo nuevamente.";
                     $intentos++;
-
+                    $band=0;
                     $query = "UPDATE users SET intentos = $intentos WHERE username='$nombre'";
                     
                     $conexion->query($query);
                 }
             }
         } else {
-            echo "Usuario no encontrado. Regístrese primero.";
+            $band=0;
         }
 
         $conexion->close();
+        if($band==1){
+            header('Location: alertas/success.html');
+        }
+        else{
+            echo "algo no funciona";
+        }
         header('Refresh: 1.5; location: login.php');
         exit; 
     }
