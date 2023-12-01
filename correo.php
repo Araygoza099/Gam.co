@@ -117,9 +117,9 @@
 
                 // Envía el correo
                 $mail->send();
-                echo '<h1>Correo Enviado</h1>';
+                 header('Location: alertas/emailOK.html');
             } catch (Exception $e) {
-                echo "<h1>No se pudo enviar el correo. Error del Mailer: {$mail->ErrorInfo}</h1>";
+                header('Location: alertas/emailError.html');
             }       
         }       
 
