@@ -10,6 +10,7 @@
       rel="stylesheet"
     />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,700;1,900&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
    <link rel="stylesheet" href="style-card.css">
  <style>
@@ -33,6 +34,8 @@
           <li><a href="acercaDe.php">Acerca de</a></li>
           <li><a href="Contacto.php">Contactanos</a></li>
           <li><a href="help.php">Ayuda</a></li>
+          <li><a href="login.php">Iniciar Sesion</a></li>
+          <li><a href=""> <i class="fa-regular fa-cart-shopping" style="color: #ffc600;"></i></a></li>
           </ul>
         </nav>
       </header>
