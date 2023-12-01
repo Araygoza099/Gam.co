@@ -1,4 +1,5 @@
 body {
+  font-family: "Rubik", sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
@@ -11,7 +12,7 @@ body {
 .containerCorrecto {
   width: 300px;
   padding: 20px;
-  background-color: rgb(0, 157, 29); /* Verde */
+  background-color: rgb(0, 157, 29); 
   border-radius: 15px;
   text-align: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -20,10 +21,11 @@ body {
 .containerError {
   width: 300px;
   padding: 20px;
-  background-color: rgb(208, 0, 0); /* Verde */
+  background-color: rgb(114, 0, 0); 
   border-radius: 15px;
   text-align: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  color: white;
 }
 
 .message {
@@ -31,9 +33,7 @@ body {
 }
 
 
-.btn:hover {
-  background-color: #03385c;
-}
+
 .button-box {
   position: absolute;
   background: $white;
@@ -63,8 +63,14 @@ body {
   border: none;
 }
 
-.nice-button:hover {
-  background-color: #001f35;
+.nice-button-ok:hover {
+  background-color: rgb(0, 224, 41);
+  transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.nice-button-error:hover {
+  background-color: rgb(228, 0, 0); 
   transform: scale(1.1);
     transition: transform 0.3s ease;
 }
