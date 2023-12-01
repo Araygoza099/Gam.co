@@ -11,7 +11,7 @@
   <style>
      body {
       overflow-x: hidden; 
-      background-color: #00011e;
+      background-image: url(img/fondo2.png);
     }
   </style>
 </head>

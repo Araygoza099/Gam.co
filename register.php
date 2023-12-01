@@ -11,7 +11,7 @@
   <style>
     body {
       overflow-x: hidden; 
-      background-color: #00011e;
+      background-image: url(img/fondo2.png);
     }
   </style>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

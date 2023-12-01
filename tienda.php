@@ -10,8 +10,8 @@
     <link rel="stylesheet" type="text/css" href="css/style_foo.css"> 
     <style>
         body {
-            overflow-x: hidden; 
-            background-color: #00011e;
+        overflow-x: hidden; 
+        background-image: url(img/fondo2.png);
         }
     </style>
 </head>
