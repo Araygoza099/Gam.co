@@ -68,7 +68,6 @@
                         setcookie("usuario", "", time() - 86400);
                         setcookie("contraseña", "", time() - 86400);
                     }
-                    
                 } else {
                     $intentos++;
                     $band=0;
@@ -77,6 +76,7 @@
                     
                     $conexion->query($query);
                 }
+                
             }
         } else {
             $band=0;
@@ -84,6 +84,7 @@
 
         $conexion->close();
         if($band==1){
+            $_SESSION['usuario'] = $nombre;
             header('Location: alertas/loginOk.php');
             exit();
         }
@@ -95,5 +96,3 @@
         exit; 
     }
 ?>
-
-
