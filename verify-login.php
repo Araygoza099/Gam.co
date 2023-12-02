@@ -20,9 +20,11 @@
     if(isset($_POST["captcha_code"])){
         
         if($cadena == $_SESSION["captcha_code"]){
+            
             $band=1;
         }
         else{
+            $mensaje="Captcha incorrecto, intentalo de nuevo";
             $band=0;
         }
     }
@@ -70,6 +72,7 @@
                 } else {
                     $intentos++;
                     $band=0;
+                    $mensaje="Usuario o contraseña incorrectos";
                     $query = "UPDATE users SET intentos = $intentos WHERE username='$nombre'";
                     
                     $conexion->query($query);
@@ -81,10 +84,12 @@
 
         $conexion->close();
         if($band==1){
-            header('Location: alertas/loginOk.html');
+            header('Location: alertas/loginOk.php');
+            exit();
         }
         else{
-            header('Location: alertas/loginError.html');
+            header("Location: alertas/loginError.php?variable=$mensaje");
+            exit();
         }
         header('Refresh: 1.5; location: login.php');
         exit; 
