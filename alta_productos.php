@@ -1,4 +1,34 @@
 <?php
+// Código para procesar la imagen
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["file"]) && !(empty($_FILES["file"]["tmp_name"]))) {
+    $targetDir = "img/base/";  // Directorio donde se guardarán las imágenes
+    $uploadedFileName = basename($_FILES["file"]["name"]);
+    $targetFile = $targetDir . $uploadedFileName;
+
+    // Verificar si el archivo es una imagen real
+    $check = getimagesize($_FILES["file"]["tmp_name"]);
+    if ($check !== false) {
+        if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFile)) { ?>
+
+            <div class="alert alert-success" role="alert">
+                <strong>El archivo </strong> <?php echo htmlspecialchars($uploadedFileName);   ?> se ha subido correctamente.
+            </div>
+
+        <?php
+        } else {
+            echo "Hubo un problema al subir el archivo.";
+        }
+    } else { ?>
+
+        <div class="alert alert-warning" role="alert">
+            <strong>El archivo </strong> no es una imagen válida.
+        </div>
+
+    <?php
+    }
+}
+
+
 function registrarProducto($id, $nombre, $descripcion, $descuento, $precio, $urlImagen, $tipo, $cantidad) {
     $host = "127.0.0.1";
     $username = "root";
@@ -51,11 +81,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"]) && isset($_POST[
     $descripcionProducto = $_POST["descripcion"];
     $descuentoProducto = $_POST["descuento"];
     $precioProducto = $_POST["precio"];
-    $urlImagenProducto = $_POST["urlImagen"];
+    $nombreImagenProducto = isset($uploadedFileName) ? $uploadedFileName : ""; // Solo el nombre de la imagen
     $tipoProducto = $_POST["tipo"];
     $cantidadProducto = $_POST["cantidad"];
 
-    $resultadoInsercion = registrarProducto($idProducto, $nombreProducto, $descripcionProducto, $descuentoProducto, $precioProducto, $urlImagenProducto, $tipoProducto, $cantidadProducto);
+    $resultadoInsercion = registrarProducto($idProducto, $nombreProducto, $descripcionProducto, $descuentoProducto, $precioProducto, $nombreImagenProducto, $tipoProducto, $cantidadProducto);
 
     if ($resultadoInsercion === "Producto registrado correctamente.") {
         $mensaje = "Producto registrado correctamente.";
@@ -72,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"]) && isset($_POST[
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Producto</title>
+    <title>Alta de Producto</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -115,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"]) && isset($_POST[
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
                 <h2 class="text-center mb-4">Registrar Producto</h2>
 
                 <div class="form-group">
@@ -149,9 +179,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"]) && isset($_POST[
                 </div>
 
                 <div class="form-group">
+                    <label for="file">Seleccionar Imagen:</label>
+                    <input type="file" class="form-control-file" name="file" accept="image/*" required>
+                </div>
+
+                <!-- <div class="form-group">
                     <label for="urlImagen">URL de la Imagen:</label>
                     <input type="text" class="form-control" name="urlImagen" required>
-                </div>
+                </div> -->
 
                 <div class="form-group">
                     <label for="tipo">Tipo:</label>
@@ -161,6 +196,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"]) && isset($_POST[
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block">Registrar Producto</button>
                 </div>
+
             </form>
         </div>
     </div>

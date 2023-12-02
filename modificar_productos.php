@@ -1,5 +1,5 @@
 <?php
-function modificarProducto($id, $nombre, $descripcion, $descuento, $precio, $urlImagen, $tipo) {
+function modificarProducto($id, $nombre, $descripcion, $descuento, $precio, $cantidad, $nombreImagen, $tipo) {
     $host = "127.0.0.1";
     $username = "root";
     $password = "";
@@ -11,13 +11,27 @@ function modificarProducto($id, $nombre, $descripcion, $descuento, $precio, $url
         die("Error de conexión a la base de datos: " . $con->connect_error);
     }
 
-    $consulta = $con->prepare("UPDATE productos SET proc_name=?, proc_descrip=?, proc_desc=?, proc_price=?, proc_urlimg=?, type=? WHERE proc_id=?");
+    $consulta = $con->prepare("UPDATE productos SET proc_name=?, proc_descrip=?, proc_desc=?, proc_price=?, cantidad=?, proc_urlimg=?, type=? WHERE proc_id=?");
 
     if ($consulta === false) {
         die("Error al preparar la consulta: " . $con->error);
     }
 
-    $consulta->bind_param("sssiiss", $nombre, $descripcion, $descuento, $precio, $urlImagen, $tipo, $id);
+    //verifica si se ha subido un nuevo archivo de imagen
+    if ($_FILES["file"]["size"] > 0) {
+        $targetDir = "img/base/";
+        $uploadedFileName = basename($_FILES["file"]["name"]);
+        $targetFile = $targetDir . $uploadedFileName;
+
+        if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFile)) {
+            $nombreImagen = $uploadedFileName;
+            echo "La imagen se ha subido correctamente.";
+        } else {
+            echo "Hubo un problema al subir el archivo. Detalles: " . $_FILES["file"]["error"];
+        }
+    }
+
+    $consulta->bind_param("ssdiissi", $nombre, $descripcion, $descuento, $precio, $cantidad, $nombreImagen, $tipo, $id);
 
     $resultado = $consulta->execute();
 
@@ -43,7 +57,7 @@ function obtenerListaProductos() {
         die("Error de conexión a la base de datos: " . $con->connect_error);
     }
 
-    $query = "SELECT proc_id, proc_name FROM productos";
+    $query = "SELECT proc_id, proc_name, proc_desc FROM productos";
     $result = $con->query($query);
 
     if ($result === false) {
@@ -68,10 +82,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["producto_seleccionado"
     $nuevoDescripcion = $_POST["descripcion"];
     $nuevoDescuento = $_POST["descuento"];
     $nuevoPrecio = $_POST["precio"];
-    $nuevoUrlImg = $_POST["urlImagen"];
+    $nuevaCantidad = isset($_POST["cantidad"]) ? $_POST["cantidad"] : 0;
+    $nombreImagen = ""; 
+    if ($_FILES["file"]["size"] > 0) {
+        $targetDir = "img/base/";
+        $uploadedFileName = basename($_FILES["file"]["name"]);
+        $targetFile = $targetDir . $uploadedFileName;
+
+        if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFile)) {
+            $nombreImagen = $uploadedFileName;
+        } else {
+            echo "Hubo un problema al subir el archivo.";
+        }
+    }
+
     $nuevoTipo = $_POST["tipo"];
 
-    $resultado_modificacion = modificarProducto($idProducto, $nuevoNombre, $nuevoDescripcion, $nuevoDescuento, $nuevoPrecio, $nuevoUrlImg, $nuevoTipo);
+    $resultado_modificacion = modificarProducto($idProducto, $nuevoNombre, $nuevoDescripcion, $nuevoDescuento, $nuevoPrecio, $nuevaCantidad, $nombreImagen, $nuevoTipo);
 
     if ($resultado_modificacion) {
         $mensaje = "Producto modificado correctamente.";
@@ -129,7 +156,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["producto_seleccionado"
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
                 <h2 class="text-center mb-4">Modificar Producto</h2>
 
                 <div class="form-group">
@@ -160,10 +187,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["producto_seleccionado"
                     <label for="precio">Nuevo Precio:</label>
                     <input type="number" class="form-control" name="precio" step="0.01" min="0" required>
                 </div>
+                
+                <div class="form-group">
+                    <label for="cantidad">Nueva Cantidad:</label>
+                    <input type="number" class="form-control" name="cantidad" required>
+                </div>
 
                 <div class="form-group">
-                    <label for="urlImagen">Nueva URL de la Imagen:</label>
-                    <input type="text" class="form-control" name="urlImagen" required>
+                    <label for="file">Seleccionar Nueva Imagen:</label>
+                    <input type="file" class="form-control-file" name="file" accept="image/*">
                 </div>
 
                 <div class="form-group">

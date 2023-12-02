@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-11-2023 a las 22:43:32
+-- Tiempo de generación: 03-12-2023 a las 00:34:35
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -93,6 +93,21 @@ CREATE TABLE `productos` (
   `proc_urlimg` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`proc_id`, `proc_name`, `proc_descrip`, `proc_desc`, `proc_price`, `cantidad`, `proc_urlimg`, `type`) VALUES
+(1, 'Resident Evil 4 Remake', 'Videojuego clásico remasterizado para la nuevas consolas', 10, 1800, 30, 'img1.1.jpg', 'Videojuego'),
+(2, 'Red Dead Redemption 2', '', 10, 1200, 10, 'img1.2.jpeg', 'Videojuego'),
+(3, 'Minecraft', 'Video juego Minecraft', 20, 700, 10, 'img1.3.png', 'Videojuego'),
+(4, 'Cuphead', 'Videojuego perteneciente al género de corre y dispara, publicado por la empresa canadiense StudioMDHR', 10, 1200, 7, 'img1.4.jpg', 'Videojuego'),
+(5, 'Control Xbox Series X|S', 'Mando de Xbox color Blanco', 5, 1800, 100, 'img2.1.webp', 'Accesorio'),
+(6, 'Control Xbox Series X|S Camuflaje Rojo', '', 5, 1000, 10, 'img2.2.webp', 'Accesorio'),
+(7, 'Control Xbox Series X|S Azul', '', 5, 1000, 10, 'img2.3.jpg', 'Accesorio'),
+(8, 'Control Xbox Series X|S Negro', 'Mando de Xbox color Negro', 5, 1000, 10, 'img2.4.webp', 'Accesorio'),
+(9, 'Zuriel Said Zúñiga Delgadillo', 'a', 99, 100, 1, 'profileAvatar.png', 'Videojuego');
 
 -- --------------------------------------------------------
 
