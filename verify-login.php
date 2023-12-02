@@ -56,8 +56,8 @@
             $intentos = $row["intentos"];
 
             if ($intentos >= 3) {
-                header('Refresh: 1.5; URL=recovery.php');
-                exit; 
+                header('Refresh: 1.5; URL=alertas/bloqueo.html');
+                exit;
             } else {
 
                 if (password_verify($contraseña, $storedPassword)) {
@@ -69,6 +69,7 @@
                         setcookie("contraseña", "", time() - 86400);
                     }
                     
+                    $_SESSION['usuario'] = $nombre;
                 } else {
                     $intentos++;
                     $band=0;
@@ -77,6 +78,7 @@
                     
                     $conexion->query($query);
                 }
+                
             }
         } else {
             $band=0;
@@ -95,5 +97,3 @@
         exit; 
     }
 ?>
-
-
