@@ -28,8 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Si count es mayor que 0, significa que el nombre de usuario ya existe
     if ($rowCheck['count'] > 0) {
-        echo "El nombre de usuario ya está en uso. Por favor, elige otro.";
-        echo '<meta http-equiv="refresh" content="3;url=register.php">';
+        $mensaje= "El nombre de usuario ya está en uso. Por favor, elige otro.";
+        header("Location: alertas/registroError.php?variable=$mensaje"); 
+        // echo '<meta http-equiv="refresh" content="3;url=register.php">';
     } else {
         // Si no existe, procede con el registro del usuario
 
@@ -57,10 +58,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("isssiss", $userid, $username, $email, $hashed_password, $intentos, $pregunta, $respuesta);
 
         if ($stmt->execute()) {
-            echo "Registro exitoso. Ahora puedes iniciar sesión.";
-            header("Refresh: 1.5; URL=login.php");
+            header("Location: alertas/registroOk.php"); 
         } else {
-            echo "Error en el registro: " . $stmt->error;
+            $mensaje= "Algo no funciona";
+            header("Location: alertas/registroError.php?variable=$mensaje"); 
         }
 
         $stmt->close();
@@ -69,7 +70,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmtCheck->close();
 }
 else{
-    echo "Algo no funciona";
+    $mensaje= "Algo no funciona";
+    header("Location: alertas/registroError.php?variable=$mensaje"); 
 }
 
 $conn->close();
