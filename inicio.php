@@ -38,7 +38,8 @@
           <?php
           if(isset($_SESSION['usuario'])){
             $usuario = $_SESSION['usuario']; ?>
-            <li><p><?php echo "bienvenido $usuario" ?></p></li>
+            <li><a href="logout.php">cerrar sesion</a></li>
+            <li><p style="color: white;" ><?php echo "bienvenido $usuario" ?></p></li>
 
           <?php
           }
