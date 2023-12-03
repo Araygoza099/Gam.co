@@ -1,4 +1,5 @@
 <?php
+include('header.php'); 
 // Código para procesar la imagen
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["file"]) && !(empty($_FILES["file"]["tmp_name"]))) {
     $targetDir = "img/base/";  // Directorio donde se guardarán las imágenes

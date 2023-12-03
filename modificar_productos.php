@@ -1,4 +1,5 @@
 <?php
+include('header.php'); 
 function modificarProducto($id, $nombre, $descripcion, $descuento, $precio, $cantidad, $nombreImagen, $tipo) {
     $host = "127.0.0.1";
     $username = "root";
@@ -27,7 +28,7 @@ function modificarProducto($id, $nombre, $descripcion, $descuento, $precio, $can
             $nombreImagen = $uploadedFileName;
             echo "La imagen se ha subido correctamente.";
         } else {
-            echo "Hubo un problema al subir el archivo. Detalles: " . $_FILES["file"]["error"];
+            // echo "Hubo un problema al subir el archivo. Detalles: " . $_FILES["file"]["error"];
         }
     }
 
