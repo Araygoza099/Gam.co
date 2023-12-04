@@ -171,7 +171,7 @@
          
           </div>
         </div>
-        <button class="boton2" ><a href="tienda.php">Ir a Tienda</a></button>
+        <div class="butonBottom"><button class="boton2" ><a href="tienda.php">Ir a Tienda</a></button></div>
      </div>
     </main>
     

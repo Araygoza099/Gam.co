@@ -232,8 +232,13 @@ body {
   transition: background-color 0.3s ease;
   position: absolute;
   margin-top: 0px;
-  margin-left: 750px;
   font-family: "Rubik", sans-serif;
+}
+
+.butonBottom{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .boton2:hover{
   background-color: #641555;

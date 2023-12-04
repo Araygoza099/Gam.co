@@ -75,7 +75,7 @@
 </head>
 <body>
     <?php include('header.php'); ?>
-    <div class="flex" style="background-image: url(img/fondo2.png); margin-top:-200px; margin-bottom:-200px;">
+    <div class="flex" style="background-image: url(img/fondo2.png); ; margin-bottom:-200px;">
     <div class="container">
          <div class="corner-image">
             <img src="img\admin_pag.png" alt="Esquina">
