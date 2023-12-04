@@ -23,8 +23,6 @@ if(isset($_SESSION['usuario'])){
         );
     
         $_SESSION['cart'][] = $item;
-
-        $aux=$_SESSION['cart'][3];
         
         header('location: tienda.php');
     } else {
@@ -32,7 +30,7 @@ if(isset($_SESSION['usuario'])){
         header('location: cartError.php');
     }
 }else{
-    header('location: cartError.php');
+    header('location: alertas/cartError.html');
 }
 
 ?>
