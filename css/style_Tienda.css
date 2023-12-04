@@ -89,7 +89,18 @@ body {
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
+} 
+
+.product .button-agregar {
+    text-align: center;
+    padding: 8px 16px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
 }
+
 .product p {
     color: #00011e;
 }
@@ -103,6 +114,20 @@ body {
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
+} 
+
+.product .button-agregar {
+    display: block;
+    font-family: "Rubik", sans-serif;
+    text-align: center;
+    padding: 8px 16px;
+    margin-top: 15px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    width: 100%;
+    font-size: .95em;
 }
 
 .product a:hover {

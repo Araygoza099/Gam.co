@@ -54,60 +54,67 @@
                 $categoriaSeleccionada = isset($_GET['categoria']) ? $_GET['categoria'] : 'opcion0';
 
                 // Muestra máximo 12 productos por página
-$productsPerPage = 12;
-$page = isset($_GET['page']) ? $_GET['page'] : 1;
-$start = ($page - 1) * $productsPerPage;
-$end = $start + $productsPerPage;
+                $productsPerPage = 12;
+                $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                $start = ($page - 1) * $productsPerPage;
+                $end = $start + $productsPerPage;
 
-$counter = 0; // Variable para llevar el conteo de productos mostrados
+                $counter = 0; // Variable para llevar el conteo de productos mostrados
 
-foreach ($products as $product) {
-    if ($categoriaSeleccionada === 'opcion0' || $product['type'] === $categoriaSeleccionada) {
-        if ($counter >= $start && $counter < $end) {
-            echo '<div class="product">';
-            echo '<img src="img/base/' . $product["image"] . '" alt="' . $product["name"] . '">';
-            echo '<h2';
+                foreach ($products as $product) {
+                    if ($categoriaSeleccionada === 'opcion0' || $product['type'] === $categoriaSeleccionada) {
+                        if ($counter >= $start && $counter < $end) {
+                            echo '<div class="product">';
+                            echo '<img src="img/base/' . $product["image"] . '" alt="' . $product["name"] . '">';
+                            echo '<h2';
 
-            // Verificar si la cantidad disponible es cero
-            if ($product["quantity"] == 0) {
-                echo ' style="color: #999;"'; 
-            }
+                            // Verificar si la cantidad disponible es cero
+                            if ($product["quantity"] == 0) {
+                                echo ' style="color: #999;"'; 
+                            }
 
-            echo '>' . $product["name"] . '</h2>';
-            
-            $discountedPrice = $product["price"];
-            if ($product["desc"] > 0) {
-                $priceValue = $product["price"];
-                $discountValue = $product["desc"];
-                $discountedPrice = '$' . ($priceValue - ($priceValue * $discountValue / 100));
+                            echo '>' . $product["name"] . '</h2>';
+                            
+                            $discountedPrice = $product["price"];
+                            if ($product["desc"] > 0) {
+                                $priceValue = $product["price"];
+                                $discountValue = $product["desc"];
+                                $discountedPrice = '$' . ($priceValue - ($priceValue * $discountValue / 100));
 
-                echo '<p><span style="color: #999; text-decoration: line-through;"> $'. $product["price"] . '</span>';
-                echo ' Precio: ' . $discountedPrice . '</p>';
+                                echo '<p><span style="color: #999; text-decoration: line-through;"> $'. $product["price"] . '</span>';
+                                echo ' Precio: ' . $discountedPrice . '</p>';
 
-            } else {
-                if ($product["quantity"] == 0) {
-                    echo '<p><span style="color: #999;">Precio: $' . $product["price"] . '</span></p>';
-                } else {
-                    echo '<p>Precio: ' . $product["price"] . '</p>';
+                            } else {
+                                if ($product["quantity"] == 0) {
+                                    echo '<p><span style="color: #999;">Precio: $' . $product["price"] . '</span></p>';
+                                } else {
+                                    echo '<p>Precio: ' . $product["price"] . '</p>';
+                                }
+                            }
+                            
+                            if ($product["quantity"] == 0) {
+                                echo '<a>No Disponible</a>';
+                            } else {
+                                // echo '<a href="verify-cart.php">Agregar al Carrito</a>';
+                                echo '<form action="verify-cart.php" method="post">';
+                                echo '<input type="hidden" name="productId" value="' . $product["id"] . '">';
+                                echo '<input type="hidden" name="productName" value="' . $product["name"] . '">';
+                                echo '<input type="hidden" name="quantity" value="1">'; // Puedes ajustar esto según tu lógica
+                                echo '<input type="hidden" name="price" value="' . $product["price"] . '">';
+                                echo '<button class="button-agregar" type="submit">Agregar al Carrito</button>';
+                                echo '</form>';
+                            }
+                            
+                            echo '<br><div class="desc">';
+                            echo "<p id='description'>" . $product['descrip'] . "</p>";
+                            echo '</div>';
+                            
+                            // ... (Resto de la estructura de tu producto)
+                            echo '</div>';
+                        }
+                        $counter++; // Incrementa el contador de productos mostrados
+                    }             
                 }
-            }
-            
-            if ($product["quantity"] == 0) {
-                echo '<a>No Disponible</a>';
-            } else {
-                echo '<a href="#">Agregar al Carrito</a>';
-            }
-            
-            echo '<br><div class="desc">';
-            echo "<p id='description'>" . $product['descrip'] . "</p>";
-            echo '</div>';
-            
-            // ... (Resto de la estructura de tu producto)
-            echo '</div>';
-        }
-        $counter++; // Incrementa el contador de productos mostrados
-    }             
-}
     
                 ?>
             </section>
