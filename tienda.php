@@ -100,7 +100,7 @@
                                 echo '<input type="hidden" name="productId" value="' . $product["id"] . '">';
                                 echo '<input type="hidden" name="productName" value="' . $product["name"] . '">';
                                 echo '<input type="hidden" name="quantity" value="1">'; // Puedes ajustar esto según tu lógica
-                                echo '<input type="hidden" name="price" value="' . $product["price"] . '">';
+                                echo '<input type="hidden" name="price" value="' . $discountedPrice . '">';
                                 echo '<button class="button-agregar" type="submit">Agregar al Carrito</button>';
                                 echo '</form>';
                             }

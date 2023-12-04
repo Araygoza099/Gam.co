@@ -27,7 +27,7 @@ if(isset($_SESSION['usuario'])){
         header('location: tienda.php');
     } else {
         // Maneja el caso en que la solicitud no sea POST
-        header('location: cartError.php');
+        header('location: alertas/cartError.html');
     }
 }else{
     header('location: alertas/cartError.html');
