@@ -57,22 +57,22 @@
                 <div class="col-md-6 yellow-column">
                     <h3>Dirección de envío</h3>
                     <div class="input-group">
-                        <input type="text" placeholder="Calle" required>
+                        <input type="text" placeholder="Calle" name="calle" required>
                     </div>
                     <div class="input-group">
-                        <input type="text" placeholder="Fraccionamiento" required>
+                        <input type="text" placeholder="Fraccionamiento"  name="frac" required>
                     </div>
                     <div class="input-group">
-                        <input type="text" placeholder="Código postal" required>
+                        <input type="number" placeholder="Código postal" name="cp" required>
                     </div>
                     <div class="input-group">
-                        <input type="text" placeholder="Estado" required>
+                        <input type="text" placeholder="Estado" name="edo" required>
                     </div>
                     <div class="input-group">
-                        <input type="text" placeholder="Ciudad" required>
+                        <input type="text" placeholder="Ciudad" name="cd" required>
                     </div>
                     <div class="input-group">
-                        <input type="tel" placeholder="Número de teléfono" required>
+                        <input type="tel" placeholder="Número de teléfono" name="tel" required>
                     </div>
                     <button type="submit" class="login-btn" id="btnsub">Registrarse</button>
             </form>

@@ -43,12 +43,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $nuevo_id = $ultimo_id + 1;
         }
 
+        $sql2 = "SELECT MAX(dir_id) AS last_id FROM direccion";
+        $resultado2 = $conn->query($sql2);
+
+        if ($resultado2->num_rows > 0) {
+            $fila2 = $resultado2->fetch_assoc();
+            $ultimo_id2 = $fila2['last_id'];
+            $nuevo_id2 = $ultimo_id2 + 1;
+        }
+
         $userid=$nuevo_id;
         $password = $_POST["password"];
         $email = $_POST["email"];
         $pregunta=$_POST["security-question"];
         $respuesta=$_POST["respuesta"];
         $intentos = 0;
+
+        $calle=$_POST['calle'];
+        $frac=$_POST['frac'];
+        $cp=$_POST['cp'];
+        $edo=$_POST['edo'];
+        $cd=$_POST['cd'];
+        $tel=$_POST['tel'];
 
         // Generar el hash Bcrypt
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
@@ -57,6 +73,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $conn->prepare("INSERT INTO users (usr_id, username, email, password, intentos, pregunta, respuesta) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("isssiss", $userid, $username, $email, $hashed_password, $intentos, $pregunta, $respuesta);
 
+        $stmt2 = $conn->prepare("INSERT INTO direccion (dir_id, usr_id,	calle, fracc, zipcode, estado, ciudad, num_tel) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt2->bind_param("iississi", $nuevo_id2,  $nuevo_id, $calle, $frac, $cp, $edo, $cd, $tel);
+
         if ($stmt->execute()) {
             header("Location: alertas/registroOk.php"); 
         } else {
@@ -64,7 +83,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: alertas/registroError.php?variable=$mensaje"); 
         }
 
+        if ($stmt2->execute()) {
+            header("Location: alertas/registroOk.php"); 
+        } else {
+            $mensaje= "Algo no funciona";
+            header("Location: alertas/registroError.php?variable=$mensaje"); 
+        }
+
         $stmt->close();
+        $stmt2->close();
     }
 
     $stmtCheck->close();
