@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <title>Inicio | Gam.co</title>
-    <link rel="stylesheet" type="text/css" href="css/style_index.css"> 
+    <link rel="stylesheet" type="text/css" href="css/style_index.css">
+    <link rel="stylesheet" href="css/style_suscrip.css"> 
     <link rel="icon" type="image/x-icon" href="img/gamco_logo.png">
     <link
       href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,700;1,900&display=swap"
@@ -179,6 +180,23 @@
         <div class="butonBottom"><button class="boton2" ><a href="tienda.php">Ir a Tienda</a></button></div>
      </div>
     </main>
+
+    <div class="sus">
+    <div class="container">  
+        <form id="contactus" action="#aqui hace lo del email" method="post">
+          <h3>Suscribete!</h3>
+          <h4>Para recibir un cupon de regalo!</h4>
+          <fieldset>
+            <input placeholder="Direccion Email" type="email" tabindex="1" name="email" required autofocus>
+          </fieldset>
+          <fieldset>
+            <button name="submit" type="submit" id="contactus-submit" data-submit="...Sending">Suscribete Ahora</button>
+          </fieldset>
+        </form>
+       
+            <img src="img/ellie.png" alt="" class="imgEllie">
+        </div>
+    </div>
     
    
  <div class="espacio">
