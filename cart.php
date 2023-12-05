@@ -301,7 +301,7 @@ span.cantidad {
                 </div>
                 <form>
                     <p>ENVIO</p>
-                    <select>
+                    <select id="envio">
                         <option class="text-muted" value="99">Envio Standar - $99.00</option>
                         <option class="text-muted" value="299">Envio Rapido  - $299.00</option>
                     </select>
@@ -370,45 +370,58 @@ span.cantidad {
 
 }
 
-        function verificarcupon() {
-            var cupon = $("#code").val();
-            var preciototal = <?php echo json_encode($precioFinal); ?>;
+function calcularPrecioTotal() {
+    var cupon = $("#code").val();
+    var preciototal = <?php echo json_encode($precioFinal); ?>;
 
-            // Verificar si el campo de cupón está vacío
-            if (cupon == "") {
-                $("#btnsub").css("display", "none");
-                return;
-            }
+    // Verificar y aplicar descuentos según el cupón
+    if (cupon == "CUP10") {
+        preciototal = preciototal - (preciototal * 0.10);
+    } else if (cupon == "PENE14") {
+        preciototal = preciototal - (preciototal * 0.14);
+    }
 
-            // Verificar y aplicar descuentos según el cupón
-            if (cupon == "CUP10") {
-                preciototal = preciototal - (preciototal * 0.10);
-            } else if (cupon == "PENE14") {
-                preciototal = preciototal - (preciototal * 0.14);
-            }
+    return preciototal;
+}
 
-            // Formatear el precio total con la moneda y la coma separadora de miles
-            var formattedPrecioTotal = preciototal.toLocaleString('en-US', {
-                style: 'currency',
-                currency: 'USD'
-            });
+function actualizarPrecioTotal() {
+    // Obtener el valor seleccionado del elemento select con id "envio"
+    var envioSelect = document.getElementById("envio");
+    var envioValue = parseInt(envioSelect.value);
 
-            // Actualizar el precio total en el elemento con id "total"
-            $("#total").html(formattedPrecioTotal);
+    // Obtener el precio total calculado
+    var preciototal = calcularPrecioTotal();
 
-            // Mostrar el botón de envío
-            $("#btnsub").css("display", "block");
-        }
+    // Sumar el valor del envío a preciototal
+    preciototal += envioValue;
 
-        // Ejecutar la verificación al cargar la página
-        $(document).ready(function () {
-            verificarcupon();
-        });
+    // Formatear el precio total con la moneda y la coma separadora de miles
+    var formattedPrecioTotal = preciototal.toLocaleString('en-US', {
+        style: 'currency',
+        currency: 'USD'
+    });
 
-        // También puedes agregar la verificación en tiempo real mientras se escribe
-        $("#code").on("input", function () {
-            verificarcupon();
-        });
+    // Actualizar el precio total en el elemento con id "total"
+    $("#total").html(formattedPrecioTotal);
+
+    // Mostrar el botón de envío
+    $("#btnsub").css("display", "block");
+}
+
+// Ejecutar la actualización al cargar la página
+$(document).ready(function () {
+    actualizarPrecioTotal();
+});
+
+// También puedes agregar la actualización cuando cambia la opción del envío
+$("#envio").on("change", function () {
+    actualizarPrecioTotal();
+});
+
+// También puedes agregar la actualización en tiempo real mientras se escribe el código
+$("#code").on("input", function () {
+    actualizarPrecioTotal();
+});
 
 
 </script>
