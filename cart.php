@@ -218,7 +218,7 @@ span.cantidad {
     </style>
 </head>
 <body style="background-color: #00011e;">
-<header class="header-princi">
+    <header class="header-princi">
         <div class="logo">
             <a href="inicio.php"><img src="img/logo.png" alt=""></a>
         </div>
@@ -237,64 +237,65 @@ span.cantidad {
               } ?>
 
 
-<!-- Imagen de la sesion  -->
-<li><a href="logout.php" style=" color: #ffc600;"><?php echo strtoupper($usuario)?></a><br></li>
+    <!-- Imagen de la sesion  -->
+    <li><a href="logout.php" style=" color: #ffc600;"><?php echo strtoupper($usuario)?></a><br></li>
           
               <?php
             } ?>
 
          </ul>
         </nav>
-      </header>
+    </header>
+
     <div class="flex">
-    <div class="card">
-        <div class="row">
-            <div class="col-md-8 cart">
-                <div class="title">
-                    <div class="row">
-                        <div class="col"><h4><b>Carrito</b></h4></div>
-                        <div class="col align-self-center text-right text-muted"><?php echo "Número de productos: " . $result->num_rows; ?></div>
-                    
-                    </div>
-                </div>    
-                <?php
-                // ... (Tu código de conexión a la base de datos)
-
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        ?>
-                        
-                        <div class="row border-top border-bottom">
-                            <div class="row main align-items-center">
-                                <div class="col-2"><img class="img-fluid" src="img/base/<?php echo $row['proc_urlimg']; ?>"></div>
-                                <div class="col">
-                                    <div class="row text-muted"><?php echo $row['type']; ?></div>
-                                    <div class="row"><?php echo $row['proc_name']; ?></div>
-                                </div>
-                                <div class="col">
-                                    <span class="cantidad"><?php echo $row['detpedido_cantidad']; ?></span>
-                                    <?php $cantidad+= $row['detpedido_cantidad']; ?>
-                                </div>
-                                <?php $precio = $row['proc_price'] - ($row['proc_price'] * $row['proc_desc'] / 100); ?>
-                                <div class="col">$ <?php echo number_format($precio, 0, '.', ','); ?>.00 <a href="eliminar_cart.php?detpedido_id=<?php echo $row['detpedido_id']; ?>"><span class="close">&#10005;</span></a></div>
-                                <?php $precioFinal += ($row['detpedido_cantidad']*$precio); ?>
-                            </div>
+        <div class="card">
+            <div class="row">
+                <div class="col-md-8 cart">
+                    <div class="title">
+                        <div class="row">
+                            <div class="col"><h4><b>Carrito</b></h4></div>
+                            <div class="col align-self-center text-right text-muted"><?php echo "Número de productos: " . $result->num_rows; ?></div>
                         </div>
-                        <?php
+                    </div>    
+                    <?php
+                    // ... (Tu código de conexión a la base de datos)
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            ?>
+                            
+                            <div class="row border-top border-bottom">
+                                <div class="row main align-items-center">
+                                    <div class="col-2"><img class="img-fluid" src="img/base/<?php echo $row['proc_urlimg']; ?>"></div>
+                                    <div class="col">
+                                        <div class="row text-muted"><?php echo $row['type']; ?></div>
+                                        <div class="row"><?php echo $row['proc_name']; ?></div>
+                                    </div>
+                                    <div class="col">
+                                        <span class="cantidad"><?php echo $row['detpedido_cantidad']; ?></span>
+                                        <?php $cantidad+= $row['detpedido_cantidad']; ?>
+                                    </div>
+                                    <?php $precio = $row['proc_price'] - ($row['proc_price'] * $row['proc_desc'] / 100); ?>
+                                    <div class="col">$ <?php echo number_format($precio, 0, '.', ','); ?>.00 <a href="eliminar_cart.php?detpedido_id=<?php echo $row['detpedido_id']; ?>"><span class="close">&#10005;</span></a></div>
+                                    <?php $precioFinal += ($row['detpedido_cantidad']*$precio); ?>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                    } else {
+                        echo "Aun no tienes cosas agregadas a tu carrito";
                     }
-                } else {
-                    echo "Aun no tienes cosas agregadas a tu carrito";
-                }
 
-                $conn->close();
-                ?>
+                    $conn->close();
+                    ?>
 
-                <div class="back-to-shop"><a href="tienda.php">&leftarrow;<span class="text-muted">Regresar a la Tienda</span></a></div>
-            </div>
-            <div class="col-md-4 summary">
-                <div><h5><b>Resumen</b></h5></div>
-                <hr>
-                <div class="row">
+                    <div class="back-to-shop"><a href="tienda.php">&leftarrow;<span class="text-muted">Regresar a la Tienda</span></a></div>
+                </div>
+
+                <div class="col-md-4 summary">
+                    <div><h5><b>Resumen</b></h5></div>
+                    <hr>
+                    <div class="row">
                     <div class="col" style="padding-left:0;">Productos: <?php echo $cantidad; ?> </div>
                     <div class="col text-right">$ <?php echo number_format($precioFinal, 0, '.', ','); ?>.00</div>
 
@@ -319,18 +320,34 @@ span.cantidad {
                     <input id="code" placeholder="Incluya su codigo de descuento">
                 </form>
                 <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                    <div class="col">PRECIO TOTAL</div>
-                    <div class="col text-right" id="total">$ <?php echo number_format($precioFinal, 0, '.', ','); ?></div>
+                    <div class="col">SUB-TOTAL (sin envio)</div>
+                    <div class="col text-right">$ <?php echo number_format($precioFinal, 0, '.', ','); ?></div>
                 </div>
-                <button class="btn" onclick="cargarPago()">PAGAR AHORA</button>
+                <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                    <div class="col">PRECIO TOTAL (Con envio e Impuestos)</div>
+                    <?php $precioFinal = ($precioFinal * 1.16); $precioFinalRedondeado = round($precioFinal, 2);  ?>
+                    <div class="col text-right" id="total">$ <?php echo number_format($precioFinalRedondeado, 0, '.', ','); ?></div>
+                </div>
+                <div style="display: flex; justify-content: center; align-items: center;">
+    <button style="margin-right: 10px; padding: 8px 20px; background-color: #005bbb; color: #fff; border: none; border-radius: 5px; cursor: pointer;" onclick="cargarPago()">PAGAR AHORA</button>
+    <a href="alertas/compra.php" style="border-radius: 5px; display: inline-block;">
+        <img src="https://www.axondigital.mx/wp-content/uploads/2019/10/Oxxoapp.jpg" alt="" style="border-radius: 5px; width:110px;">
+    </a>
+</div>
+
+
+
             </div>
         </div>
+                
+
+
         
        
         
     </div>
     
-    <div id="respuestaServidor" style="margin-right:-10px; margin-left:20px"></div>
+    <div id="respuestaServidor" style="margin-right:-10px; margin-left:20px"></div></div>
 
     <script>
      function cargarArchivo() {

@@ -53,36 +53,39 @@
             </fieldset>
             <fieldset>
                 <div class="col-lg-14">
-                    <form action="" class="form">
+                    <form action="alertas/compra.php" class="form" method="POST">
                         <div class="row">
                             <div class="col-12">
-                                <div class="form__div">
-                                    <input type="text" class="form-control" placeholder=" ">
-                                    <label for="" class="form__label">Card Number</label>
-                                </div>
+                            <div class="form__div">
+                                <input type="text" class="form-control" placeholder=" " maxlength="16" require>
+                                <label for="" class="form__label">Card Number</label>
+                            </div>
+
                             </div>
 
                             <div class="col-6">
                                 <div class="form__div">
-                                    <input type="text" class="form-control" placeholder=" ">
-                                    <label for="" class="form__label">MM / yy</label>
+                                    <input type="text" class="form-control" placeholder=" "  maxlength="5" require>
+                                    <label for="" class="form__label">MM / YY</label>
                                 </div>
                             </div>
 
+
                             <div class="col-6">
                                 <div class="form__div">
-                                    <input type="password" class="form-control" placeholder=" ">
-                                    <label for="" class="form__label">cvv code</label>
+                                    <input type="text" class="form-control" placeholder=" " maxlength="3" require>
+                                    <label for="" class="form__label">CVV Code</label>
                                 </div>
                             </div>
+
                             <div class="col-12">
                                 <div class="form__div">
-                                    <input type="text" class="form-control" placeholder=" ">
+                                    <input type="text" class="form-control" placeholder=" " require>
                                     <label for="" class="form__label">name on the card</label>
                                 </div>
                             </div>
                             <div class="col-12 mb-3">
-                                <div class="btn btn-primary w-100">Comprar</div>
+                            <button name="submit" type="submit" id="contactus-submit" data-submit="...Sending">Realizar Compra</button>
                             </div>
                         </div>
                     </form>
