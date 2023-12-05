@@ -83,6 +83,7 @@
 
                                 echo '<p><span style="color: #999; text-decoration: line-through;"> $'. $product["price"] . '</span>';
                                 echo ' Precio: ' . $discountedPrice . '</p>';
+                                $precioFinal = $discountedPrice;
 
                             } else {
                                 if ($product["quantity"] == 0) {
@@ -90,6 +91,7 @@
                                 } else {
                                     echo '<p>Precio: ' . $product["price"] . '</p>';
                                 }
+                                $precioFinal = $product["price"];
                             }
                             
                             if ($product["quantity"] == 0) {
@@ -99,10 +101,12 @@
                                 echo '<form action="verify-cart.php" method="post">';
                                 echo '<input type="hidden" name="productId" value="' . $product["id"] . '">';
                                 echo '<input type="hidden" name="productName" value="' . $product["name"] . '">';
-                                echo '<input type="hidden" name="quantity" value="1">'; // Puedes ajustar esto según tu lógica
-                                echo '<input type="hidden" name="price" value="' . $discountedPrice . '">';
+                                echo '<input type="number" name="cantidad" value="1" min="1" max="' . $product["quantity"] . '" style="display: block; font-family: \'Rubik\', sans-serif; text-align: center; padding: 8px 0px; margin-top: 15px; background-color: #333; color: #fff; text-decoration: none; border-radius: 5px; width: 100%; font-size: .95em;">'; // Input de tipo número con estilos CSS aplicados
+                                echo '<input type="hidden" name="precio" value="' . ($product["price"] - ($product["price"] * $product["desc"] / 100)) . '">';
                                 echo '<button class="button-agregar" type="submit">Agregar al Carrito</button>';
                                 echo '</form>';
+
+
                             }
                             
                             echo '<br><div class="desc">';
