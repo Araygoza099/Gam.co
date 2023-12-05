@@ -57,66 +57,30 @@
             <section class="products">
                 <?php
                 // Simulación de productos desde una base de datos
-                $host = "127.0.0.1";
-                $username = "root";
-                $password = "";
-                $bd = "proyecto";
 
-                $con = new mysqli($host, $username, $password, $bd);
-
-                if ($con->connect_error) {
-                    die("Conexión fallida: " . $con->connect_error);
-                }
-
-                // array a actualizar
-                $products = array();
-
-                // Consulta SELECT
-                $sql = "SELECT proc_id, proc_name, proc_descrip, proc_desc, proc_price, cantidad, proc_urlimg, type FROM productos";
-                $result = $con->query($sql);
-
-                // procesa los resultados y actualiza el array
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        // añade cada fila al array
-                        $products[] = [
-                            "id" => $row["proc_id"],
-                            "name" => $row["proc_name"],
-                            "descrip" => $row["proc_descrip"],
-                            "desc" => $row["proc_desc"], 
-                            "price" => $row["proc_price"],
-                            "quantity" => $row["cantidad"],
-                            "image" => $row["proc_urlimg"],
-                            "type" => $row["type"]
-                        ];
-                    }
-                } else {
-                    echo "0 resultados";
-                }
-
-                $con->close();
+                require('productos.php');
 
                 $categoriaSeleccionada = isset($_GET['categoria']) ? $_GET['categoria'] : 'opcion0';
 
-                // Muestra máximo 12 productos por página
-                $productsPerPage = 12;
-                $page = isset($_GET['page']) ? $_GET['page'] : 1;
-                $start = ($page - 1) * $productsPerPage;
-                $end = $start + $productsPerPage;
+                $precioFinal = array();
+                 
+                // foreach ($products as $product) {
+                //     if ($categoriaSeleccionada === 'opcion0' || $product['type'] === $categoriaSeleccionada) {
+                //         $precioFinal[$product['id']] = isset($product["price"]) ? $product["price"] : 0;
 
-                $precioFinal = array(); // Array para almacenar los precios finales
+                //         if (isset($product["desc"]) && $product["desc"] > 0) {
+                //             $precioFinal[$product['id']] = $precioFinal[$product['id']] - ($precioFinal[$product['id']] * $product["desc"] / 100);
+                //         }
+                //     }
+                // }
 
-                $counter = 0; // Variable para llevar el conteo de productos mostrados
-
-                foreach ($products as $product) {
+                foreach ($products as $productId => $product) {
                     if ($categoriaSeleccionada === 'opcion0' || $product['type'] === $categoriaSeleccionada) {
-                        $precioFinal[$product['id']] = isset($product["price"]) ? $product["price"] : 0;
+                        $precioFinal[$productId] = isset($product["price"]) ? $product["price"] : 0;
 
                         if (isset($product["desc"]) && $product["desc"] > 0) {
-                            $precioFinal[$product['id']] = $precioFinal[$product['id']] - ($precioFinal[$product['id']] * $product["desc"] / 100);
+                            $precioFinal[$productId] = $precioFinal[$productId] - ($precioFinal[$productId] * $product["desc"] / 100);
                         }
-
-                        $counter++;
                     }
                 }
 
@@ -129,12 +93,9 @@
                     }
                 }
 
-                $counter = 0; // Restablecer el contador
-
                 foreach ($precioFinal as $productId => $precio) {
                     $product = isset($products[$productId]) ? $products[$productId] : null;
                     if ($product && ($categoriaSeleccionada === 'opcion0' || $product['type'] === $categoriaSeleccionada)) {
-                        if ($counter >= $start && $counter < $end) {
                             // Resto del código para mostrar el producto
                             echo '<div class="product">';
                             echo '<img src="img/base/' . (isset($product["image"]) ? $product["image"] : '') . '" alt="' . (isset($product["name"]) ? $product["name"] : '') . '">';
@@ -164,7 +125,7 @@
                             } else {
                                 // echo '<a href="verify-cart.php">Agregar al Carrito</a>';
                                 echo '<form action="verify-cart.php" method="post">';
-                                echo '<input type="hidden" name="productId" value="' . $productId . '">';
+                                echo '<input type="hidden" name="productId" value="' . $product['id'] . '">';
                                 echo '<input type="hidden" name="productName" value="' . (isset($product["name"]) ? $product["name"] : '') . '">';
                                 echo '<input type="number" name="cantidad" value="1" min="1" max="' . (isset($product["quantity"]) ? $product["quantity"] : 0) . '" style="display: block; font-family: \'Rubik\', sans-serif; text-align: center; padding: 8px 0px; margin-top: 15px; background-color: #333; color: #fff; text-decoration: none; border-radius: 5px; width: 100%; font-size: .95em;">';
                                 echo '<input type="hidden" name="precio" value="' . $precio . '">';
@@ -178,22 +139,14 @@
                             
                             // ... (Resto de la estructura de tu producto)
                             echo '</div>';
-                        }
-
-                        $counter++;
+                        
                     }             
                 }
     
                 ?>
             </section>
 
-            <div class="pagination">
-                <?php
-                $totalPages = ceil(count($precioFinal) / $productsPerPage);
-                for ($i = 1; $i <= $totalPages; $i++) {
-                    echo '<a href="?page=' . $i . '">' . $i . '</a>';
-                } ?>
-            </div>
+            
         </main>
     </div>
 
