@@ -319,7 +319,7 @@ span.cantidad {
                 </form>
                 <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                     <div class="col">PRECIO TOTAL</div>
-                    <div class="col text-right">&euro; 137.00</div>
+                    <div class="col text-right" id="total">$ <?php echo number_format($precioFinal, 0, '.', ','); ?></div>
                 </div>
                 <button class="btn" onclick="cargarPago()">PAGAR AHORA</button>
             </div>
@@ -351,27 +351,65 @@ span.cantidad {
         });
     }
 }
-function cargarPago(){
-
-    
-
-  
+    function cargarPago(){
 
         $.ajax({
             type: "GET",
             url: "./pagos.php",
             success: function(response) {
-               
+            
                 $("#respuestaServidor").html(response);
             },
             error: function() {
                 // Maneja errores si es necesario.
                 $("#respuestaServidor").html("Error al cargar la página.");
             }
-        });
+    });
     
 
 }
+
+        function verificarcupon() {
+            var cupon = $("#code").val();
+            var preciototal = <?php echo json_encode($precioFinal); ?>;
+
+            // Verificar si el campo de cupón está vacío
+            if (cupon == "") {
+                $("#btnsub").css("display", "none");
+                return;
+            }
+
+            // Verificar y aplicar descuentos según el cupón
+            if (cupon == "CUP10") {
+                preciototal = preciototal - (preciototal * 0.10);
+            } else if (cupon == "PENE14") {
+                preciototal = preciototal - (preciototal * 0.14);
+            }
+
+            // Formatear el precio total con la moneda y la coma separadora de miles
+            var formattedPrecioTotal = preciototal.toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'USD'
+            });
+
+            // Actualizar el precio total en el elemento con id "total"
+            $("#total").html(formattedPrecioTotal);
+
+            // Mostrar el botón de envío
+            $("#btnsub").css("display", "block");
+        }
+
+        // Ejecutar la verificación al cargar la página
+        $(document).ready(function () {
+            verificarcupon();
+        });
+
+        // También puedes agregar la verificación en tiempo real mientras se escribe
+        $("#code").on("input", function () {
+            verificarcupon();
+        });
+
+
 </script>
     </script>
     </div>
