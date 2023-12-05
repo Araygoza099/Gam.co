@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>About Us | Gam.co </title>
   <link rel="stylesheet" type="text/css" href="css/style_foo.css"> 
-  <link rel="stylesheet" href="css/style_aboutUS.css">
+  <link rel="stylesheet" href="css/style_aboutUS.scss">
   <link rel="icon" type="image/x-icon" href="img/gamco_logo.png">
   <link rel="stylesheet" href="css/style_aboutUS1.scss">
   <style>
@@ -17,20 +17,40 @@
 <body>
   <?php include('header.php'); ?>
 
-
+  
   <div id="creadores">
-    <input type="radio" name="position" checked />
-    <input type="radio" name="position" />
-    <input type="radio" name="position" />
-    <input type="radio" name="position" />
-    <input type="radio" name="position" />
-    <main id="carousel">
-      <div class="item"><img src="" alt=""></div>
-      <div class="item"><img src="img\Zuriel.png" alt=""></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-    <main>
+  <div class="container2">
+  <div>
+    <div class="content">
+      <h2>Zuri Zuñiga</h2>
+      <span>BD Designer</span>
+    </div>
+  </div>
+  <div>
+    <div class="content">
+      <h2>Yuls Gtz</h2>
+      <span>Frontend Expert</span>
+    </div>
+  </div>
+  <div>
+    <div class="content">
+      <h2>Diego Emma</h2>
+      <span>Web Designer</span>
+    </div>
+  </div>
+  <div>
+    <div class="content">
+      <h2>A. Raygoza</h2>
+      <span>WEB Coordinator</span>
+    </div>
+  </div>
+  <div>
+    <div class="content">
+      <h2>Chriko E</h2>
+      <span>Backend Manager</span>
+    </div>
+  </div>
+</div>
   </div>
 
 
