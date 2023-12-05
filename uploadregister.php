@@ -52,6 +52,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $nuevo_id2 = $ultimo_id2 + 1;
         }
 
+        $sql = "SELECT MAX(pedido_id) AS ultimo_id FROM pedidos";
+        $resultado = $conn->query($sql);
+
+        if ($resultado) {
+            // Verifica si hay al menos una fila en el resultado
+            if ($resultado->num_rows > 0) {
+                $fila = $resultado->fetch_assoc();
+                $ultimo_id = $fila['ultimo_id'];
+                $pedido_id = $ultimo_id + 1;
+            } else {
+                // La tabla está vacía, puedes asignar el primer ID que desees
+                $pedido_id= 1;
+            }
+        } else {
+            // Maneja el caso en que la consulta no fue exitosa
+            echo "Error en la consulta: " . $conn->error;
+        }
+
+        
+
         $userid=$nuevo_id;
         $password = $_POST["password"];
         $email = $_POST["email"];
@@ -76,6 +96,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt2 = $conn->prepare("INSERT INTO direccion (dir_id, usr_id,	calle, fracc, zipcode, estado, ciudad, num_tel) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt2->bind_param("iississi", $nuevo_id2,  $nuevo_id, $calle, $frac, $cp, $edo, $cd, $tel);
 
+        $total=0;
+        $pagoid=0;
+        $pagado=0;
+        $stmt3 = $conn->prepare("INSERT INTO pedidos (pedido_id, usr_id, pago_id, total, pagado) VALUES (?, ?, ?, ?, ?)");
+        $stmt3->bind_param("iiiii", $pedido_id, $nuevo_id, $pagoid, $total, $pagado);
+
+
         if ($stmt->execute()) {
             header("Location: alertas/registroOk.php"); 
         } else {
@@ -90,11 +117,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: alertas/registroError.php?variable=$mensaje"); 
         }
 
+        if ($stmt3->execute()) {
+            header("Location: alertas/registroOk.php"); 
+        } else {
+            $mensaje= "Algo no funciona";
+            header("Location: alertas/registroError.php?variable=$mensaje"); 
+        }
+
         $stmt->close();
         $stmt2->close();
+        $stmt3->close();
+        $stmtCheck->close();
     }
 
-    $stmtCheck->close();
 }
 else{
     $mensaje= "Algo no funciona";

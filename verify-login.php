@@ -82,13 +82,23 @@
             $band=0;
         }
 
-        $conexion->close();
+        
         if($band==1){
             $_SESSION['usuario'] = $nombre;
-            header('Location: alertas/loginOk.php');
+
+            $sql = "SELECT usr_id FROM users WHERE username = '$nombre'";
+            $result = $conexion->query($sql);
+            $row = $result->fetch_assoc();
+            
+            // Extrae el valor de usr_id
+            $usr_id = $row['usr_id'];
+            $_SESSION['usr_id'] =$usr_id;
+            $conexion->close();
+            header("Location: alertas/loginOk.php");
             exit();
         }
         else{
+            $conexion->close();
             header("Location: alertas/loginError.php?variable=$mensaje");
             exit();
         }
