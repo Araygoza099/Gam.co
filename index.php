@@ -1,1 +1,1 @@
-<?php header('Location: inicio.php'); ?>
+<?php header('Location: inicio.php'); require("cartSQL.php"); ?>

@@ -19,7 +19,7 @@
   </head>
   <body >
     <!-- RECORDAR CAMBIAR NOMBRE DE HTML A PHP -->
-   <?php session_start(); ?>
+   <?php session_start();?>
 
     <div class="parallax" >
 
@@ -48,7 +48,8 @@
               <li>
                 <div class="cart-icon-container">
                   <!-- Muestra el numero, luego se obtendra de la base de datos -->
-                  <?php if (isset($_SESSION['num_productos'])) {
+                  <?php require("cartSQL.php");
+                  if (isset($_SESSION['num_productos'])) {
                       echo '<span class="product-count">' . $_SESSION['num_productos'] . '</span>';
                   } else {
                     ?> <span class="product-count">0</span> <?php

@@ -1,5 +1,7 @@
 <?php
+session_start();
     require("cartSQL.php");
+
 ?>
 
 <!DOCTYPE html>
