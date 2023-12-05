@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
     <style>
         body{
     background: #ddd;
@@ -223,7 +225,14 @@ a:hover{
                 </div>
                 <form>
                     <p>ENVIO</p>
-                    <select><option class="text-muted">Envio-Standar- &euro;5.00</option></select>
+                    <select>
+                        <option class="text-muted">Envio-Standar- &euro;5.00</option>
+                    </select>
+                    <p>Direccion</p>
+                    <select id="seleccionarArchivo" onchange="cargarArchivo()">
+                        <option class="text-muted">#aquiponerdirecciones bd</option>
+                        <option class="text-muted" value="./formComfirmacion.php">Agregar Direccion</option>
+                    </select>
                     <p>CODIGO</p>
                     <input id="code" placeholder="Incluya su codigo de descuento">
                 </form>
@@ -231,10 +240,56 @@ a:hover{
                     <div class="col">PRECIO TOTAL</div>
                     <div class="col text-right">&euro; 137.00</div>
                 </div>
-                <button class="btn">PAGAR AHORA</button>
+                <button class="btn" onclick="cargarPago()">PAGAR AHORA</button>
             </div>
         </div>
         
+       
+        
     </div>
+    <div id="respuestaServidor"></div>
+    <script>
+     function cargarArchivo() {
+    var selectedOption = document.getElementById("seleccionarArchivo").value;
+
+    if (selectedOption === "./formComfirmacion.php") {
+        
+        $.ajax({
+            type: "GET",
+            url: selectedOption,
+            success: function(response) {
+            
+                $("#respuestaServidor").html(response);
+            },
+            error: function() {
+                
+                $("#respuestaServidor").html("Error al cargar la página.");
+            }
+        });
+    }
+}
+function cargarPago(){
+
+    
+
+  
+
+        $.ajax({
+            type: "GET",
+            url: "./pagos.php",
+            success: function(response) {
+               
+                $("#respuestaServidor").html(response);
+            },
+            error: function() {
+                // Maneja errores si es necesario.
+                $("#respuestaServidor").html("Error al cargar la página.");
+            }
+        });
+    
+
+}
+</script>
+    </script>
 </body>
 </html>
