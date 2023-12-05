@@ -1,5 +1,6 @@
 <?php
 // Conexión a la base de datos
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -32,22 +33,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tel=$_POST['tel'];
 
     $stmt2 = $conn->prepare("INSERT INTO direccion (dir_id, usr_id,	calle, fracc, zipcode, estado, ciudad, num_tel) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt2->bind_param("iississi", $nuevo_id2,  $nuevo_id, $calle, $frac, $cp, $edo, $cd, $tel);
+    $stmt2->bind_param("iississi", $nuevo_id2,  $usuario_id, $calle, $frac, $cp, $edo, $cd, $tel);
 
 
     if ($stmt2->execute()) {
-        header("Location: alertas/registroOk.php"); 
-    } else {
-        $mensaje= "Algo no funciona";
-        header("Location: alertas/registroError.php?variable=$mensaje"); 
-    }
+        header("Location: cart.php"); 
+    } 
 
     $stmt2->close();
     $stmtCheck->close();
-}
-else{
-    $mensaje= "Algo no funciona";
-    header("Location: alertas/registroError.php?variable=$mensaje"); 
 }
 
 $conn->close();
