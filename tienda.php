@@ -57,7 +57,44 @@
             <section class="products">
                 <?php
                 // Simulación de productos desde una base de datos
-                require('productos.php');
+                $host = "127.0.0.1";
+                $username = "root";
+                $password = "";
+                $bd = "proyecto";
+
+                $con = new mysqli($host, $username, $password, $bd);
+
+                if ($con->connect_error) {
+                    die("Conexión fallida: " . $con->connect_error);
+                }
+
+                // array a actualizar
+                $products = array();
+
+                // Consulta SELECT
+                $sql = "SELECT proc_id, proc_name, proc_descrip, proc_desc, proc_price, cantidad, proc_urlimg, type FROM productos";
+                $result = $con->query($sql);
+
+                // procesa los resultados y actualiza el array
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        // añade cada fila al array
+                        $products[] = [
+                            "id" => $row["proc_id"],
+                            "name" => $row["proc_name"],
+                            "descrip" => $row["proc_descrip"],
+                            "desc" => $row["proc_desc"], 
+                            "price" => $row["proc_price"],
+                            "quantity" => $row["cantidad"],
+                            "image" => $row["proc_urlimg"],
+                            "type" => $row["type"]
+                        ];
+                    }
+                } else {
+                    echo "0 resultados";
+                }
+
+                $con->close();
 
                 $categoriaSeleccionada = isset($_GET['categoria']) ? $_GET['categoria'] : 'opcion0';
 
@@ -69,16 +106,17 @@
 
                 $precioFinal = array(); // Array para almacenar los precios finales
 
+                $counter = 0; // Variable para llevar el conteo de productos mostrados
 
-                foreach ($products as $productId => $product) {
+                foreach ($products as $product) {
                     if ($categoriaSeleccionada === 'opcion0' || $product['type'] === $categoriaSeleccionada) {
-                        $precioFinal[$productId] = isset($product["price"]) ? $product["price"] : 0;
+                        $precioFinal[$product['id']] = isset($product["price"]) ? $product["price"] : 0;
 
                         if (isset($product["desc"]) && $product["desc"] > 0) {
-                            $precioFinal[$productId] = $precioFinal[$productId] - ($precioFinal[$productId] * $product["desc"] / 100);
+                            $precioFinal[$product['id']] = $precioFinal[$product['id']] - ($precioFinal[$product['id']] * $product["desc"] / 100);
                         }
 
-                     
+                        $counter++;
                     }
                 }
 
@@ -91,11 +129,12 @@
                     }
                 }
 
-                
+                $counter = 0; // Restablecer el contador
+
                 foreach ($precioFinal as $productId => $precio) {
                     $product = isset($products[$productId]) ? $products[$productId] : null;
                     if ($product && ($categoriaSeleccionada === 'opcion0' || $product['type'] === $categoriaSeleccionada)) {
-                        
+                        if ($counter >= $start && $counter < $end) {
                             // Resto del código para mostrar el producto
                             echo '<div class="product">';
                             echo '<img src="img/base/' . (isset($product["image"]) ? $product["image"] : '') . '" alt="' . (isset($product["name"]) ? $product["name"] : '') . '">';
@@ -139,14 +178,22 @@
                             
                             // ... (Resto de la estructura de tu producto)
                             echo '</div>';
-                        
+                        }
 
-                       
+                        $counter++;
                     }             
                 }
     
                 ?>
             </section>
+
+            <div class="pagination">
+                <?php
+                $totalPages = ceil(count($precioFinal) / $productsPerPage);
+                for ($i = 1; $i <= $totalPages; $i++) {
+                    echo '<a href="?page=' . $i . '">' . $i . '</a>';
+                } ?>
+            </div>
         </main>
     </div>
 
