@@ -58,19 +58,15 @@
           <i data-feather="share-2"></i> <span>Nos encuentras</span></h3>
         <nav class="footer__nav">
           <ul class="footer__nav-list">
+            
             <li class="footer__nav-item">
-              <a href="" class="footer__nav-link">
-                <i data-feather="youtube"></i><span>Youtube</span>
-              </a>
-            </li>
-            <li class="footer__nav-item">
-              <a href="" class="footer__nav-link">
+            <a href="https://www.facebook.com/profile.php?id=61551058238370" target="_blank" class="footer__nav-link">
                 <i data-feather="facebook"></i><span>Facebook</span>
                 
               </a>
             </li>
             <li class="footer__nav-item">
-              <a href="" class="footer__nav-link">
+              <a href="https://www.instagram.com/gam.c0/"  target="_blank"class="footer__nav-link">
                 <i data-feather="instagram"></i><span>Instagram</span>
                 
               </a>

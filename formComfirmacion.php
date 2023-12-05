@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@
 <body>
 
 <div class="container" >  
-            <form id="contactus"  method="post" >
+            <form id="contactus" action="dirCambio.php" method="post" >
               <h3>Modificar el envio</h3>
               
               <fieldset>
