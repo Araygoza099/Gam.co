@@ -41,7 +41,11 @@
     <!-- Incluir jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <style>
+
         body {
+            background-color: #1a1a1a;  
+        }
+        .flex {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
@@ -72,7 +76,9 @@
         }
     </style>
 </head>
+<?php include('header.php'); ?>
 <body>
+    <div class="flex">
     <div id="charts-container">
         <div id="chart_div1"></div>
         <div id="chart_div2"></div>
@@ -124,5 +130,6 @@
             chart2.draw(data2, options2);
         }
     </script>
+    </div>
 </body>
 </html>

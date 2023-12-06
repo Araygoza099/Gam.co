@@ -78,9 +78,51 @@ if(isset($_SESSION['usuario'])){
             echo "Error en la consulta: " . $conn->error;
         }
 
-        $stmt1 = $conn->prepare("INSERT INTO det_pedido (detpedido_id, proc_id, pedido_id, detpedido_cantidad, prec_unitario) VALUES (?, ?, ?, ?, ?)");
-        $stmt1->bind_param("iiiii", $detpedido_id, $productId, $pedido_id, $quantity, $price);
-        $stmt1->execute();
+        $id_producto = $productId; 
+        $query = "SELECT cantidad FROM productos WHERE proc_id = $id_producto";
+        $resultado2 = $conn->query($query);
+        
+        if ($resultado2) {
+            if ($resultado2->num_rows > 0) {
+                $fila = $resultado2->fetch_assoc();
+                $cantidad_actual = $fila['cantidad'];
+        
+                if ($cantidad_actual <= 0) {
+                    // Manejar caso de cantidad 0 o menor
+                    echo "La cantidad actual es 0 o menor.";
+                } else {
+                    if ($quantity > $cantidad_actual) {
+                        $quantity = $cantidad_actual; 
+                    } 
+                    
+                    $nueva_cantidad = $cantidad_actual - $quantity;
+                    if ($nueva_cantidad < 0) {
+                        $nueva_cantidad = 0; // Asegurar que la cantidad no sea negativa
+                    }
+        
+                    $update_query = "UPDATE productos SET cantidad = $nueva_cantidad WHERE proc_id = $id_producto";
+        
+                    if ($conn->query($update_query) === TRUE) {
+                        echo "La cantidad del producto se actualizó correctamente.";
+                        $stmt1 = $conn->prepare("INSERT INTO det_pedido (detpedido_id, proc_id, pedido_id, detpedido_cantidad, prec_unitario) VALUES (?, ?, ?, ?, ?)");
+                        $stmt1->bind_param("iiiii", $detpedido_id, $productId, $pedido_id, $quantity, $price);
+                        $stmt1->execute();
+                    } else {
+                        echo "Error al actualizar la cantidad del producto: " . $conn->error;
+                    }
+                }
+            } else {
+                echo "No se encontró ningún producto con ese ID.";
+            }
+        
+            $resultado2->free();
+        } else {
+            // Manejar el caso de error en la consulta
+            echo "Error al obtener la cantidad del producto";
+        }
+        
+
+        
  
 
         $stmt1->close();

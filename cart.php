@@ -394,8 +394,11 @@ function calcularPrecioTotal() {
     // Verificar y aplicar descuentos según el cupón
     if (cupon == "CUP10") {
         preciototal = preciototal - (preciototal * 0.10);
-    } else if (cupon == "PENE14") {
-        preciototal = preciototal - (preciototal * 0.14);
+    } else if (cupon == "GAMCOELMEJOR2023") {
+        preciototal = preciototal - (preciototal * 0.23);
+    }
+    else if (cupon == "DESC15") {
+        preciototal = preciototal - (preciototal * 0.15);
     }
 
     return preciototal;

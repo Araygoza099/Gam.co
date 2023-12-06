@@ -84,6 +84,7 @@
             <a href="alta_productos.php"><button style="margin-top: 20px;">Altas</button></a> 
             <a href="baja_productos.php"><button style="margin-top: 20px;">Bajas</button></a>
             <a href="modificar_productos.php"><button style="margin-top: 20px;">Cambios</button></a>
+            <a href="graficas.php"><button style="margin-top: 20px;">Graficas</button></a>
           </div>
         
           <div class="return-btn">
