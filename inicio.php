@@ -108,8 +108,8 @@
       
     </div>
 
-    <main class="contenido_princi">
-      <div class="recomendaciones">
+    <main class="contenido_princi" >
+      <div class="recomendaciones" data-aos="fade-up-right">
         <h1 style="color: white; font-size: 30px;">Recomendaciones Para ti</h1>
         <div>
           <div class="card-container">
@@ -160,8 +160,8 @@
     </main>
 
     <main>
-      <div class="slide">
-        <h1 style="color: white; font-size: 30px; margin-left:400px;">Mas Ofertas para ti</h1>
+      <div class="slide" data-aos="fade-up-right">
+        <h1 style="color: white; font-size: 30px; margin-left:200px;">Mas Ofertas para ti</h1>
         <div class="anuncios">
          
           <img class="img1" src="img/anuncio1.png" alt="">
@@ -179,15 +179,17 @@
         </div>
         <div class="butonBottom"><button class="boton2" ><a href="tienda.php">Ir a Tienda</a></button></div>
      </div>
+   
+    
     </main>
 
-    <!-- <div class="sus">
-    <div class="container">  
+      <div class="sus" data-aos="fade-up-right">
+    <div class="containerr">  
         <form id="contactus" action="#aqui hace lo del email" method="post">
           <h3>Suscribete!</h3>
           <h4>Para recibir un cupon de regalo!</h4>
           <fieldset>
-            <input placeholder="Direccion Email" type="email" tabindex="1" name="email" required autofocus>
+            <input placeholder="Direccion Email" type="email" tabindex="1" name="email" >
           </fieldset>
           <fieldset>
             <button name="submit" type="submit" id="contactus-submit" data-submit="...Sending">Suscribete Ahora</button>
@@ -196,7 +198,8 @@
        
             <img src="img/ellie.png" alt="" class="imgEllie">
         </div>
-    </div> -->
+    </div>
+
     
    
  <div class="espacio">
