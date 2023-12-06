@@ -258,8 +258,6 @@ span.cantidad {
                         </div>
                     </div>    
                     <?php
-                    // ... (Tu código de conexión a la base de datos)
-
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             ?>
@@ -286,7 +284,6 @@ span.cantidad {
                         echo "Aun no tienes cosas agregadas a tu carrito";
                     }
 
-                    $conn->close();
                     ?>
 
                     <div class="back-to-shop"><a href="tienda.php">&leftarrow;<span class="text-muted">Regresar a la Tienda</span></a></div>
@@ -322,12 +319,29 @@ span.cantidad {
                 <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                     <div class="col">SUB-TOTAL (sin envio)</div>
                     <div class="col text-right">$ <?php echo number_format($precioFinal, 0, '.', ','); ?></div>
+                    
                 </div>
                 <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                     <div class="col">PRECIO TOTAL (Con envio e Impuestos)</div>
                     <?php $precioFinal = ($precioFinal * 1.16); $precioFinalRedondeado = round($precioFinal, 2);  ?>
                     <div class="col text-right" id="total">$ <?php echo number_format($precioFinalRedondeado, 0, '.', ','); ?></div>
                 </div>
+
+                <?php
+                    // Actualizar el campo "total" en la tabla de pedidos
+                    $usr_id = $_SESSION['usr_id'];
+                    $precioFinalEntero = intval($precioFinal);
+
+                    $sql = "UPDATE pedidos SET total = $precioFinalEntero WHERE usr_id = $usr_id";
+                    if ($conn->query($sql) === TRUE) {
+                      
+                    } else {
+                        echo "Error al actualizar los pedidos: " . $conn->error;
+                    }
+
+                    // Cierra la conexión y cualquier otra operación necesaria
+                    $conn->close();
+                    ?>
                 <div style="display: flex; justify-content: center; align-items: center;">
     <button style="margin-right: 10px; padding: 8px 20px; background-color: #005bbb; color: #fff; border: none; border-radius: 5px; cursor: pointer;" onclick="cargarPago()">PAGAR AHORA</button>
     <a href="alertas/compra.php" style="border-radius: 5px; display: inline-block;">

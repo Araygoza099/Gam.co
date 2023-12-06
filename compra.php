@@ -34,9 +34,33 @@ if(isset($_SESSION['usuario'])){
         $stmt->bind_param("iisss", $pago_id, $usr_id, $card_name, $card_number, $card_date);
         $stmt->execute();  
         
+        // Consulta para obtener los pedido_id del usuario dado
+        $pedido_ids_query = "SELECT pedido_id FROM pedidos WHERE usr_id = ?";
+        $pedido_ids_stmt = $conn->prepare($pedido_ids_query);
+        $pedido_ids_stmt->bind_param("i", $usr_id);
+        $pedido_ids_stmt->execute();
+        $pedido_ids_result = $pedido_ids_stmt->get_result();
+
+        // Array para almacenar los pedido_id del usuario
+        $pedido_ids = array();
+        while ($row = $pedido_ids_result->fetch_assoc()) {
+            $pedido_ids[] = $row['pedido_id'];
+        }
+
+        // Desvinculamos los det_pedido asociados a los pedido_id obtenidos
+        if (!empty($pedido_ids)) {
+            $nullify_query = "UPDATE det_pedido SET pedido_id = NULL WHERE pedido_id IN (" . implode(',', $pedido_ids) . ")";
+            if ($conn->query($nullify_query)) {
+                $affected_rows = $conn->affected_rows;
+            } else {
+                echo "Error al desvincular los det_pedidos del usuario: " . $conn->error;
+            }
+        } else {
+            echo "No se encontraron pedidos para el usuario con usr_id " . $usr_id . ".";
+        }
 
         
-        $sql = "UPDATE pedidos SET pagado = 1 WHERE usr_id = '$usr_id'";
+        $sql = "DELETE FROM pedidos WHERE usr_id = '$usr_id'";
         if ($conn->query($sql) === TRUE) {
           
       } else {
@@ -66,6 +90,7 @@ require("cartSQL.php");
       justify-content: center;
       align-items: center;
       height: 100vh;
+      color:white;
     }
     body {
       overflow-x: hidden; 
