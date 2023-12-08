@@ -87,7 +87,7 @@
           </div>
         
           <div class="return-btn">
-            <a href="index.php"><button style="margin-left: 20px;">Regresar</button></a>
+            <a href="index.php"><button style="margin-left: 20px;">Ir a Inicio</button></a>
           </div>
     </div>
     </div>
