@@ -95,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("isssiss", $userid, $username, $email, $hashed_password, $intentos, $pregunta, $respuesta);        
 
         $stmt2 = $conn->prepare("INSERT INTO direccion (dir_id, usr_id,	calle, fracc, zipcode, estado, ciudad, pais, num_tel) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt2->bind_param("iississsi", $nuevo_id2,  $usuario_id, $calle, $frac, $cp, $edo, $cd, $pais, $tel);
+        $stmt2->bind_param("iississsi", $nuevo_id2,  $userid, $calle, $frac, $cp, $edo, $cd, $pais, $tel);
 
         $total=0;
         $pagoid=0;
@@ -104,31 +104,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt3->bind_param("iiiii", $pedido_id, $nuevo_id, $pagoid, $total, $pagado);
 
 
-        if ($stmt->execute()) {
-            header("Location: alertas/registroOk.php"); 
-        } else {
-            $mensaje= "Algo no funciona";
-            header("Location: alertas/registroError.php?variable=$mensaje"); 
-        }
-
-        if ($stmt2->execute()) {
-            header("Location: alertas/registroOk.php"); 
-        } else {
-            $mensaje= "Algo no funciona";
-            header("Location: alertas/registroError.php?variable=$mensaje"); 
-        }
-
-        if ($stmt3->execute()) {
-            header("Location: alertas/registroOk.php"); 
-        } else {
-            $mensaje= "Algo no funciona";
-            header("Location: alertas/registroError.php?variable=$mensaje"); 
-        }
+        $stmt->execute();
+        $stmt2->execute();
+        $stmt3->execute();      
 
         $stmt->close();
         $stmt2->close();
         $stmt3->close();
         $stmtCheck->close();
+        header('Location: alertas/LoginOk.php');
+        exit();
     }
 
 }
