@@ -31,16 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["file"]) && !(empty($_
 
 
 function registrarProducto($id, $nombre, $descripcion, $descuento, $precio, $urlImagen, $tipo, $cantidad) {
-    $host = "127.0.0.1";
-    $username = "root";
-    $password = "";
-    $bd = "proyecto";
-
-    $con = new mysqli($host, $username, $password, $bd);
-
-    if ($con->connect_error) {
-        die("Error de conexión a la base de datos: " . $con->connect_error);
-    }
+    require("cartSQL.php");
 
     //verifica si el ID ya existe
     $verificarConsulta = $con->prepare("SELECT COUNT(*) FROM productos WHERE proc_id = ?");

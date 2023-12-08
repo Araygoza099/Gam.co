@@ -1,16 +1,6 @@
 <?php
 // Conexión a la base de datos
-    $servername = "127.0.0.1";
-    $username = "root";
-    $password = "";
-    $db = "proyecto";
-
-    $con = new mysqli($servername, $username, $password, $db);
-
-    // Verificar la conexión
-    if ($con->connect_error) {
-        die("Error de conexión: " . $con->connect_error);
-    }
+require("cartSQL.php");
 
     // Consulta para obtener datos de ventas
     $query = "SELECT proc_name, cantidad FROM productos";

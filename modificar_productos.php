@@ -1,16 +1,7 @@
 <?php
 include('header.php'); 
 function modificarProducto($id, $nombre, $descripcion, $descuento, $precio, $cantidad, $nombreImagen, $tipo) {
-    $host = "127.0.0.1";
-    $username = "root";
-    $password = "";
-    $bd = "proyecto";
-
-    $con = new mysqli($host, $username, $password, $bd);
-
-    if ($con->connect_error) {
-        die("Error de conexión a la base de datos: " . $con->connect_error);
-    }
+    require("cartSQL.php");
 
     $consulta = $con->prepare("UPDATE productos SET proc_name=?, proc_descrip=?, proc_desc=?, proc_price=?, cantidad=?, proc_urlimg=?, type=? WHERE proc_id=?");
 

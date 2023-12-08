@@ -1,15 +1,6 @@
 <?php
 function consultarProductos() {
-    $host = "127.0.0.1";
-    $username = "root";
-    $password = "";
-    $bd = "proyecto";
-
-    $con = new mysqli($host, $username, $password, $bd);
-
-    if ($con->connect_error) {
-        die("Error de conexión a la base de datos: " . $con->connect_error);
-    }
+    require("cartSQL.php");
 
     $consulta = $con->prepare("SELECT * FROM productos");
 

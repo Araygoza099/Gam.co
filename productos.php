@@ -1,14 +1,5 @@
 <?php
-$host = "127.0.0.1";
-$username = "root";
-$password = "";
-$bd = "proyecto";
-
-$con = new mysqli($host, $username, $password, $bd);
-
-if ($con->connect_error) {
-    die("Conexión fallida: " . $con->connect_error);
-}
+require("cartSQL.php");
 
 // array a actualizar
 $products = array();

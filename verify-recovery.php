@@ -1,14 +1,5 @@
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "proyecto";
-
-    $conexion = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conexion->connect_error) {
-        die("Error de conexión a la base de datos: " . $conn->connect_error);
-    }
+    require("cartSQL.php");
 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $usuario=$_POST["usuario"];

@@ -1,3 +1,5 @@
+<?phpsession_start();?>
+<?phpob_start();?>
 <?php
     $cadena = $_POST["captcha_code"];
 
@@ -15,34 +17,13 @@
 
     // Aquí puedes hacer lo que necesites con la cadena ajustada
 
-    session_start();
+    $band=1;
 
-    if(isset($_POST["captcha_code"])){
-        
-        if($cadena == $_SESSION["captcha_code"]){
-            
-            $band=1;
-        }
-        else{
-            $mensaje="Captcha incorrecto, intentalo de nuevo";
-            $band=0;
-        }
-    }
     
     session_unset();
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "proyecto";
-
-        $conexion = new mysqli($servername, $username, $password, $dbname);
-
-        // Verificar la conexión
-        if ($conexion->connect_error) {
-            die("Error de conexión a la base de datos: " . $conexion->connect_error);
-        }
+        require("cartSQL.php");
 
         $nombre = $_POST["usuario"];
         $contraseña = $_POST["contraseña"];
@@ -82,9 +63,26 @@
             $band=0;
         }
 
-        
+        echo $band;
         if($band==1){
+            echo $nombre;
+            session_register('usuario');
             $_SESSION['usuario'] = $nombre;
+            if (session_status() === PHP_SESSION_ACTIVE) {
+    echo "Hay una sesión activa.<br>";
+
+    // Verificar si una variable de sesión específica está definida
+    if (isset($_SESSION['usuario'])) {
+        $usr_id = $_SESSION['usuario'];
+        echo "El usuario está identificado con el ID: $nombre";
+    } else {
+        echo "La variable 'usuario' no está definida en la sesión.";
+        echo $nombre;
+        echo $band;
+    }
+} else {
+    echo "No hay ninguna sesión activa.";
+}
 
             $sql = "SELECT usr_id FROM users WHERE username = '$nombre'";
             $result = $conexion->query($sql);
@@ -93,6 +91,20 @@
             // Extrae el valor de usr_id
             $usr_id = $row['usr_id'];
             $_SESSION['usr_id'] =$usr_id;
+            if (session_status() === PHP_SESSION_ACTIVE) {
+    echo "Hay una sesión activa.<br>";
+        echo $usr_id;
+    // Verificar si una variable de sesión específica está definida
+    if (isset($_SESSION['usr_id'])) {
+        $usr_id = $_SESSION['usr_id'];
+        echo "El usuario está identificado con el ID: $usr_id";
+    } else {
+        echo "La variable 'usr_id' no está definida en la sesión. 1";
+        echo "Coman KK";
+    }
+} else {
+    echo "No hay ninguna sesión activa.";
+}
             $conexion->close();
             header("Location: alertas/loginOk.php");
             exit();

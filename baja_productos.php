@@ -1,15 +1,6 @@
 <?php
     include('header.php'); 
-    $host = "127.0.0.1";
-    $username = "root";
-    $password = "";
-    $bd = "proyecto";
-
-    $con = new mysqli($host, $username, $password, $bd);
-
-    if ($con->connect_error) {
-        die("Error de conexión: " . $con->connect_error);
-    }
+    require("cartSQL.php");
 
     // Obtener datos del producto seleccionado
     function obtenerDatosProducto($proc_id) {
