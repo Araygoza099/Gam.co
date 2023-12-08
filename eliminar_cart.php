@@ -18,29 +18,7 @@ if (isset($_GET['detpedido_id'])) {
         // Obtener resultados
         $result = $stmt->get_result();
         
-        // Verificar si hay resultados
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $id_producto = $row['proc_id'];
-            $quantity = $row['detpedido_cantidad'];
-            
-            // Actualizar la cantidad en la tabla productos
-            $update_query = "UPDATE productos SET cantidad = cantidad + ? WHERE proc_id = ?";
-            $update_stmt = $conn->prepare($update_query);
-            $update_stmt->bind_param("ii", $quantity, $id_producto);
-            
-            if ($update_stmt->execute()) {
-                echo "Se actualizó la cantidad del producto correctamente.";
-            } else {
-                echo "Error al actualizar la cantidad del producto: " . $conn->error;
-            }
-            
-            $update_stmt->close();
-        } else {
-            echo "No se encontraron resultados para ese det_pedido ID.";
-        }
         
-        $result->close();
         
         // Desvincular el det_pedido estableciendo pedido_id a NULL
         $nullify_query = "UPDATE det_pedido SET pedido_id = NULL WHERE detpedido_id = ?";

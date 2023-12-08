@@ -72,8 +72,12 @@
                         <input type="text" placeholder="Ciudad" name="cd" required>
                     </div>
                     <div class="input-group">
+                        <input type="text" placeholder="Pais" name="pais" required>
+                    </div>
+                    <div class="input-group">
                         <input type="tel" placeholder="Número de teléfono" name="tel" required>
                     </div>
+                    
                     <button type="submit" class="login-btn" id="btnsub">Registrarse</button>
             </form>
         </div>

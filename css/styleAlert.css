@@ -36,7 +36,7 @@ body {
 
 .button-box {
   position: absolute;
-  background: $white;
+  background: white;
   width: 50%;
   height: 15%;
   border-radius: 20px;
@@ -44,7 +44,7 @@ body {
   left: 25%;
   outline: 0;
   border: none;
-  box-shadow: 2px 2px 10px rgba($dark, .5);
+  box-shadow: 2px 2px 10px rgba(dark, .5);
   transition: all .5s ease-in-out;
 }
 
@@ -77,7 +77,7 @@ body {
 
 .nice-button-round {
   border: none;
-  box-shadow: 2px 2px 10px rgba($dark, .5);
+  box-shadow: 2px 2px 10px rgba(dark, .5);
   border-radius: 25px;
 }
 

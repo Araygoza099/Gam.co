@@ -30,10 +30,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cp=$_POST['cp'];
     $edo=$_POST['edo'];
     $cd=$_POST['cd'];
+    $pais=$_POST['pais'];
     $tel=$_POST['tel'];
+    
 
-    $stmt2 = $conn->prepare("INSERT INTO direccion (dir_id, usr_id,	calle, fracc, zipcode, estado, ciudad, num_tel) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt2->bind_param("iississi", $nuevo_id2,  $usuario_id, $calle, $frac, $cp, $edo, $cd, $tel);
+    $stmt2 = $conn->prepare("INSERT INTO direccion (dir_id, usr_id,	calle, fracc, zipcode, estado, ciudad, pais, num_tel) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt2->bind_param("iississsi", $nuevo_id2,  $usuario_id, $calle, $frac, $cp, $edo, $cd, $pais, $tel);
 
 
     if ($stmt2->execute()) {

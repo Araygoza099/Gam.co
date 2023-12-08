@@ -95,27 +95,15 @@ if(isset($_SESSION['usuario'])){
                         $quantity = $cantidad_actual; 
                     } 
                     
-                    $nueva_cantidad = $cantidad_actual - $quantity;
-                    if ($nueva_cantidad < 0) {
-                        $nueva_cantidad = 0; // Asegurar que la cantidad no sea negativa
-                    }
-        
-                    $update_query = "UPDATE productos SET cantidad = $nueva_cantidad WHERE proc_id = $id_producto";
-        
-                    if ($conn->query($update_query) === TRUE) {
-                        echo "La cantidad del producto se actualizó correctamente.";
-                        $stmt1 = $conn->prepare("INSERT INTO det_pedido (detpedido_id, proc_id, pedido_id, detpedido_cantidad, prec_unitario) VALUES (?, ?, ?, ?, ?)");
-                        $stmt1->bind_param("iiiii", $detpedido_id, $productId, $pedido_id, $quantity, $price);
-                        $stmt1->execute();
-                    } else {
-                        echo "Error al actualizar la cantidad del producto: " . $conn->error;
-                    }
+                    $pagado_id = NULL;
+                    $stmt1 = $conn->prepare("INSERT INTO det_pedido (detpedido_id, proc_id, pedido_id, pagado_id, detpedido_cantidad, prec_unitario) VALUES (?, ?, ?, ?, ?, ?)");
+                    $stmt1->bind_param("iiiiii", $detpedido_id, $productId, $pedido_id, $pagado_id, $quantity, $price);
+                    $stmt1->execute();
                 }
             } else {
                 echo "No se encontró ningún producto con ese ID.";
             }
         
-            $resultado2->free();
         } else {
             // Manejar el caso de error en la consulta
             echo "Error al obtener la cantidad del producto";

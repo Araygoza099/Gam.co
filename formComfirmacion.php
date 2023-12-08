@@ -31,6 +31,9 @@
                 <input placeholder="Ciudad" type="text" tabindex="3" name="cd"required>
               </fieldset>
               <fieldset>
+                <input placeholder="Pais" type="text" tabindex="3" name="pais"required>
+              </fieldset>
+              <fieldset>
                 <input placeholder="Numero de telefono" type="number"   name="tel"  required>
              </fieldset>
              

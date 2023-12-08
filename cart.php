@@ -344,7 +344,7 @@ span.cantidad {
                     ?>
                 <div style="display: flex; justify-content: center; align-items: center;">
     <button style="margin-right: 10px; padding: 8px 20px; background-color: #005bbb; color: #fff; border: none; border-radius: 5px; cursor: pointer;" onclick="cargarPago()">PAGAR AHORA</button>
-    <a href="alertas/compra.php" style="border-radius: 5px; display: inline-block;">
+    <a href="compra.php" style="border-radius: 5px; display: inline-block;">
         <img src="https://www.axondigital.mx/wp-content/uploads/2019/10/Oxxoapp.jpg" alt="" style="border-radius: 5px; width:110px;">
     </a>
 </div>

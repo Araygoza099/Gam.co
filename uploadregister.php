@@ -84,6 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $cp=$_POST['cp'];
         $edo=$_POST['edo'];
         $cd=$_POST['cd'];
+        $pais=$_POST['pais'];
         $tel=$_POST['tel'];
 
         // Generar el hash Bcrypt
@@ -91,10 +92,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Insertar usuario en la base de datos
         $stmt = $conn->prepare("INSERT INTO users (usr_id, username, email, password, intentos, pregunta, respuesta) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("isssiss", $userid, $username, $email, $hashed_password, $intentos, $pregunta, $respuesta);
+        $stmt->bind_param("isssiss", $userid, $username, $email, $hashed_password, $intentos, $pregunta, $respuesta);        
 
-        $stmt2 = $conn->prepare("INSERT INTO direccion (dir_id, usr_id,	calle, fracc, zipcode, estado, ciudad, num_tel) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt2->bind_param("iississi", $nuevo_id2,  $nuevo_id, $calle, $frac, $cp, $edo, $cd, $tel);
+        $stmt2 = $conn->prepare("INSERT INTO direccion (dir_id, usr_id,	calle, fracc, zipcode, estado, ciudad, pais, num_tel) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt2->bind_param("iississsi", $nuevo_id2,  $usuario_id, $calle, $frac, $cp, $edo, $cd, $pais, $tel);
 
         $total=0;
         $pagoid=0;
