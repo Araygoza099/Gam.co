@@ -273,9 +273,9 @@ span.cantidad {
                                         <span class="cantidad"><?php echo $row['detpedido_cantidad']; ?></span>
                                         <?php $cantidad+= $row['detpedido_cantidad']; ?>
                                     </div>
-                                    <?php $precio = $row['proc_price'] - ($row['proc_price'] * $row['proc_desc'] / 100); ?>
+                                    <?php $precio = $row['proc_price'] - ($row['proc_price'] * $row['proc_desc'] / 100) * $row['detpedido_cantidad'] ; ?>
                                     <div class="col">$ <?php echo number_format($precio, 0, '.', ','); ?>.00 <a href="eliminar_cart.php?detpedido_id=<?php echo $row['detpedido_id']; ?>"><span class="close">&#10005;</span></a></div>
-                                    <?php $precioFinal += ($row['detpedido_cantidad']*$precio); ?>
+                                    <?php $precioFinal += ($precio); ?>
                                 </div>
                             </div>
                             <?php
