@@ -41,6 +41,7 @@ body{
     display: flex;
     justify-content: space-between;
     margin-bottom: 5px;
+    
 }
 
 .top{
@@ -52,12 +53,13 @@ body{
 }
 
 .total {
-    display: flex;
-    justify-content: space-between;
     margin-bottom: 5px;
     font-weight: bold;
     border-bottom: 1px solid #000000;
+}
 
+#values{
+    float: right;
 }
 
 .footer {

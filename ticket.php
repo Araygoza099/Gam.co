@@ -45,37 +45,61 @@ if ($result_max_pagado_id->num_rows > 0) {
             <p>-Gaming sin Limites!-</p>
             <p id="fecha"></p>
             <div class="top">
-                <span>ID Producto </span>
+                <span>ID   Cant.   Producto</span>
                 <span>PRECIO</span>
             </div>
         </div>
 
         <?php
+        $subtotal=0;
         if ($result->num_rows > 0) {
             echo '<div class="items">';
             while ($row = $result->fetch_assoc()) {
                 echo '<div class="item">';
-                echo '<span>' . $row['proc_id'] . ' ' . $row['proc_name'] . '</span>';
-                echo '<span>$' . $row['proc_price'] . '</span>';
+                echo '<span>' . $row['proc_id'] . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $row['detpedido_cantidad'] . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $row['proc_name'] . '</span>';
+                echo '<span>$' . $row['prec_unitario']*$row['detpedido_cantidad'] .'</span>';
                 echo '</div>';
                 $total= $row['total'];
+                $subtotal += ($row['prec_unitario']*$row['detpedido_cantidad']);
+                $envio=$row['envio'];
+                $pais=$row['pais'];
+            }
 
-
-
-
-
-
-                
+            if ($pais == "Mexico") {
+                $impuesto = .16;
+            } elseif ($pais == "America") {
+                $impuesto = .20;
+            } elseif ($pais == "Europa") {
+                $impuesto = .35;
+            } elseif ($pais == "Africa") {
+                $impuesto = .05;
+            } elseif ($pais == "Asia") {
+                $impuesto = .09;
+            } elseif ($pais == "Oceania") {
+                $impuesto = .40;
             }
             echo '</div>';
            
             echo '<div class="total">';
+
+            echo '<span>SUBTOTAL:</span>';
+
+            echo '<span id="values">$' . $subtotal. '</span> <br>';
+
+            echo '<span>IMPUESTO:</span>';
+
+            echo '<span id="values">$' . $impuesto*$subtotal . '</span> <br>';
+
+            echo '<span>ENVIO:</span>';
+
+            echo '<span id="values">$' . $envio. '</span> <br>';
         
             echo '<span>TOTAL:</span>';
      
-            echo '<span>' . $total. '</span>';
+            echo '<span id="values">' . $total. '</span>';
            
             echo '</div>';
+
             
             echo '<div class="footer">';
             echo '<p>¡Gracias por tu compra!</p>';
