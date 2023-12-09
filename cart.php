@@ -299,10 +299,79 @@ span.cantidad {
                 </div>
                 <form>
                     <p>ENVIO</p>
-                    <select id="envio">
-                        <option class="text-muted" value="99">Envio Standar - $99.00</option>
-                        <option class="text-muted" value="299">Envio Rapido  - $299.00</option>
-                    </select>
+                    <?php 
+                    $usr_id = $_SESSION['usr_id'];   
+
+                    $query = "SELECT pais FROM direccion WHERE usr_id = $usr_id";
+
+                    // Ejecuta la consulta.
+                    $result = $conn->query($query);
+
+                    // Verifica si la consulta fue exitosa.
+                    if ($result) {
+                        // Obtén el resultado como un array asociativo.
+                        $row = mysqli_fetch_assoc($result);
+
+                        // Ahora $row["pais"] contiene el valor del país.
+                        $pais = $row["pais"];
+                    }else {
+                        // Maneja el caso en que la consulta no fue exitosa.
+                        echo "Error en la consulta: " . mysqli_error();
+                    }
+
+
+                    if ($pais == "Mexico") {
+                        $impuesto = 1.16;
+                        ?>
+                        <select id="envio">
+                            <option class="text-muted" value="0">Envío Estándar - $00.00</option>
+                            <option class="text-muted" value="99">Envío Rápido - $99.00</option>
+                        </select>
+                        <?php
+                    } elseif ($pais == "America") {
+                        $impuesto = 1.2;
+                        ?>
+                        <select id="envio">
+                            <option class="text-muted" value="99">Envío Estándar - $99.00</option>
+                            <option class="text-muted" value="199">Envío Rápido - $199.00</option>
+                        </select>
+                        <?php
+                    } elseif ($pais == "Europa") {
+                        $impuesto = 1.35;
+                        ?>
+                        <select id="envio">
+                            <option class="text-muted" value="199">Envío Estándar - $199.00</option>
+                            <option class="text-muted" value="299">Envío Rápido - $299.00</option>
+                        </select>
+                        <?php
+                    } elseif ($pais == "Africa") {
+                        $impuesto = 1.05;
+                        ?>
+                        <select id="envio">
+                            <option class="text-muted" value="299">Envío Estándar - $299.00</option>
+                            <option class="text-muted" value="399">Envío Rápido - $399.00</option>
+                        </select>
+                        <?php
+                    } elseif ($pais == "Asia") {
+                        $impuesto = 1.09;
+                        ?>
+                        <select id="envio">
+                            <option class="text-muted" value="399">Envío Estándar - $399.00</option>
+                            <option class="text-muted" value="499">Envío Rápido - $499.00</option>
+                        </select>
+                        <?php
+                    } elseif ($pais == "Oceania") {
+                        $impuesto = 1.4;
+                        ?>
+                        <select id="envio">
+                            <option class="text-muted" value="499">Envío Estándar - $499.00</option>
+                            <option class="text-muted" value="599">Envío Rápido - $599.00</option>
+                        </select>
+                        <?php
+                    }?>
+                    
+                    
+                    
                     <p>Direccion</p>
                     <select id="seleccionarArchivo" onchange="cargarArchivo()">
                     <?php
@@ -323,7 +392,7 @@ span.cantidad {
                 </div>
                 <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                     <div class="col">PRECIO TOTAL (Con envio e Impuestos)</div>
-                    <?php $precioFinal = ($precioFinal * 1.16); $precioFinalRedondeado = round($precioFinal, 2);  ?>
+                    <?php $precioFinal = ($precioFinal * $impuesto); $precioFinalRedondeado = round($precioFinal, 2);  ?>
                     <div class="col text-right" id="total">$ <?php echo number_format($precioFinalRedondeado, 0, '.', ','); ?></div>
                 </div>
 
@@ -368,7 +437,7 @@ span.cantidad {
 
     function pasarVariables() {
         // Obtener los valores de las variables
-        var envio = parseInt(document.getElementById("envio").value);
+        var envio = document.getElementById("envio").value;
         var dir_id = document.getElementById("seleccionarArchivo").value;
         var preciototal = document.getElementById("total").textContent;
 
