@@ -31,7 +31,29 @@
                 <input placeholder="Ciudad" type="text" tabindex="3" name="cd"required>
               </fieldset>
               <fieldset>
-                <input placeholder="Pais" type="text" tabindex="3" name="pais"required>
+              <select name="pais">
+                  <option value="" disabled selected>País</option>
+                  <option value="America">Argentina</option>
+                  <option value="America">Brasil</option>
+                  <option value="America">Canadá</option>
+                  <option value="Europa">España</option>
+                  <option value="America">Estados Unidos</option>
+                  <option value="Mexico">México</option>
+                  <option value="Europa">Francia</option>
+                  <option value="Europa">Italia</option>
+                  <option value="Asia">Japón</option>
+                  <option value="Oceanía">Australia</option>
+                  <option value="Asia">China</option>
+                  <option value="Asia">India</option>
+                  <option value="África">Sudáfrica</option>
+                  <option value="Europa">Rusia</option>
+                  <option value="Asia">Corea del Sur</option>
+                  <option value="Europa">Reino Unido</option>
+                  <option value="Europa">Alemania</option>
+                  <option value="America">Canadá</option>
+                  <option value="America">Brasil</option>
+                  <option value="America">Argentina</option>
+              </select>
               </fieldset>
               <fieldset>
                 <input placeholder="Numero de telefono" type="number"   name="tel"  required>
