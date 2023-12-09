@@ -1,0 +1,73 @@
+@font-face {
+    font-family: mifuente;
+    src: url(../Ticketing.ttf);
+}
+
+body{
+    background-image: url(../img/fondo2.png);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    font-family: mifuente;
+    
+}
+
+.ticket{
+    width: 300px;
+    max-width: 100%;
+    height: auto;
+    background-image: url(../img/ticketFondo.png);
+    border: 1px solid #000000;
+    border-radius: 10px;
+    padding: 40px;
+}
+
+
+.header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.items {
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    padding: 10px 0;
+    margin-bottom: 10px;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.top{
+    border-top: 1px solid #000000;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-weight: bold;
+    border-bottom: 1px solid #000000;
+
+}
+
+.footer {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+}
+
+.qr{
+    width: 60%;
+    opacity: 0.8;
+}
