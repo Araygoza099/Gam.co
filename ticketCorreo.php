@@ -161,12 +161,13 @@
                 $dire_envio = $row['calle'] . '&nbsp;&nbsp;&nbsp;' . $row['fracc'] . '&nbsp;&nbsp;&nbsp;' . $row['zipcode'] . '&nbsp;&nbsp;&nbsp;' . $row['estado'] . '&nbsp;&nbsp;&nbsp;' . $row['ciudad'] . '&nbsp;&nbsp;&nbsp;' . $row['pais'];
                 $nombre=$row['usr_name'];
                 $correo=$row['email'];
+                $name_card=$row['card_name'];
             }
         
-            if ($metod_pago == "Pago con OXXO") {
-                $pago = "OXXO";
-            } else {
-                $pago = "Tarjeta";
+            if($name_card == "OXXO"){
+                $pago="OXXO";
+            }else{
+                $pago="Tarjeta";
             }
         
             if ($pais == "Mexico") {
@@ -205,6 +206,10 @@
             $msg .= '<span>Metodo de Pago:</span>';
         
             $msg .= '<span id="values" style="font-size:10px;">' . $pago . '</span> <br>';
+
+            $msg .= '<span>Num. ref: </span>';
+
+            $msg .= '<span id="values">' . $metod_pago . '</span>';
         
             $msg .= '<span>TOTAL:</span>';
         

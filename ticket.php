@@ -65,10 +65,11 @@ if ($result_max_pagado_id->num_rows > 0) {
                 $pais=$row['pais'];
                 
                 $metod_pago=$row['card_number'];
+                $name_card=$row['card_name'];
                 $dire_envio=$row['calle'] .'&nbsp;&nbsp;&nbsp;'. $row['fracc'] .'&nbsp;&nbsp;&nbsp;'. $row['zipcode'] .'&nbsp;&nbsp;&nbsp;'. $row['estado'] .'&nbsp;&nbsp;&nbsp;'. $row['ciudad'] .'&nbsp;&nbsp;&nbsp;'. $row['pais'] ;
             }
 
-            if($metod_pago == "Pago con OXXO"){
+            if($name_card == "OXXO"){
                 $pago="OXXO";
             }else{
                 $pago="Tarjeta";
@@ -111,6 +112,9 @@ if ($result_max_pagado_id->num_rows > 0) {
 
             echo '<span id="values" style="font-size:15px;">' . $pago. '</span> <br>';
 
+            echo '<span>Num. ref: </span>';
+
+            echo '<span id="values">' . $metod_pago . '</span>';
         
             echo '<span>TOTAL:</span>';
      
