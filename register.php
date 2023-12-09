@@ -57,7 +57,7 @@
                 <div class="col-md-6 yellow-column">
                     <h3>Dirección de envío</h3>
                     <div class="input-group">
-                        <input type="text" placeholder="Calle" name="calle" required>
+                        <input type="text" placeholder="Calle y Numero" name="calle" required>
                     </div>
                     <div class="input-group">
                         <input type="text" placeholder="Fraccionamiento"  name="frac" required>
@@ -97,11 +97,13 @@
                         </select>
                     </div>
                     <div class="input-group">
-                        <input type="tel" placeholder="Número de teléfono" name="tel" required>
+                        <input type="tel" placeholder="Número de teléfono" name="tel" maxlength="13" required>
                     </div>
                     
                     <button type="submit" class="login-btn" id="btnsub">Registrarse</button>
             </form>
+
+            
         </div>
     </div>
     <div class="container-header">

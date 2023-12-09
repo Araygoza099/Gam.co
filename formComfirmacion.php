@@ -16,7 +16,7 @@
               <h3>Modificar el envio</h3>
               
               <fieldset>
-                <input placeholder="Calle" type="text" name="calle" required autofocus>
+                <input placeholder="Calle y Numero" type="text" name="calle" required autofocus>
               </fieldset>
               <fieldset>
                 <input placeholder="Fraccionamiento" type="text" name="frac" required>
@@ -56,7 +56,7 @@
               </select>
               </fieldset>
               <fieldset>
-                <input placeholder="Numero de telefono" type="number"   name="tel"  required>
+                <input placeholder="Numero de telefono" type="number"   name="tel" maxlength="13" required>
              </fieldset>
              
               <fieldset>

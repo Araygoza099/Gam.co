@@ -91,27 +91,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Generar el hash Bcrypt
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
+        $card_number = "Pago con OXXO";
+        $card_date = "00/00";
+        $card_name = "Pagar con OXXO";
+            
+
+        $usr_id = $nuevo_id;
+
+
+        $sql = "SELECT MAX(pago_id) AS ultimo_id FROM pagos";
+        $resultado = $conn->query($sql);
+
+        if ($resultado) {
+            // Verifica si hay al menos una fila en el resultado
+            if ($resultado->num_rows > 0) {
+                $fila = $resultado->fetch_assoc();
+                $ultimo_id = $fila['ultimo_id'];
+                $pago_id = $ultimo_id + 1;
+            } else {
+                // La tabla está vacía, puedes asignar el primer ID que desees
+                $pago_id= 1;
+            }
+        } 
+        
         // Insertar usuario en la base de datos
         $stmt = $conn->prepare("INSERT INTO users (usr_id, usr_name, username, email, password, intentos, pregunta, respuesta) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("issssiss", $userid, $name, $username, $email, $hashed_password, $intentos, $pregunta, $respuesta);        
+        $stmt->bind_param("issssiss", $userid, $name, $username, $email, $hashed_password, $intentos, $pregunta, $respuesta); 
+        
+        $stmt2 = $conn->prepare("INSERT INTO pagos (pago_id, usr_id, card_name, card_number, card_thought) VALUES (?, ?, ?, ?, ?)");
+        $stmt2->bind_param("iisss", $pago_id, $userid, $card_name, $card_number, $card_date);
+        
 
-        $stmt2 = $conn->prepare("INSERT INTO direccion (dir_id, usr_id,	calle, fracc, zipcode, estado, ciudad, pais, num_tel) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt2->bind_param("iississsi", $nuevo_id2,  $userid, $calle, $frac, $cp, $edo, $cd, $pais, $tel);
+        $stmt3 = $conn->prepare("INSERT INTO direccion (dir_id, usr_id,	calle, fracc, zipcode, estado, ciudad, pais, num_tel) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt3->bind_param("iississsi", $nuevo_id2,  $userid, $calle, $frac, $cp, $edo, $cd, $pais, $tel);
 
         $total=0;
         $pagoid=0;
         $pagado=0;
-        $stmt3 = $conn->prepare("INSERT INTO pedidos (pedido_id, usr_id, pago_id, total, pagado) VALUES (?, ?, ?, ?, ?)");
-        $stmt3->bind_param("iiiii", $pedido_id, $nuevo_id, $pagoid, $total, $pagado);
+        $stmt4 = $conn->prepare("INSERT INTO pedidos (pedido_id, usr_id, pago_id, total, pagado) VALUES (?, ?, ?, ?, ?)");
+        $stmt4->bind_param("iiiii", $pedido_id, $nuevo_id, $pago_id, $total, $pagado);
 
 
         $stmt->execute();
         $stmt2->execute();
-        $stmt3->execute();      
+        $stmt3->execute(); 
+        $stmt4->execute();       
 
         $stmt->close();
         $stmt2->close();
         $stmt3->close();
+        $stmt4->close();
         $stmtCheck->close();
         header('Location: alertas/LoginOk.php');
         exit();

@@ -374,7 +374,6 @@ span.cantidad {
                     
                     <p>Direccion</p>
                     <select id="seleccionarArchivo" onchange="cargarArchivo()">
-                    <option>Seleccionar Direccion</option>
                     <?php
                     if ($result2->num_rows > 0) {
                         while ($row = $result2->fetch_assoc()) {
@@ -386,7 +385,6 @@ span.cantidad {
 
                     <p>Metodo de Pago</p>
                     <select id="seleccionarArchivo2" onchange="cargarPago()">
-                    <option>Seleccionar Metodo</option>
                     <?php
                     if ($result3->num_rows > 0) {
                         while ($row = $result3->fetch_assoc()) {
@@ -400,9 +398,12 @@ span.cantidad {
                     <input id="code" placeholder="Incluya su codigo de descuento">
                 </form>
                 <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                    <div class="col">SUB-TOTAL (sin envio)</div>
+                    <div class="col">SUB-TOTAL</div>
                     <div class="col text-right">$ <?php echo number_format($precioFinal, 0, '.', ','); ?></div>
-                    
+                </div>
+                <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0; font-size: x-small">
+                    <div class="col">Impuestos</div>
+                    <div class="col text-right">$ <?php echo number_format(($precioFinal*$impuesto-$precioFinal), 0, '.', ','); ?></div>
                 </div>
                 <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                     <div class="col">PRECIO TOTAL (Con envio e Impuestos)</div>
@@ -427,9 +428,9 @@ span.cantidad {
                     ?>
                 <div style="display: flex; justify-content: center; align-items: center;">
     <button style="margin-right: 10px; padding: 8px 20px; background-color: #005bbb; color: #fff; border: none; border-radius: 5px; cursor: pointer;" onclick="pasarVariables()">PAGAR AHORA</button>
-    <button style="border-radius: 5px; display: inline-block;" onclick="pasarVariables()">
+    <!-- <button style="border-radius: 5px; display: inline-block;" onclick="pasarVariables()">
         <img src="https://www.axondigital.mx/wp-content/uploads/2019/10/Oxxoapp.jpg" alt="" style="border-radius: 5px; width:110px;">
-    </button>
+    </button> -->
         
 </div>
 

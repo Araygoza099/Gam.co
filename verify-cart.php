@@ -8,8 +8,16 @@ if(isset($_SESSION['usuario'])){
         $quantity = $_POST['cantidad'];
         $price = $_POST['precio'];
         
-
         $usr_id = $_SESSION['usr_id'];
+        $sql = "SELECT pago_id FROM pagos WHERE usr_id = $usr_id ORDER BY pago_id ASC LIMIT 1";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $pago_id = $row["pago_id"];
+        } else {
+            echo "No se encontró ningún pago relacionado con el usr_id $usr_id.";
+        }
 
         $query = "SELECT COUNT(*) as count_pedidos FROM pedidos WHERE usr_id = ? AND pagado = 0";
         $stmt = $conn->prepare($query);
@@ -51,7 +59,7 @@ if(isset($_SESSION['usuario'])){
             $pagoid=0;
             $pagado=0;
             $stmt = $conn->prepare("INSERT INTO pedidos (pedido_id, usr_id, pago_id, total, pagado) VALUES (?, ?, ?, ?, ?)");
-            $stmt->bind_param("iiiii", $pedido_id, $usr_id, $pagoid, $total, $pagado);
+            $stmt->bind_param("iiiii", $pedido_id, $usr_id, $pago_id, $total, $pagado);
             $stmt->execute();   
         }
         
