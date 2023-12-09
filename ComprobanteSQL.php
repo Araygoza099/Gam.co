@@ -27,39 +27,12 @@ if ($result_max_pagado_id->num_rows > 0) {
     $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<table border='1'>
-    <tr>
-    <th>detpedido_id</th>
-    <th>proc_id</th>
-    <th>pedido_id</th>
-    <th>pagado_id</th>
-    <th>detpedido_cantidad</th>
-    <th>prec_unitario</th>
-    <th>dir_id</th>
-    <th>usr_id</th>
-    <th>pago_id</th>
-    <th>envio</th>
-    <th>total</th>
-    <th>proc_name</th>
-    <th>proc_descrip</th>
-    <th>proc_desc</th>
-    <th>proc_price</th>
-    <th>cantidad</th>
-    <th>proc_urlimg</th>
-    <th>type</th>
-    </tr>";
+ 
 
-    // Imprimir datos de la fila recuperada
+   
     while($row = $result->fetch_assoc()) {
         echo "<tr>";
-        foreach($row as $value) {
-            echo "<td>" . $value . "</td>";
-        }
-        echo "</tr>";
-    }
-    while($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row['detpedido_cantidad'] . "</td>"; // Acceder a la columna 'detpedido_cantidad'
+        echo "<td>" . $row['total'] . "</td>"; // Acceder a la columna 'detpedido_cantidad'
         echo "</tr>";
     }
     echo "</table>";
