@@ -63,6 +63,15 @@ if ($result_max_pagado_id->num_rows > 0) {
                 $subtotal += ($row['prec_unitario']*$row['detpedido_cantidad']);
                 $envio=$row['envio'];
                 $pais=$row['pais'];
+                
+                $metod_pago=$row['card_number'];
+                $dire_envio=$row['calle'] .'&nbsp;&nbsp;&nbsp;'. $row['fracc'] .'&nbsp;&nbsp;&nbsp;'. $row['zipcode'] .'&nbsp;&nbsp;&nbsp;'. $row['estado'] .'&nbsp;&nbsp;&nbsp;'. $row['ciudad'] .'&nbsp;&nbsp;&nbsp;'. $row['pais'] ;
+            }
+
+            if($metod_pago == "Pago con OXXO"){
+                $pago="OXXO";
+            }else{
+                $pago="Tarjeta";
             }
 
             if ($pais == "Mexico") {
@@ -86,13 +95,22 @@ if ($result_max_pagado_id->num_rows > 0) {
 
             echo '<span id="values">$' . $subtotal. '</span> <br>';
 
-            echo '<span>IMPUESTO:</span>';
+            echo '<span>Impuesto:</span>';
 
             echo '<span id="values">$' . $impuesto*$subtotal . '</span> <br>';
 
-            echo '<span>ENVIO:</span>';
+            echo '<span ">Direccion de Envio:</span> <br>';
+
+            echo '<span style="font-size:10px;" >' . $dire_envio. '</span> <br>';
+
+            echo '<span>Costo de Envio:</span>';
 
             echo '<span id="values">$' . $envio. '</span> <br>';
+
+            echo '<span>Metodo de Pago:</span>';
+
+            echo '<span id="values" style="font-size:15px;">' . $pago. '</span> <br>';
+
         
             echo '<span>TOTAL:</span>';
      
