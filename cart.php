@@ -405,6 +405,10 @@ span.cantidad {
                     <div class="col">Impuestos</div>
                     <div class="col text-right">$ <?php echo number_format(($precioFinal*$impuesto-$precioFinal), 0, '.', ','); ?></div>
                 </div>
+                <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0; font-size: x-small">
+                    <div class="col">Descuento agregado</div>
+                    <div class="col text-right" id="desc"></div>
+                </div>
                 <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                     <div class="col">PRECIO TOTAL (Con envio e Impuestos)</div>
                     <?php $precioFinal = ($precioFinal * $impuesto); $precioFinalRedondeado = round($precioFinal, 2);  ?>
@@ -515,16 +519,21 @@ span.cantidad {
 function calcularPrecioTotal() {
     var cupon = $("#code").val();
     var preciototal = <?php echo json_encode($precioFinal); ?>;
-
+    var miDesc=0;
     // Verificar y aplicar descuentos según el cupón
     if (cupon == "CUP10") {
         preciototal = preciototal - (preciototal * 0.10);
+        miDesc=-1*(preciototal * 0.10);
     } else if (cupon == "GAMCOELMEJOR2023") {
         preciototal = preciototal - (preciototal * 0.23);
+        miDesc=-1*(preciototal * 0.23);
     }
     else if (cupon == "DESC15") {
         preciototal = preciototal - (preciototal * 0.15);
+        miDesc=-1*(preciototal * 0.15);
     }
+    miDesc=miDesc.toFixed(2);
+    document.getElementById("desc").innerHTML = "$" + miDesc;
 
     return preciototal;
 }
