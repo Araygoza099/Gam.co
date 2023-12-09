@@ -1,5 +1,4 @@
 <?php
-// Conexión a la base de datos
     $servername = "127.0.0.1";
     $username = "root";
     $password = "";
@@ -7,25 +6,38 @@
 
     $con = new mysqli($servername, $username, $password, $db);
 
-    // Verificar la conexión
     if ($con->connect_error) {
         die("Error de conexión: " . $con->connect_error);
     }
 
-    // Consulta para obtener datos de ventas
-    $query = "SELECT proc_name, cantidad FROM productos";
-    $result = $con->query($query);
+    //consulta para obtener datos de productos
+    $queryProductos = "SELECT dp.detpedido_id, p.proc_name, dp.detpedido_cantidad FROM det_pedido dp
+                   JOIN productos p ON dp.proc_id = p.proc_id
+                   WHERE dp.pagado_id IS NOT NULL";
+    $resultProductos = $con->query($queryProductos);
 
-    // Crear un array asociativo con los datos
-    $data = array();
-    while ($row = $result->fetch_assoc()) {
-        $data[] = $row;
+    //crea un array asociativo con los datos de productos
+    $dataProductos = array();
+    while ($rowProductos = $resultProductos->fetch_assoc()) {
+        $dataProductos[] = $rowProductos;
     }
 
-    // Convertir el array a formato JSON y devolverlo
-    $jsonData = json_encode($data);
+    //convierte el array de productos a formato JSON
+    $jsonDataProductos = json_encode($dataProductos, JSON_NUMERIC_CHECK);
 
-    // Cerrar la conexión
+    //consulta para obtener datos de métodos de pago
+    $queryPagos = "SELECT card_name, COUNT(*) as cantidad FROM pagos GROUP BY card_name";
+    $resultPagos = $con->query($queryPagos);
+
+    //crea un array asociativo con los datos de métodos de pago
+    $dataPagos = array();
+    while ($rowPagos = $resultPagos->fetch_assoc()) {
+        $dataPagos[] = $rowPagos;
+    }
+
+    //convierte el array de métodos de pago a formato JSON
+    $jsonDataPagos = json_encode($dataPagos);
+
     $con->close();
 ?>
 
@@ -41,28 +53,28 @@
     <!-- Incluir jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <style>
-
         body {
             background-color: #1a1a1a;  
-        }
-        .flex {
-            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1a1a1a;
+            font-family: 'Arial', sans-serif;
             color: #fff;
+        }
+
+        .flex {
             display: flex;
-            justify-content: center; /* Centrar horizontalmente */
-            align-items: center; /* Centrar verticalmente */
-            height: 100vh; /* 100% del viewport height */
+            justify-content: center;
+            align-items: flex-start;
         }
 
         #charts-container {
             display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         #chart_div1, #chart_div2 {
-            width: 600px;
+            width: 800px;
             height: 400px;
             margin: 20px;
             padding: 20px;
@@ -70,66 +82,83 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
-        #chart_div1 {
-            margin-right: 10px;
-        }
     </style>
 </head>
 <?php include('header.php'); ?>
 <body>
     <div class="flex">
-    <div id="charts-container">
-        <div id="chart_div1"></div>
-        <div id="chart_div2"></div>
+        <div id="charts-container">
+            <div id="chart_div1"></div>
+            <div id="chart_div2"></div>
+        </div>
     </div>
 
     <script>
         google.charts.load('current', {'packages':['corechart']});
 
-        // Llamar a la función para dibujar las gráficas después de cargar la librería
+        //llama a la función para dibujar las gráficas después de cargar la librería
         google.charts.setOnLoadCallback(drawCharts);
 
-        // Función para dibujar las gráficas
+        //función para dibujar las gráficas
         function drawCharts() {
-            // Obtener datos de PHP usando AJAX
-            var jsonData = <?php echo $jsonData; ?>;
+            //obtiene datos de PHP para productos usando AJAX
+            var jsonDataProductos = <?php echo $jsonDataProductos; ?>;
+            console.log(jsonDataProductos);
 
-            // Convertir datos a formato compatible con Google Charts
-            var chartData = [['Producto', 'Cantidad']];
-            for (var i = 0; i < jsonData.length; i++) {
-                chartData.push([jsonData[i].proc_name, parseInt(jsonData[i].cantidad)]);
+            //filtra los productos que tienen ventas (cantidad > 0) y pagado_id no es NULL
+            var productosConVentas = jsonDataProductos.filter(function(producto) {
+                return parseInt(producto.detpedido_cantidad) > 0 && producto.pagado_id !== null;
+            });
+
+            console.log(productosConVentas);
+
+            //convierte datos de productos a formato compatible con Google Charts
+            var chartDataProductos = [['Producto', 'Ventas']];
+            for (var i = 0; i < productosConVentas.length; i++) {
+                chartDataProductos.push([productosConVentas[i].proc_name, parseInt(productosConVentas[i].detpedido_cantidad)]);
             }
 
-            // Crear el objeto de datos para la primera gráfica (por ejemplo, gráfico de barras)
-            var data1 = google.visualization.arrayToDataTable(chartData);
+            //crea el objeto de datos para la gráfica de barras
+            var data1 = google.visualization.arrayToDataTable(chartDataProductos);
 
-            // Configurar opciones para la primera gráfica
+            //configura opciones para la gráfica de barras
             var options1 = {
                 title: 'Ventas por Producto',
                 is3D: true,
-                colors: ['#ff8c00']
+                colors: ['#ff8c00'],
+                hAxis: {
+                    showTextEvery: 1
+                },
+                // Añade la opción de tooltip para mostrar el nombre del producto
+                tooltip: { trigger: 'selection' } 
             };
 
-            // Crear la primera gráfica (por ejemplo, gráfico de barras)
-            var chart1 = new google.visualization.BarChart(document.getElementById('chart_div1'));
+            //crea la gráfica de barras
+            var chart1 = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
             chart1.draw(data1, options1);
 
-            // Crear el objeto de datos para la segunda gráfica (por ejemplo, gráfico de pastel)
-            var data2 = google.visualization.arrayToDataTable(chartData);
+            //obtiene datos de PHP para métodos de pago usando AJAX
+            var jsonDataPagos = <?php echo $jsonDataPagos; ?>;
 
-            // Configurar opciones para la segunda gráfica
+            //convierte datos de métodos de pago a formato compatible con Google Charts
+            var chartDataPagos = [['Método de Pago', 'Cantidad']];
+            for (var j = 0; j < jsonDataPagos.length; j++) {
+                chartDataPagos.push([jsonDataPagos[j].card_name, parseInt(jsonDataPagos[j].cantidad)]);
+            }
+
+            //crea el objeto de datos para la gráfica circular (gráfico de pastel)
+            var data2 = google.visualization.arrayToDataTable(chartDataPagos);
+
+            //configura opciones para la gráfica circular
             var options2 = {
-                title: 'Porcentaje de Ventas por Producto',
-                is3D: true,
-                colors: ['#1E4770']
+                title: 'Porcentaje de Uso de Métodos de Pago',
+                is3D: true
             };
 
-            // Crear la segunda gráfica (por ejemplo, gráfico de pastel)
+            //crea la gráfica circular (gráfico de pastel)
             var chart2 = new google.visualization.PieChart(document.getElementById('chart_div2'));
             chart2.draw(data2, options2);
         }
     </script>
-    </div>
 </body>
 </html>

@@ -4,7 +4,7 @@
 }
 
 body{
-    background-image: url(../img/fondo2.png);
+    /* background-image: url(../img/fondo2.png); */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,6 +41,7 @@ body{
     display: flex;
     justify-content: space-between;
     margin-bottom: 5px;
+    
 }
 
 .top{
@@ -52,12 +53,13 @@ body{
 }
 
 .total {
-    display: flex;
-    justify-content: space-between;
     margin-bottom: 5px;
     font-weight: bold;
     border-bottom: 1px solid #000000;
+}
 
+#values{
+    float: right;
 }
 
 .footer {
