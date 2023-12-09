@@ -13,7 +13,7 @@
 <body>
 
     <div class="container" style="background-color: white; border-radius: 5px; padding: 2px">
-        <form id="paymentForm" action="compra.php" method="POST">
+        <form id="paymentForm" action="pago.php" method="POST">
             <h3>Método de pago</h3>
 
             <div class="row">
@@ -78,7 +78,7 @@
                 </div>
 
                 <div class="col-lg-12 mb-3">
-                    <input value="Comprar" type="submit" class="btn btn-primary" id="contactus-submit">
+                    <input value="Agregar" type="submit" class="btn btn-primary" id="contactus-submit">
                 </div>
             </div>
         </form>

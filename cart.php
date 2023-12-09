@@ -374,6 +374,7 @@ span.cantidad {
                     
                     <p>Direccion</p>
                     <select id="seleccionarArchivo" onchange="cargarArchivo()">
+                    <option>Seleccionar Direccion</option>
                     <?php
                     if ($result2->num_rows > 0) {
                         while ($row = $result2->fetch_assoc()) {
@@ -382,6 +383,19 @@ span.cantidad {
                     }?>
                     <option class="text-muted" value="./formComfirmacion.php"><a href="#respuestaServidor" class="text-muted">Agregar Dirección</a></option>
                     </select>
+
+                    <p>Metodo de Pago</p>
+                    <select id="seleccionarArchivo2" onchange="cargarPago()">
+                    <option>Seleccionar Metodo</option>
+                    <?php
+                    if ($result3->num_rows > 0) {
+                        while ($row = $result3->fetch_assoc()) {
+                            echo '<option class="text-muted"  value="' . $row['pago_id'] . '">' . $row['card_number'] . '</option>';
+                        }
+                    }?>
+                    <option class="text-muted" value="./pagos.php"><a href="#respuestaServidor" class="text-muted">Agregar Metodo</a></option>
+                    </select>
+
                     <p>CODIGO</p>
                     <input id="code" placeholder="Incluya su codigo de descuento">
                 </form>
@@ -412,7 +426,7 @@ span.cantidad {
                     $conn->close();
                     ?>
                 <div style="display: flex; justify-content: center; align-items: center;">
-    <button style="margin-right: 10px; padding: 8px 20px; background-color: #005bbb; color: #fff; border: none; border-radius: 5px; cursor: pointer;" onclick="cargarPago()">PAGAR AHORA</button>
+    <button style="margin-right: 10px; padding: 8px 20px; background-color: #005bbb; color: #fff; border: none; border-radius: 5px; cursor: pointer;" onclick="pasarVariables()">PAGAR AHORA</button>
     <button style="border-radius: 5px; display: inline-block;" onclick="pasarVariables()">
         <img src="https://www.axondigital.mx/wp-content/uploads/2019/10/Oxxoapp.jpg" alt="" style="border-radius: 5px; width:110px;">
     </button>
@@ -439,12 +453,14 @@ span.cantidad {
         // Obtener los valores de las variables
         var envio = document.getElementById("envio").value;
         var dir_id = document.getElementById("seleccionarArchivo").value;
+        var pago_id = document.getElementById("seleccionarArchivo2").value;
         var preciototal = document.getElementById("total").textContent;
 
         // Crear un objeto con las variables
         var url = 'compra.php' +
               '?envio=' + encodeURIComponent(envio) +
               '&dir_id=' + encodeURIComponent(dir_id) +
+              '&pago_id=' + encodeURIComponent(pago_id) +
               '&preciototal=' + encodeURIComponent(preciototal);
 
         // Redirigir a la página deseada con los parámetros GET
@@ -473,9 +489,13 @@ span.cantidad {
 }
     function cargarPago(){
 
+        var selectedOption = document.getElementById("seleccionarArchivo2").value;
+
+    if (selectedOption === "./pagos.php") {
+
         $.ajax({
             type: "GET",
-            url: "./pagos.php",
+            url: selectedOption,
             success: function(response) {
             
                 $("#respuestaServidor").html(response);
@@ -484,8 +504,10 @@ span.cantidad {
                 // Maneja errores si es necesario.
                 $("#respuestaServidor").html("Error al cargar la página.");
             }
+        
     });
     
+}
 
 }
 

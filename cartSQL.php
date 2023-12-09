@@ -17,4 +17,8 @@
 
     $sql2 = "SELECT calle FROM direccion WHERE usr_id = $usuario_id";
     $result2 = $conn->query($sql2);
+
+    $sql3 = "SELECT card_number, pago_id FROM pagos WHERE usr_id = $usuario_id AND card_name != 'OXXO'";
+$result3 = $conn->query($sql3);
+
 ?>

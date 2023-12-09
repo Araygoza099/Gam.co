@@ -6,39 +6,13 @@ if(isset($_SESSION['usuario'])){
 
     $envioOK = isset($_GET['envio']) ? $_GET['envio'] : '';
     $calleABuscar = isset($_GET['dir_id']) ? $_GET['dir_id'] : '';
+    $pago_id = isset($_GET['pago_id']) ? $_GET['pago_id'] : '';
     $preciototalOK = isset($_GET['preciototal']) ? $_GET['preciototal'] : '';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      $card_number = $_POST['card_number'];
-      $card_date = $_POST['card_date'];
-      $card_name = $_POST['card_name'];
-
-      $envioOK = isset($_GET['envio']) ? $_GET['envio'] : '';
-      $dir_idOK = isset($_GET['dir_id']) ? $_GET['dir_id'] : '';
-      $preciototalOK = isset($_GET['preciototal']) ? $_GET['preciototal'] : '';
+      
         
 
-      $usr_id = $_SESSION['usr_id'];
-
-
-      $sql = "SELECT MAX(pago_id) AS ultimo_id FROM pagos";
-      $resultado = $conn->query($sql);
-
-      if ($resultado) {
-          // Verifica si hay al menos una fila en el resultado
-          if ($resultado->num_rows > 0) {
-              $fila = $resultado->fetch_assoc();
-              $ultimo_id = $fila['ultimo_id'];
-              $pago_id = $ultimo_id + 1;
-          } else {
-              // La tabla está vacía, puedes asignar el primer ID que desees
-              $pago_id= 1;
-          }
-      } 
-        
-        $stmt = $conn->prepare("INSERT INTO pagos (pago_id, usr_id, card_name, card_number, card_thought) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("iisss", $pago_id, $usr_id, $card_name, $card_number, $card_date);
-        $stmt->execute();  
         
         // Consulta para obtener los pedido_id del usuario dado
         $pedido_ids_query = "SELECT pedido_id FROM pedidos WHERE usr_id = ?";
@@ -287,18 +261,14 @@ if(isset($_SESSION['usuario'])){
       } 
     
 
-<<<<<<< Updated upstream
-        $stmt = $conn->prepare("INSERT INTO pagados (pagado_id, usr_id, pago_id, dir_id, envio, total) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("iiiiii", $pagado_id, $usr_id, $pago_id, $dir_idOK, $envioOK, $preciototalOK);
-        $stmt->execute(); 
-=======
+        
         $query = "SELECT dir_id FROM direccion WHERE calle = '$calleABuscar'";
         $resultado = $conn->query($query);
         if ($resultado->num_rows > 0) {
             $fila = $resultado->fetch_assoc();
             $dir_idOK = $fila['dir_id'];
         }
->>>>>>> Stashed changes
+
 
       $stmt = $conn->prepare("INSERT INTO pagados (pagado_id, usr_id, pago_id, dir_id, envio, total) VALUES (?, ?, ?, ?, ?, ?)");
       $stmt->bind_param("iiiiss", $pagado_id, $usr_id, $pago_id, $dir_idOK, $envioOK, $preciototalOK);
