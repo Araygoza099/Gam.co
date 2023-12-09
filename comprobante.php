@@ -81,7 +81,7 @@
             <img src="img/admin_pag.png" alt="Esquina">
           </div>
           <div class="buttons">
-            <a href="#"><button style="margin-top: 20px;">PDF</button></a> 
+            <a href="ComprobanteSQL.php"><button style="margin-top: 20px;">PDF</button></a> 
             <a href="#"><button style="margin-top: 20px;">Correo</button></a>
             <a href="#"><button style="margin-top: 20px;">Vista General</button></a>
           </div>

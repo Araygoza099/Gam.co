@@ -24,7 +24,7 @@
             <form action="uploadregister.php" method="post" id="registroForm">
                 <h2>Registro</h2>
                 <div class="input-group">
-                    <input type="text" placeholder="Nombre completo" required>
+                    <input type="text" placeholder="Nombre completo" name="name" required>
                 </div>
                 <div class="input-group">
                     <input type="text" placeholder="Usuario" name="username" required>

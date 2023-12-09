@@ -73,6 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
 
         $userid=$nuevo_id;
+        $name = $_POST["name"];
         $password = $_POST["password"];
         $email = $_POST["email"];
         $pregunta=$_POST["security-question"];
@@ -91,8 +92,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
         // Insertar usuario en la base de datos
-        $stmt = $conn->prepare("INSERT INTO users (usr_id, username, email, password, intentos, pregunta, respuesta) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("isssiss", $userid, $username, $email, $hashed_password, $intentos, $pregunta, $respuesta);        
+        $stmt = $conn->prepare("INSERT INTO users (usr_id, usr_name, username, email, password, intentos, pregunta, respuesta) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("issssiss", $userid, $name, $username, $email, $hashed_password, $intentos, $pregunta, $respuesta);        
 
         $stmt2 = $conn->prepare("INSERT INTO direccion (dir_id, usr_id,	calle, fracc, zipcode, estado, ciudad, pais, num_tel) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt2->bind_param("iississsi", $nuevo_id2,  $userid, $calle, $frac, $cp, $edo, $cd, $pais, $tel);
