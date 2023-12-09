@@ -280,32 +280,11 @@ if(isset($_SESSION['usuario'])){
               $pagado_id= 1;
           }
       } 
+    
 
-        $sql = "INSERT INTO pagados (pagado_id, usr_id, pago_id, total)
-        SELECT ?, usr_id, ?, total
-        FROM pedidos";
-        
-
-        // Preparar la consulta
-        if ($stmt = $conn->prepare($sql)) {
-            // Vincular parámetro
-            $stmt->bind_param("ii", $pagado_id, $pago_id); // "i" indica que es un entero
-
-            // Ejecutar la consulta
-            $stmt->execute();
-
-            // Verificar si se realizó la inserción
-            if ($stmt->affected_rows > 0) {
-                
-            } else {
-                echo "No se realizaron cambios o la inserción falló.";
-            }
-
-            // Cerrar la declaración
-            $stmt->close();
-        } else {
-            echo "Error en la preparación de la consulta: " . $conn->error;
-        }
+        $stmt = $conn->prepare("INSERT INTO pagados (pagado_id, usr_id, pago_id, dir_id, envio, total) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("iiiiii", $pagado_id, $usr_id, $pago_id, $dir_idOK, $envioOK, $preciototalOK);
+        $stmt->execute(); 
 
         // Desvinculamos los det_pedido asociados a los pedido_id obtenidos
         if (!empty($pedido_ids)) {

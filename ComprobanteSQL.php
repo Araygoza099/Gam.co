@@ -2,67 +2,55 @@
 require ("bdSQL.php");
 session_start();
 $usr_id = $_SESSION['usr_id'];
-// Consulta SQL
-$sql = "SELECT users.usr_id, users.username, users.email,
-           pagados.pagado_id, pagados.pago_id, pagados.dir_id, pagados.total,
-           direccion.calle, direccion.fracc, direccion.zipcode, direccion.estado, direccion.ciudad, direccion.pais, direccion.num_tel,
-           det_pedido.detpedido_id, det_pedido.proc_id, det_pedido.pedido_id, det_pedido.pagado_id, det_pedido.detpedido_cantidad, det_pedido.prec_unitario,
-           productos.proc_id, productos.proc_name, productos.proc_descrip, productos.proc_desc, productos.proc_price, productos.cantidad, productos.proc_urlimg, productos.type,
-           pagos.pago_id, pagos.card_name, pagos.card_number
-        FROM users
-        JOIN pagados ON users.usr_id = pagados.usr_id
-        JOIN direccion ON pagados.dir_id = direccion.dir_id
-        JOIN det_pedido ON pagados.pagado_id = det_pedido.pagado_id
-        JOIN productos ON det_pedido.proc_id = productos.proc_id
-        JOIN pagos ON pagados.pago_id = pagos.pago_id
-        WHERE users.usr_id = $usr_id";
+
+// Consulta SQL para obtener la fila con el pagado_id máximo para el usr_id dado
+$sql = "SELECT *
+        FROM det_pedido AS dp
+        INNER JOIN pagados AS p ON dp.pagado_id = p.pagado_id
+        INNER JOIN users AS u ON p.usr_id = u.usr_id
+        INNER JOIN direccion AS d ON p.dir_id = d.dir_id
+        INNER JOIN pagos AS pg ON p.pago_id = pg.pago_id
+        INNER JOIN productos AS pr ON dp.proc_id = pr.proc_id
+        WHERE u.usr_id = $usr_id";
+        
 
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        // Asignar los valores a variables específicas
-        $usr_id = $row["usr_id"];
-        $username = $row["username"];
-        $email = $row["email"];
-        $pagado_id = $row["pagado_id"];
-        $pago_id = $row["pago_id"];
-        $dir_id = $row["dir_id"];
-        $total = $row["total"];
-        $calle = $row["calle"];
-        $fracc = $row["fracc"];
-        $zipcode = $row["zipcode"];
-        $estado = $row["estado"];
-        $ciudad = $row["ciudad"];
-        $pais = $row["pais"];
-        $num_tel = $row["num_tel"];
-        $detpedido_id = $row["detpedido_id"];
-        $proc_id = $row["proc_id"];
-        $pedido_id = $row["pedido_id"];
-        $detpedido_cantidad = $row["detpedido_cantidad"];
-        $prec_unitario = $row["prec_unitario"];
-        $proc_name = $row["proc_name"];
-        $proc_descrip = $row["proc_descrip"];
-        $proc_desc = $row["proc_desc"];
-        $proc_price = $row["proc_price"];
-        $cantidad = $row["cantidad"];
-        $proc_urlimg = $row["proc_urlimg"];
-        $type = $row["type"];
-        $card_name = $row["card_name"];
-        $card_number = $row["card_number"];
+    echo "<table border='1'>
+    <tr>
+    <th>detpedido_id</th>
+    <th>proc_id</th>
+    <th>pedido_id</th>
+    <th>pagado_id</th>
+    <th>detpedido_cantidad</th>
+    <th>prec_unitario</th>
+    <th>dir_id</th>
+    <th>usr_id</th>
+    <th>pago_id</th>
+    <th>envio</th>
+    <th>total</th>
+    <th>proc_name</th>
+    <th>proc_descrip</th>
+    <th>proc_desc</th>
+    <th>proc_price</th>
+    <th>cantidad</th>
+    <th>proc_urlimg</th>
+    <th>type</th>
+    </tr>";
 
-        // Ejemplo: Imprimir los datos
-        echo "User ID: $usr_id, Username: $username, Email: $email, Pagado ID: $pagado_id, Pago ID: $pago_id<br>";
-        echo "Dirección: $calle, $fracc, $ciudad, $estado, $zipcode, $pais, Teléfono: $num_tel<br>";
-        echo "Detalles del Pedido - ID: $detpedido_id, Producto ID: $proc_id, Cantidad: $detpedido_cantidad, Precio Unitario: $prec_unitario<br>";
-        echo "Producto - Nombre: $proc_name, Descripción: $proc_descrip, Precio: $proc_price<br>";
-        echo "Pago - ID: $pago_id, Nombre Tarjeta: $card_name, Número Tarjeta: $card_number<br>";
-        echo "<hr>"; // Separador entre cada conjunto de datos
+    // Imprimir datos de la fila recuperada
+    while($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        foreach($row as $value) {
+            echo "<td>" . $value . "</td>";
+        }
+        echo "</tr>";
     }
+    echo "</table>";
 } else {
     echo "No se encontraron resultados.";
 }
-
 // Cerrar la conexión
 $conn->close();
 
