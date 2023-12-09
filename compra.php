@@ -7,6 +7,10 @@ if(isset($_SESSION['usuario'])){
       $card_number = $_POST['card_number'];
       $card_date = $_POST['card_date'];
       $card_name = $_POST['card_name'];
+      
+      $envioOK = isset($_GET['envio']) ? intval($_GET['envio']) : 0;
+      $dir_idOK = isset($_GET['dir_id']) ? $_GET['dir_id'] : '';
+      $preciototalOK = isset($_GET['preciototal']) ? $_GET['preciototal'] : '';
         
 
       $usr_id = $_SESSION['usr_id'];

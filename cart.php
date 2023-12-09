@@ -308,7 +308,7 @@ span.cantidad {
                     <?php
                     if ($result2->num_rows > 0) {
                         while ($row = $result2->fetch_assoc()) {
-                            echo '<option class="text-muted">' . $row['calle'] . '</option>';
+                            echo '<option class="text-muted"  value="' . $row['calle'] . '">' . $row['calle'] . '</option>';
                         }
                     }?>
                     <option class="text-muted" value="./formComfirmacion.php"><a href="#respuestaServidor" class="text-muted">Agregar Dirección</a></option>
@@ -344,9 +344,10 @@ span.cantidad {
                     ?>
                 <div style="display: flex; justify-content: center; align-items: center;">
     <button style="margin-right: 10px; padding: 8px 20px; background-color: #005bbb; color: #fff; border: none; border-radius: 5px; cursor: pointer;" onclick="cargarPago()">PAGAR AHORA</button>
-    <a href="compra.php" style="border-radius: 5px; display: inline-block;">
+    <button style="border-radius: 5px; display: inline-block;" onclick="pasarVariables()">
         <img src="https://www.axondigital.mx/wp-content/uploads/2019/10/Oxxoapp.jpg" alt="" style="border-radius: 5px; width:110px;">
-    </a>
+    </button>
+        
 </div>
 
 
@@ -364,6 +365,24 @@ span.cantidad {
     <div id="respuestaServidor" style="margin-right:-10px; margin-left:20px"></div></div>
 
     <script>
+
+    function pasarVariables() {
+        // Obtener los valores de las variables
+        var envio = parseInt(document.getElementById("envio").value);
+        var dir_id = document.getElementById("seleccionarArchivo").value;
+        var preciototal = document.getElementById("total").textContent;
+
+        // Crear un objeto con las variables
+        var url = 'compra.php' +
+              '?envio=' + encodeURIComponent(envio) +
+              '&dir_id=' + encodeURIComponent(dir_id) +
+              '&preciototal=' + encodeURIComponent(preciototal);
+
+        // Redirigir a la página deseada con los parámetros GET
+        window.location.href = url;
+
+    }
+
      function cargarArchivo() {
     var selectedOption = document.getElementById("seleccionarArchivo").value;
 
