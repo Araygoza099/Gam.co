@@ -132,3 +132,21 @@
     transform:rotate(10deg);
 
  }
+
+ @media screen and (max-width:896px){
+ .containerr{
+  width: 50%;
+  font-size: 10px;
+ }
+
+ .imgEllie{
+  position: absolute;
+  top: 130px;
+  right: 180px;
+  width: 60%;
+  transform:rotate(10deg);
+
+}
+  
+
+ }

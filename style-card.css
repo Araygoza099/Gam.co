@@ -38,9 +38,9 @@
  transition: .5s;
 }
 
-h1{
+.intro h1{
   margin: 10px;
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .precio{
@@ -88,3 +88,83 @@ h1{
   font-weight: bold;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
+ @media screen and (max-width:896px){
+  .card{
+    height: 200px;
+    width: 125px;
+    margin: 0px;
+    box-shadow: 2.5px 2.5px 10px black;
+    overflow: hidden;
+    font-size: 5px;
+  }
+
+  .card img{
+    width: 100%;
+  }
+  
+  .intro{
+    height: 50px;
+    width: 125px;
+    padding: 3px;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0px;
+   background: rgb(25, 27, 27,.5);
+   color: white;
+   transition: .5s;
+  }
+  
+  .intro h1{
+    margin: 10px;
+    font-size: 10px;
+  }
+  
+  .precio{
+    font-size: 10px;
+    margin: 20px;
+    visibility: hidden;
+    opacity: 0;
+  }
+  .card:hover{
+    cursor: pointer;
+  }
+  
+  .card:hover .intro{
+    height: 220px;
+    bottom: 0px;
+    background:black;
+  }
+  
+  .card:hover .precio{
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .card:hover img{
+    transform:scale(1.1) rotate(-3deg) ;
+  }
+  
+  .precio-oferta {
+    background-color: #4CAF50;
+    color: white;
+    height: 40px;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .etiqueta-regular {
+    background-color: #333; 
+  }
+  
+  
+  .etiqueta-oferta {
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  
+} 

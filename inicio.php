@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-widht, initial-scale=1.0">
     <title>Inicio | Gam.co</title>
     <link rel="stylesheet" type="text/css" href="css/style_index.css">
     <link rel="stylesheet" href="css/style_suscrip.css"> 
@@ -116,7 +116,7 @@
             <div class="card">
               <img src="./img/rdr.png" alt="rdr2">
               <div class="intro">
-                <h1 style=" font-size: 30px;">Red</h1>
+                <h1 >Red</h1>
                 <div class="precio">
                   <div class="precio-oferta">
                   <div class="precio etiqueta-oferta" >Oferta: $19.99</div>
@@ -128,7 +128,7 @@
             <div class="card">
               <img src="./img/cyberpunkCover.png" alt="rdr2">
               <div class="intro">
-                <h1 style=" font-size: 30px;">cyberPunk</h1>
+                <h1 >cyberPunk</h1>
                 <div class="precio">
                   <div class="precio-oferta">
                   <div class="precio etiqueta-oferta">Oferta: $19.99</div>
@@ -140,7 +140,7 @@
             <div class="card">
               <img src="./img/spidermanCover.png" alt="rdr2">
               <div class="intro">
-                <h1 style=" font-size: 30px;">Spiderman</h1>
+                <h1>Spiderman</h1>
                 <div class="precio">
                   <div class="precio-oferta">
                   <div class="precio etiqueta-oferta">Oferta: $19.99</div>
@@ -153,6 +153,7 @@
           
         </div>
         <button class="boton"><a href="tienda.php">Ver Todo</a></button>
+          </div>
       </div>
      
       
@@ -161,7 +162,7 @@
 
     <main>
       <div class="slide" data-aos="fade-up-right">
-        <h1 style="color: white; font-size: 30px; margin-left:200px;">Mas Ofertas para ti</h1>
+        <h1 class="titulo" >Mas Ofertas para ti</h1>
         <div class="anuncios">
          
           <img class="img1" src="img/anuncio1.png" alt="">
