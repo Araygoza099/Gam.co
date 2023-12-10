@@ -42,9 +42,7 @@
 
         //Algoritmo para extraer el codigo de usuario
 
-        $numero=$_POST['number'];
-        $mensaje=$_POST['message'];
-        $subject='Contacto Gam.co';
+        $subject='Ticket Gam.co';
         $msg='
         <!DOCTYPE html>
             <html lang="en">
@@ -235,20 +233,18 @@
             //Server settings
             $mail->SMTPDebug = 0; 
             $mail->isSMTP(); 
-            $mail->Host = 'smtp.office365.com'; 
+            $mail->Host = 'smtp-mail.outlook.com'; 
             $mail->SMTPAuth = true; 
-            $mail->Username = 'gamco_co@outlook.com'; 
-            $mail->Password = 'Pa$$w0rd2023'; 
+            $mail->Username = 'gam.co2023@outlook.com'; 
+            $mail->Password = 'gamco2023'; 
             $mail->SMTPSecure = 'STARTTLS'; 
             $mail->Port = 587;                                 
-    
+
             //Recipients
-            $mail->setFrom('gamco_co@outlook.com');
+            $mail->setFrom('gam.co2023@outlook.com');
             $mail->addAddress($correo, $nombre);
     
             //Content
-            $mail->isHTML(true); 
-            $mail->Subject = "Mensaje";
             $mail->isHTML(true);
             $mail->Subject = $subject;
 

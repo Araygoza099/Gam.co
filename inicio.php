@@ -186,11 +186,11 @@
 
       <div class="sus" data-aos="fade-up-right">
     <div class="containerr">  
-        <form id="contactus" action="#aqui hace lo del email" method="post">
+        <form id="contactus" action="CorreoCupon.php" method="post">
           <h3>Suscribete!</h3>
           <h4>Para recibir un cupon de regalo!</h4>
           <fieldset>
-            <input placeholder="Direccion Email" type="email" tabindex="1" name="email" >
+            
           </fieldset>
           <fieldset>
             <button name="submit" type="submit" id="contactus-submit" data-submit="...Sending">Suscribete Ahora</button>
