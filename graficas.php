@@ -26,7 +26,7 @@
     $jsonDataProductos = json_encode($dataProductos, JSON_NUMERIC_CHECK);
 
     //consulta para obtener datos de métodos de pago
-    $queryPagos = "SELECT card_name, COUNT(*) as cantidad FROM pagos GROUP BY card_name";
+    $queryPagos = "SELECT card_name, COUNT(*) as cantidad FROM pagos WHERE card_name != 'Pagar con OXXO' GROUP BY card_name";
     $resultPagos = $con->query($queryPagos);
 
     //crea un array asociativo con los datos de métodos de pago
@@ -74,6 +74,7 @@
         }
 
         #chart_div1, #chart_div2 {
+            position: relative;
             width: 800px;
             height: 400px;
             margin: 20px;
@@ -81,6 +82,17 @@
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #nota {
+            position: absolute;
+            bottom: -450px;
+            right: 320px;
+            font-size: 12px;
+            color: black;
+            margin: 0;
+            padding: 5px;
+            z-index: 9999; 
         }
     </style>
 </head>
@@ -90,6 +102,7 @@
         <div id="charts-container">
             <div id="chart_div1"></div>
             <div id="chart_div2"></div>
+            <p id="nota">NOTA: Si aparece un nombre de persona en esta gráfica <br> significa que el método de págo es con tarjeta. </p>
         </div>
     </div>
 
