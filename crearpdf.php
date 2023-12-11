@@ -31,6 +31,12 @@ if ($result_max_pagado_id->num_rows > 0) {
 
 class PDF extends FPDF
 {
+    function Header()
+    {
+        // Logo o imagen de fondo
+        $this->Image('img/fondoticket.jpg', 0, 0, 210, 297);
+    }
+
     function AddItem($procId, $cantidad, $procName, $precio)
     {
         $anchoPagina = 210; // Ancho total de la página en mm
@@ -43,15 +49,17 @@ class PDF extends FPDF
         // Establecer la posición de la celda izquierda
         $this->SetX($xIzquierda);
 
-        // Agregar la información
+        // Agregar la información con fuente en negrita
+        $this->SetFont('Arial', 'B', 10);
         $this->Cell($anchoCeldaIzquierda, 10, $procId . ' x' . $cantidad . ' ' . $procName, 0, 0, 'L');
         $this->Cell($anchoCeldaDerecha, 10, '$' . $precio, 0, 1, 'R');
+        $this->SetFont('Arial', '', 10); // Restaurar fuente regular
     }
 }
 
 $pdf = new PDF();
 $pdf->AddPage();
-$pdf->SetFont('Arial', '', 10);
+$pdf->SetFont('Arial', 'B', 10); // Establecer fuente en negrita para el encabezado
 $pdf->Ln(10);
 $pdf->Cell(190, 10, '======GAM.CO======', 0, 1, 'C');
 $pdf->Cell(190, 10, '-Gaming sin Limites!-', 0, 1, 'C');
@@ -94,43 +102,54 @@ if ($result->num_rows > 0) {
     }
 
     // Detalles de la compra
-    
     while ($row = $result->fetch_assoc()) {
         $pdf->AddItem($row['proc_id'], $row['detpedido_cantidad'], $row['proc_name'], $row['prec_unitario'] * $row['detpedido_cantidad']);
     }
     $pdf->Cell(190, 10, '-------------------------------------------------------------------------', 0, 1, 'C');
 
-
     // Resumen de la compra
     $anchoPagina = 210; // Ancho total de la página en mm
-$anchoCeldaIzquierda = 70; // Ancho de la primera celda
-$anchoCeldaDerecha = 60; // Ancho de la segunda celda
-$xIzquierda = ($anchoPagina - $anchoCeldaIzquierda - $anchoCeldaDerecha) / 2;
+    $anchoCeldaIzquierda = 70; // Ancho de la primera celda
+    $anchoCeldaDerecha = 60; // Ancho de la segunda celda
+    $xIzquierda = ($anchoPagina - $anchoCeldaIzquierda - $anchoCeldaDerecha) / 2;
 
-$pdf->SetX($xIzquierda);
-
-$pdf->Ln(10);
-$pdf->Cell($anchoCeldaIzquierda, 10, 'SUBTOTAL:', 0, 0, 'R');
-$pdf->Cell($anchoCeldaDerecha, 10, '$' . $subtotal, 0, 1, 'R');
-$pdf->Cell($anchoCeldaIzquierda, 10, 'Impuesto:', 0, 0, 'R');
-$pdf->Cell($anchoCeldaDerecha, 10, '$' . $impuesto * $subtotal, 0, 1, 'R');
-$pdf->Cell($anchoCeldaIzquierda, 10, 'Direccion de Envio:', 0, 0, 'R');
-$pdf->MultiCell(0, 10, $dire_envio, 0, 'R');
-$pdf->Cell($anchoCeldaIzquierda, 10, 'Costo de Envio:', 0, 0, 'R');
-$pdf->Cell($anchoCeldaDerecha, 10, '$' . $envio, 0, 1, 'R');
-$pdf->Cell($anchoCeldaIzquierda, 10, 'Metodo de Pago:', 0, 0, 'R');
-$pdf->Cell($anchoCeldaDerecha, 10, $pago, 0, 1, 'R');
-$pdf->Cell($anchoCeldaIzquierda, 10, 'Num. ref:', 0, 0, 'R');
-$pdf->Cell($anchoCeldaDerecha, 10, $metod_pago, 0, 1, 'R');
-$pdf->Cell($anchoCeldaIzquierda, 10, 'TOTAL:', 0, 0, 'R');
-$pdf->Cell($anchoCeldaDerecha, 10, '' . $total, 0, 1, 'R');
+    $pdf->SetX($xIzquierda);
+    $pdf->SetFont('Arial', 'B', 10);
+    $pdf->Ln(10);
+    $pdf->Cell($anchoCeldaIzquierda, 10, 'SUBTOTAL:', 0, 0, 'R');
+    $pdf->SetFont('Arial', '', 10);
+    $pdf->Cell($anchoCeldaDerecha, 10, '$' . $subtotal, 0, 1, 'R');
+    $pdf->SetFont('Arial', 'B', 10);
+    $pdf->Cell($anchoCeldaIzquierda, 10, 'Impuesto:', 0, 0, 'R');
+    $pdf->SetFont('Arial', '', 10);
+    $pdf->Cell($anchoCeldaDerecha, 10, '$' . $impuesto * $subtotal, 0, 1, 'R');
+    $pdf->SetFont('Arial', 'B', 10);
+    $pdf->Cell($anchoCeldaIzquierda, 10, 'Direccion de Envio:', 0, 0, 'R');
+    $pdf->SetFont('Arial', '', 10);
+    $pdf->MultiCell(0, 10, $dire_envio, 0, 'R');
+    $pdf->SetFont('Arial', 'B', 10);
+    $pdf->Cell($anchoCeldaIzquierda, 10, 'Costo de Envio:', 0, 0, 'R');
+    $pdf->SetFont('Arial', '', 10);
+    $pdf->Cell($anchoCeldaDerecha, 10, '$' . $envio, 0, 1, 'R');
+    $pdf->SetFont('Arial', 'B', 10);
+    $pdf->Cell($anchoCeldaIzquierda, 10, 'Metodo de Pago:', 0, 0, 'R');
+    $pdf->SetFont('Arial', '', 10);
+    $pdf->Cell($anchoCeldaDerecha, 10, $pago, 0, 1, 'R');
+    $pdf->SetFont('Arial', 'B', 10);
+    $pdf->Cell($anchoCeldaIzquierda, 10, 'Num. ref:', 0, 0, 'R');
+    $pdf->SetFont('Arial', '', 10);
+    $pdf->Cell($anchoCeldaDerecha, 10, $metod_pago, 0, 1, 'R');
+    $pdf->SetFont('Arial', 'B', 10);
+    $pdf->Cell($anchoCeldaIzquierda, 10, 'TOTAL:', 0, 0, 'R');
+    $pdf->SetFont('Arial', '', 10);
+    $pdf->Cell($anchoCeldaDerecha, 10, '' . $total, 0, 1, 'R');
 
     $pdf->Cell(190, 10, '-------------------------------------------------------------------------', 0, 1, 'C');
 
     // Pie de página
     $pdf->Ln(10);
     $pdf->Cell(0, 10, 'Fecha: ' . date('Y-m-d H:i:s'), 0, 1, 'C');
-    $pdf->Cell(0, 10, '¡Gracias por tu compra!', 0, 1, 'C');
+    $pdf->Cell(0, 10, 'Gracias por tu compra!', 0, 1, 'C');
     $pdf->Image('img/frame.png', 90, $pdf->GetY() + 10, 30);
 } else {
     echo "No se encontraron resultados.";
