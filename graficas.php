@@ -36,7 +36,7 @@
     }
 
     //convierte el array de métodos de pago a formato JSON
-    $jsonDataPagos = json_encode($dataPagos);
+    $jsonDataPagos = json_encode($dataPagos, JSON_NUMERIC_CHECK);
 
     $con->close();
 ?>

@@ -114,7 +114,7 @@ if ($result_max_pagado_id->num_rows > 0) {
 
             echo '<span>Num. ref: </span>';
 
-            echo '<span id="values">' . $metod_pago . '</span>';
+            echo '<span id="values">' . $metod_pago . '</span><br>';
         
             echo '<span>TOTAL:</span>';
      
